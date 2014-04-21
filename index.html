@@ -2,7 +2,29 @@
 <html>
 <head>
   <title>Pixnet Emma js SDK</title>
-  <script type="text/javascript" src="dist/pixapi.js"></script>
+  <script type="text/javascript" src="src/pixapi.js"></script>
+  <script type="text/javascript" src="src/pixapi.album.js"></script>
+  <script>
+    (function(PixApi) {
+      PixApi.init({
+        consumerKey: '3cb68e1fbf928ff4f70d3b92c93d303c',
+        consumerSecret: 'c4029b29322034bdec54be6f9fa881a4',
+        callbackUrl: 'http://user.mgmt.pixnet/~nobita/pixnet-js-sdk/index.html'
+      });
+      var data = PixApi.login({
+//        type:'popwin',
+        onGetCode: function() {
+          console.log('getCode');
+        },
+        onGetTokens: function() {
+          console.log('getTokens');
+        }
+
+      });
+      console.log(PixApi.getData());
+
+    })(PixApi);
+  </script>
 </head>
 <body>
 
