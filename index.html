@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pixnet Emma js SDK</title>
+  <script type="text/javascript" src="src/pixapi.js"></script>
+  <script type="text/javascript" src="src/pixapi.album.js"></script>
+  <script type="text/javascript" src="src/pixapi.users.js"></script>
+  <script type="text/javascript" src="src/pixapi.blog.js"></script>
+  <script>
+    (function(pixnet) {
+      pixnet.init({
+        consumerKey: '3cb68e1fbf928ff4f70d3b92c93d303c',
+        consumerSecret: 'c4029b29322034bdec54be6f9fa881a4',
+        callbackUrl: 'http://user.mgmt.pixnet/~nobita/pixnet-js-sdk/index.html'
+      });
+      pixnet.login({
+        onGetTokens: function(data) {
+          pixnet.users.getMyAccount({
+            done: function(data) {
+              console.log(data);
+            }
+          });
+        }
+      });
+
+
+
+
+//      pixnet.login({
+//        type:'popwin',
+//        fail: function(data) {
+//          if ('invalid_grant' === data.error) {
+//            location.href = pixnet.getData().app.callbackUrl;
+//          }
+//        },
+//        onGetCode: function(data) {
+//          console.log('getCode', data);
+//        },
+//        onGetTokens: function(data) {
+//          console.log('getTokens', data);
+//        }
+//      });
+      console.log(pixnet.getData());
+
+    })(pixnet);
+  </script>
+</head>
+<body>
+
+</body>
+</html>
