@@ -34,6 +34,7 @@
 - 列出部落格最新留言 (/blog/comments/latest)
 - 修改部落格個人分類排序 (/blog/categories/position)
 - 列出部落格全站分類 (/blog/site_categories)
+
 #### Album
 - 列出相簿主圖及相片牆 (/album/main)
 - 列出相簿列表 (與 http://:user.pixnet.net/album/list 同步) (/album/setfolders)
@@ -78,12 +79,15 @@
 - 刪除人臉標記 (/album/faces/:face_id)
 - 列出相簿個人設定 (/album/config)
 - 列出相簿全站分類 (/album/site_categories)
+
 #### User
 - 讀取認證使用者資訊 (/account)
 - 讀取使用者公開資訊 (/users/:user)
+
 #### Index
 - 讀取 API 使用次數資訊 (/index/rate)
 - 讀取 API Server 時間資訊 (/index/now)
+
 #### Friend
 - 列出好友群組 (/friend/groups)
 - 新增好友群組 (/friend/groups)
@@ -111,6 +115,7 @@
 - 列出黑名單 (/blocks)
 - 新增黑名單 (/blocks/create)
 - 刪除黑名單 (/blocks/delete)
+
 #### GuestBook
 - 列出留言板留言 (/guestbook)
 - 新增留言板留言 (/guestbook)
@@ -121,6 +126,7 @@
 - 將留言設為廣告留言 (/guestbook/:id/mark_spam)
 - 將留言設為非廣告留言 (/guestbook/:id/mark_ham)
 - 刪除留言板留言 (/guestbook/:id)
+
 #### MainPage
 - 列出文章專欄 (/mainpage/blog/columns)
 - 列出專欄的分類 (/mainpage/blog/columns/categories)
