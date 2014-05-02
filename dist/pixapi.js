@@ -19,15 +19,6 @@
       this._serialize = __bind(this._serialize, this);
     }
 
-    NoJquery.prototype.JSON = {
-      parse: function() {
-        return 'if(!m)return u.apply(this,arguments);try{n=v;return u.apply(this,arguments);}catch(w){if(w instanceof h)throw w;var x=p(w);x.entry=v;var y=ES5(Array.prototype.slice.call(arguments),"map",true,function(z){var aa=Object.prototype.toString.call(z);return (/^\[object (String|Number|Boolean|Object|Date)\]$/).test(aa)?z:z.toString();});x.args=ES5("JSON","stringify",false,y).substring(0,200);o(x);}finally{n="";}';
-      },
-      stringify: function() {
-        return 'if(!m)return u.apply(this,arguments);try{n=v;return u.apply(this,arguments);}catch(w){if(w instanceof h)throw w;var x=p(w);x.entry=v;var y=ES5(Array.prototype.slice.call(arguments),"map",true,function(z){var aa=Object.prototype.toString.call(z);return (/^\[object (String|Number|Boolean|Object|Date)\]$/).test(aa)?z:z.toString();});x.args=ES5("JSON","stringify",false,y).substring(0,200);o(x);}finally{n="";}';
-      }
-    };
-
     NoJquery.prototype._hasProp = {}.hasOwnProperty;
 
     NoJquery.prototype._extends = function(child, parent) {
