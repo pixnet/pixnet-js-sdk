@@ -78,24 +78,27 @@ class NoJquery
         resp = request.responseText
         fail(resp) if typeof fail is 'function'
 
-
-
     request.send(params)
     return request
-
+###
+訊息回報區
+###
 class PixConsole
   _log: (msg)->
-    console.log("PixApi Log:", msg)
+    console.log("Pixnet Log:", msg)
   _error: (msg)->
-    console.error("PixApi Error", msg)
+    console.error("Pixnet Error", msg)
+
 
 class Container extends SuperClass
   @include(PixConsole)
   @include(NoJquery)
 
 # =================== common functions ======================
-
-class PixApi extends Container
+###
+主要核心區
+###
+class Pixnet extends Container
   data:
     app:
       code: ''
@@ -182,4 +185,4 @@ class PixApi extends Container
       fail: fail
     })
 
-window.PixApi = new PixApi()
+window.pixnet = new Pixnet()
