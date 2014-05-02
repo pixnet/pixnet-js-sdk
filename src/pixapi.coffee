@@ -203,6 +203,11 @@ class Pixnet extends Container
             location.href = url
     return @
 
+  logout: (callback)=>
+    @setCode(undefined)
+    @setTokens(undefined, undefined)
+    callback() if callback
+    return @
 
   getTokens: (callback, data)=>
     data = @_extends(@data.app, data)
