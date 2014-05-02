@@ -118,6 +118,8 @@ class Pixnet extends Container
       consumerKey: ''
       consumerSceret: ''
       callbackUrl: ''
+      accessToken: ''
+      refreshToken: ''
       isLogin: false
       loginOpts:
         type: 'onepage' # onepage, popwin, custom
