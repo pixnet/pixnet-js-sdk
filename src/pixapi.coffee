@@ -1,6 +1,6 @@
 # =================== common functions ======================
 ###
-
+自幹工具區
 ###
 class NoJquery
   _hasProp: {}.hasOwnProperty
