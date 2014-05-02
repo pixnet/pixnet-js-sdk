@@ -159,38 +159,48 @@ class Pixnet extends Container
     @login(options.loginCallback, @data.app.loginOpts) if options.login is true
     return @
 
-  login: (opts)=>
-    opts = @_extends(@data.app.loginOpts, opts)
-    callbackUrl = opts.callbackUrl || @data.app.callbackUrl
-    consumerKey = @data.app.consumerKey
-    # 驗證是否有寫入所需資訊
-    @_error('callbackUrl is not defined') if not callbackUrl
-    @_error('consumerKey is not defined') if not consumerKey
-
-    # 取得 code 的時候
-    if @_getUrlPara('code') and opts.type isnt 'custom'
-      @data.app.code    = @_getUrlPara('code')
+  login: (callback, opts)=>
+    opts = opts || {}
+    # 之前已經有授權過
+    if localStorage["accessToken"] and localStorage["refreshToken"]
+      @setTokens(localStorage["accessToken"], localStorage["refreshToken"])
       @data.app.isLogin = true
-      # 如果有 callback 就呼叫
-      opts.onGetCode.call(@, @data.app.code) if opts.onGetCode
-      @getTokens(opts) # 直接執行取得 Token 的動作
+      callback.call(@, @data.app) if callback
 
-    # 還沒取得 code ，正要去取的時候
     else
-      url = "https://emma.pixnet.cc/oauth2/authorize?redirect_uri=#{callbackUrl}&client_id=#{consumerKey}&response_type=code"
-      switch opts.type
-      # 使用者自定函數去取得授權 code
-        when 'custom'
-          @_error('You must set a custom function for getting code from oauth2') if not opts.custom
-          opts.custom.apply(@, arguments)
+      opts = @_extends(@data.app.loginOpts, opts)
+      callbackUrl = opts.callbackUrl || @data.app.callbackUrl
+      consumerKey = @data.app.consumerKey
+      # 驗證是否有寫入所需資訊
+      @_error('callbackUrl is not defined') if not callbackUrl
+      @_error('consumerKey is not defined') if not consumerKey
 
-      # 使用跳出視窗
-        when 'popwin'
-          @data.app.loginOpts.popwin = window.open(url, 'getCodeWindow')
+      # 取得 code 的時候
+      if @_getUrlPara('code') and opts.type isnt 'custom'
+        @setCode(@_getUrlPara('code'))
 
-      # 預設單一頁面換頁
-        else
-          location.href = url
+        # 如果有 callback 就呼叫
+        if opts.onGetCode
+          opts.onGetCode.call(@, @data.app)
+
+        @getTokens(callback, @data.app) # 直接執行取得 Token 的動作
+
+      # 還沒取得 code ，正要去取的時候
+      else
+        url = "https://emma.pixnet.cc/oauth2/authorize?redirect_uri=#{callbackUrl}&client_id=#{consumerKey}&response_type=code"
+        switch opts.type
+        # 使用者自定函數去取得授權 code
+          when 'custom'
+            @_error('You must set a custom function for getting code from oauth2') if not opts.custom
+            opts.custom.apply(@, arguments)
+
+        # 使用跳出視窗
+          when 'popwin'
+            @data.app.loginOpts.popwin = window.open(url, 'getCodeWindow')
+
+        # 預設單一頁面換頁
+          else
+            location.href = url
     return @
 
   getTokens: (opts)=>
