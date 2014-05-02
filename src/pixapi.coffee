@@ -234,4 +234,26 @@ class Pixnet extends Container
         callback.call(@, response) if callback
     })
 
+  refreshToken: (callback, opts)=>
+    data = @_extends(@data.app, {})
+    opts = @_extends(@_defaultRequestOption(), opts)
+    @_error('consumerSecret is not defined') if not data.consumerSecret
+
+    @_get('https://emma.pixnet.cc/oauth2/grant', {
+      data:
+        refresh_token: data.refreshToken
+        client_id: data.consumerKey
+        client_secret: data.consumerSecret
+        grant_type: "refresh_token"
+      done: (data)=>
+        response = JSON.parse(data)
+        @setTokens(response.access_token, response.refresh_token)
+        callback.call(@, response) if callback
+      fail: (data)=>
+        response = JSON.parse(data)
+        callback.call(@, response) if callback
+    })
+
+
+
 window.pixnet = new Pixnet()
