@@ -125,6 +125,9 @@ class Pixnet extends Container
         type: 'onepage' # onepage, popwin, custom
         popwin: undefined
 
+  isLogin: =>
+    return @data.app.isLogin
+
   getData: =>
     @data
 
