@@ -156,7 +156,7 @@ class Pixnet extends Container
     @data.app.consumerKey    = options.consumerKey    if options.consumerKey
     @data.app.consumerSecret = options.consumerSecret if options.consumerSecret
     @data.app.callbackUrl    = options.callbackUrl    if options.callbackUrl
-    @login(@data.app.loginOpts) if options.login is true
+    @login(options.loginCallback, @data.app.loginOpts) if options.login is true
     return @
 
   login: (opts)=>
