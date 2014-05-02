@@ -139,6 +139,14 @@ class Pixnet extends Container
     @data.app.consumerKey = key
     return @
 
+  setTokens: (accessToken, refreshToken)=>
+    @data.app.accessToken  = accessToken
+    @data.app.refreshToken = refreshToken
+    localStorage["accessToken"]  = accessToken
+    localStorage["refreshToken"] = refreshToken
+
+    return @
+
   setCode: (code)=>
     @data.app.code = code
     return @
