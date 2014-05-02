@@ -149,6 +149,7 @@ class Pixnet extends Container
 
   setCode: (code)=>
     @data.app.code = code
+    localStorage["code"] = code
     return @
 
   init: (options)->
