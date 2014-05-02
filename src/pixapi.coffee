@@ -9,6 +9,12 @@ class NoJquery
       child[key] = parent[key]
     child
 
+  _defaultRequestOption: ()->
+    return {
+      done: ()->
+      fail: ()->
+    }
+
   _serialize: (data)=>
     dataString = ''
     if typeof data is 'object'
