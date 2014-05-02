@@ -203,13 +203,10 @@ class Pixnet extends Container
             location.href = url
     return @
 
-  getTokens: (opts)=>
-    data = @_extends(@data.app, opts.data)
 
+  getTokens: (callback, data)=>
+    data = @_extends(@data.app, data)
     @_error('consumerSecret is not defined') if not data.consumerSecret
-
-    done = opts.onGetTokens || ()->
-    fail = opts.fail || ()->
 
     @_get('https://emma.pixnet.cc/oauth2/grant', {
       data:
