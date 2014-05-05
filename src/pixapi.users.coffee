@@ -17,9 +17,7 @@ class PixUsers
       pixnet._error 'Need login'
 
   getUser: (callback, userid)->
-    pixnet._get('https://emma.pixnet.cc/account', {
-      data:
-        user: userid
+    pixnet._get("https://emma.pixnet.cc/users/#{userid}", {
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
