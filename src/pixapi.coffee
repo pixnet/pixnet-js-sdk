@@ -201,6 +201,7 @@ class Pixnet extends Container
 
         # 預設單一頁面換頁
           else
+
             location.href = url
     return @
 
@@ -216,11 +217,11 @@ class Pixnet extends Container
 
     @_get('https://emma.pixnet.cc/oauth2/grant', {
       data:
-        redirect_uri: data.callbackUrl
-        client_id: data.consumerKey
+        redirect_uri:  data.callbackUrl
+        client_id:     data.consumerKey
         client_secret: data.consumerSecret
-        code: data.code
-        grant_type: "authorization_code"
+        code:          data.code
+        grant_type:    "authorization_code"
       done: (data)=>
         response = JSON.parse(data)
         @setTokens(response.access_token, response.refresh_token)
@@ -230,22 +231,21 @@ class Pixnet extends Container
         response = JSON.parse(data)
         @_error(response)
         if response.error is 'invalid_grant'
-          @setCode(undefined)
+          @setCode('')
           @_error response
         callback.call(@, response) if callback
     })
 
   refreshToken: (callback, opts)=>
     data = @_extends(@data.app, {})
-    opts = @_extends(@_defaultRequestOption(), opts)
     @_error('consumerSecret is not defined') if not data.consumerSecret
 
     @_get('https://emma.pixnet.cc/oauth2/grant', {
       data:
         refresh_token: data.refreshToken
-        client_id: data.consumerKey
+        client_id:     data.consumerKey
         client_secret: data.consumerSecret
-        grant_type: "refresh_token"
+        grant_type:    "refresh_token"
       done: (data)=>
         response = JSON.parse(data)
         @setTokens(response.access_token, response.refresh_token)
