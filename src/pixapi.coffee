@@ -206,8 +206,9 @@ class Pixnet extends Container
     return @
 
   logout: (callback)=>
-    @setCode(undefined)
-    @setTokens(undefined, undefined)
+    @setCode('')
+    @setTokens('', '')
+    @data.app.isLogin = false
     callback() if callback
     return @
 
