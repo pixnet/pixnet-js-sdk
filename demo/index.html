@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pixnet Emma js SDK</title>
+  <script type="text/javascript" src="../lib/json3.min.js"></script>
+  <script type="text/javascript" src="../dist/pixapi.js"></script>
+  <script type="text/javascript" src="../dist/pixapi.users.js"></script>
+  <script>
+    (function(pixnet) {
+      pixnet.init({
+        consumerKey: '14d1af179be21d591cbff3e2ef7dcb10',
+        consumerSecret: '1802bf15fee07a345c04f2ca3f7bf489',
+        callbackUrl: 'http://user.mgmt.pixnet/~nobita/pixnet-js-sdk/demo/index.html'
+      });
+
+      pixnet.login(function() {
+        pixnet.users.getAccount(function(data) {
+          console.log(data);
+        });
+      });
+    })(pixnet);
+  </script>
+</head>
+<body>
+
+</body>
+</html>
