@@ -35,10 +35,7 @@
     };
 
     PixUsers.prototype.getUser = function(callback, userid) {
-      return pixnet._get('https://emma.pixnet.cc/account', {
-        data: {
-          user: userid
-        },
+      return pixnet._get("https://emma.pixnet.cc/users/" + userid, {
         done: (function(_this) {
           return function(data) {
             if (callback) {

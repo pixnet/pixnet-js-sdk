@@ -199,7 +199,7 @@
 
 
   /*
-  主要核心區
+  Core
    */
 
   Pixnet = (function(_super) {
@@ -208,7 +208,7 @@
     function Pixnet() {
       this.apiInvalidGrantFunc = __bind(this.apiInvalidGrantFunc, this);
       this.refreshToken = __bind(this.refreshToken, this);
-      this.getTokens = __bind(this.getTokens, this);
+      this.requestTokens = __bind(this.requestTokens, this);
       this.logout = __bind(this.logout, this);
       this.login = __bind(this.login, this);
       this.setCode = __bind(this.setCode, this);
@@ -224,7 +224,7 @@
       app: {
         code: '',
         consumerKey: '',
-        consumerSceret: '',
+        consumerSecret: '',
         callbackUrl: '',
         accessToken: '',
         refreshToken: '',
@@ -245,7 +245,7 @@
     };
 
     Pixnet.prototype.setSceret = function(sceret) {
-      this.data.app.consumerSceret = sceret;
+      this.data.app.consumerSecret = sceret;
       return this;
     };
 
@@ -288,6 +288,7 @@
       var callbackUrl, consumerKey, url;
       opts = opts || {};
       if (localStorage["accessToken"] && localStorage["refreshToken"]) {
+        this.setCode(localStorage["code"]);
         this.setTokens(localStorage["accessToken"], localStorage["refreshToken"]);
         this.data.app.isLogin = true;
         if (callback) {
@@ -308,7 +309,7 @@
           if (opts.onGetCode) {
             opts.onGetCode.call(this, this.data.app);
           }
-          this.getTokens(callback, this.data.app);
+          this.requestTokens(callback, this.data.app);
         } else {
           url = "https://emma.pixnet.cc/oauth2/authorize?redirect_uri=" + callbackUrl + "&client_id=" + consumerKey + "&response_type=code";
           switch (opts.type) {
@@ -330,15 +331,16 @@
     };
 
     Pixnet.prototype.logout = function(callback) {
-      this.setCode(void 0);
-      this.setTokens(void 0, void 0);
+      this.setCode('');
+      this.setTokens('', '');
+      this.data.app.isLogin = false;
       if (callback) {
         callback();
       }
       return this;
     };
 
-    Pixnet.prototype.getTokens = function(callback, data) {
+    Pixnet.prototype.requestTokens = function(callback, data) {
       data = this._extends(this.data.app, data);
       if (!data.consumerSecret) {
         this._error('consumerSecret is not defined');
@@ -368,7 +370,7 @@
             response = JSON.parse(data);
             _this._error(response);
             if (response.error === 'invalid_grant') {
-              _this.setCode(void 0);
+              _this.setCode('');
               _this._error(response);
             }
             if (callback) {
@@ -382,7 +384,6 @@
     Pixnet.prototype.refreshToken = function(callback, opts) {
       var data;
       data = this._extends(this.data.app, {});
-      opts = this._extends(this._defaultRequestOption(), opts);
       if (!data.consumerSecret) {
         this._error('consumerSecret is not defined');
       }
