@@ -109,14 +109,14 @@ class Container extends SuperClass
 
 # =================== common functions ======================
 ###
-主要核心區
+Core
 ###
 class Pixnet extends Container
   data:
     app:
       code: ''
       consumerKey: ''
-      consumerSceret: ''
+      consumerSecret: ''
       callbackUrl: ''
       accessToken: ''
       refreshToken: ''
@@ -132,7 +132,7 @@ class Pixnet extends Container
     @data
 
   setSceret: (sceret)=>
-    @data.app.consumerSceret = sceret
+    @data.app.consumerSecret = sceret
     return @
 
   setKey: (key)=>
