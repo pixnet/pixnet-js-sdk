@@ -184,7 +184,7 @@ class Pixnet extends Container
         if opts.onGetCode
           opts.onGetCode.call(@, @data.app)
 
-        @getTokens(callback, @data.app) # 直接執行取得 Token 的動作
+        @requestTokens(callback, @data.app) # 直接執行取得 Token 的動作
 
       # 還沒取得 code ，正要去取的時候
       else
@@ -210,7 +210,7 @@ class Pixnet extends Container
     callback() if callback
     return @
 
-  getTokens: (callback, data)=>
+  requestTokens: (callback, data)=>
     data = @_extends(@data.app, data)
     @_error('consumerSecret is not defined') if not data.consumerSecret
 
