@@ -51,6 +51,7 @@ class NoJquery
 
   _get: (url, opts)=>
     opts.url = url
+    opts.data = opts.data || {}
     return @_ajax(opts)
 
   _ajax: (opts)=>
