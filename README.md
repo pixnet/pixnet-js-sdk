@@ -9,17 +9,17 @@
 - 如果你的電腦沒有安裝 coffee 可以參考 [coffeescript 官網](http://coffeescript.org/)
 - 如果你不是使用 coffeescript 也沒關係，也可以直接載入 dist 內的 js 進行開發。
 
-### 如何測試
+### 如何使用測試程式
 - 先把整個 repo 複製到你的網頁空間（有apache ）的那種
 - 然後到 [這裡](http://developer.pixnet.pro/#!/apps) 申請一個測試用的 app
-- Callback URL 記得要指定到你的網頁空間裡面的 test/test.html
+- Callback URL 記得要指定到你的網頁空間裡面的 test/index.html
 - 然後打開 test/test.js 修改 5~7 行的資訊，改成你剛剛申請的 app 的資訊
 
         consumerKey: '你的 consumerKey',
         consumerSecret: '你的 consumerSecret',
         callbackUrl: '你的 Callback URL'
 
-- 最後用瀏覽器打開 test/test.html 就可以看到測試結果了
+- 最後用瀏覽器打開 test/index.html 就可以看到測試結果了
 
 ### Pixnet 功能分類
 
