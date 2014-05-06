@@ -6,36 +6,16 @@
     function PixUsers() {}
 
     PixUsers.prototype.getAccount = function(callback) {
-      var data, opts;
-      if (pixnet.isLogin) {
-        opts = pixnet._extends(pixnet._defaultRequestOption(), opts);
-        data = pixnet.getData();
-        return pixnet._get('https://emma.pixnet.cc/account', {
-          data: {
-            access_token: data.app.accessToken
-          },
-          done: (function(_this) {
-            return function(data) {
-              if (callback) {
-                return callback(JSON.parse(data));
-              }
-            };
-          })(this),
-          fail: (function(_this) {
-            return function(data) {
-              return pixnet.apiInvalidGrantFunc(function() {
-                return _this.getAccount(callback);
-              }, data);
-            };
-          })(this)
-        });
-      } else {
-        return pixnet._error('Need login');
+      var data;
+      if (!pixnet.isLogin) {
+        pixnet._error('Need login');
+        return this;
       }
-    };
-
-    PixUsers.prototype.getUser = function(callback, userid) {
-      return pixnet._get("https://emma.pixnet.cc/users/" + userid, {
+      data = {
+        access_token: pixnet.getData('accessToken')
+      };
+      pixnet._get('https://emma.pixnet.cc/account', {
+        data: data,
         done: (function(_this) {
           return function(data) {
             if (callback) {
@@ -45,12 +25,20 @@
         })(this),
         fail: (function(_this) {
           return function(data) {
-            if (callback) {
-              return callback(JSON.parse(data));
-            }
+            return pixnet.apiInvalidGrantFunc(function() {
+              return _this.getAccount.apply(_this, arguments);
+            }, data);
           };
         })(this)
       });
+      return this;
+    };
+
+    PixUsers.prototype.getUser = function(callback, userName) {
+      var data;
+      data = {};
+      pixnet._get("https://emma.pixnet.cc/users/" + userName, pixnet._defaultXHROptions(data, callback));
+      return this;
     };
 
     return PixUsers;

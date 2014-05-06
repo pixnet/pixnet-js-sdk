@@ -14,6 +14,8 @@
   NoJquery = (function() {
     function NoJquery() {
       this._ajax = __bind(this._ajax, this);
+      this._post = __bind(this._post, this);
+      this._delete = __bind(this._delete, this);
       this._get = __bind(this._get, this);
       this._getUrlPara = __bind(this._getUrlPara, this);
       this._serialize = __bind(this._serialize, this);
@@ -23,6 +25,9 @@
 
     NoJquery.prototype._extends = function(child, parent) {
       var key;
+      if (!parent) {
+        parent = {};
+      }
       for (key in parent) {
         if (!__hasProp.call(parent, key)) continue;
         child[key] = parent[key];
@@ -30,10 +35,23 @@
       return child;
     };
 
-    NoJquery.prototype._defaultRequestOption = function() {
+    NoJquery.prototype._defaultXHROptions = function(data, callback) {
       return {
-        done: function() {},
-        fail: function() {}
+        data: data,
+        done: (function(_this) {
+          return function(data) {
+            if (callback) {
+              return callback(JSON.parse(data));
+            }
+          };
+        })(this),
+        fail: (function(_this) {
+          return function(data) {
+            if (callback) {
+              return callback(JSON.parse(data));
+            }
+          };
+        })(this)
       };
     };
 
@@ -89,11 +107,26 @@
       return this._ajax(opts);
     };
 
+    NoJquery.prototype._delete = function(url, opts) {
+      opts.type = 'DELETE';
+      opts.url = url;
+      opts.data = opts.data || {};
+      return this._ajax(opts);
+    };
+
+    NoJquery.prototype._post = function(url, opts) {
+      opts.type = 'POST';
+      opts.url = url;
+      opts.data = opts.data || {};
+      return this._ajax(opts);
+    };
+
     NoJquery.prototype._ajax = function(opts) {
       var done, fail, params, request;
       opts = this._extends(this._ajaxOpts, opts);
       switch (opts.type) {
         case 'GET':
+        case 'DELETE':
           opts.url += this._serialize(opts.data);
           params = "";
           break;
@@ -241,8 +274,12 @@
       return this.data.app.isLogin;
     };
 
-    Pixnet.prototype.getData = function() {
-      return this.data;
+    Pixnet.prototype.getData = function(field) {
+      if (field) {
+        return this.data.app[field];
+      } else {
+        return this.data.app;
+      }
     };
 
     Pixnet.prototype.setSceret = function(sceret) {
@@ -382,6 +419,8 @@
       });
     };
 
+    Pixnet.prototype.failTimes = 0;
+
     Pixnet.prototype.refreshToken = function(callback, opts) {
       var data;
       data = this._extends(this.data.app, {});
@@ -420,7 +459,8 @@
     Pixnet.prototype.apiInvalidGrantFunc = function(callback, data) {
       var response;
       response = JSON.parse(data);
-      if (response.error === 'invalid_grant') {
+      this.failTimes++;
+      if (response.error === 'invalid_grant' && this.failTimes <= 10) {
         return this.refreshToken(callback);
       }
     };
