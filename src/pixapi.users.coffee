@@ -18,5 +18,11 @@ class PixUsers
     })
     return @
 
+  getUser: (callback, userName)->
+
+    data = {}
+
+    pixnet._get "https://emma.pixnet.cc/users/#{userName}", pixnet._defaultXHROptions(data, callback)
+    return @
 
 pixnet.users = new PixUsers()
