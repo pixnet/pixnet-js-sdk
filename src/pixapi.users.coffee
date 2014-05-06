@@ -1,28 +1,22 @@
 class PixUsers
   getAccount: (callback)->
-    if pixnet.isLogin
-      opts = pixnet._extends(pixnet._defaultRequestOption(), opts)
-      data = pixnet.getData()
-      pixnet._get('https://emma.pixnet.cc/account', {
-        data:
-          access_token: data.app.accessToken
-        done: (data)=>
-          callback(JSON.parse(data)) if callback
-        fail: (data)=>
-          pixnet.apiInvalidGrantFunc(()=>
-            @getAccount(callback)
-          , data)
-      })
-    else
+    if not pixnet.isLogin
       pixnet._error 'Need login'
+      return @
 
-  getUser: (callback, userid)->
-    pixnet._get("https://emma.pixnet.cc/users/#{userid}", {
+    data =
+      access_token : pixnet.getData('accessToken')
+
+    pixnet._get('https://emma.pixnet.cc/account', {
+      data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
-        callback(JSON.parse(data)) if callback
-
+        pixnet.apiInvalidGrantFunc(()=>
+          @getAccount.apply(@, arguments)
+        , data)
     })
+    return @
+
 
 pixnet.users = new PixUsers()
