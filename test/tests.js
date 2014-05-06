@@ -2,9 +2,9 @@ module('pixnet', {
     setup: function() {
         pixnet.init({
             // 這裡請 clone 下來的人自行輸入自己的 APP 資訊，SAMPLE 使用的是筆者的測試 APP
-            consumerKey: '3cb68e1fbf928ff4f70d3b92c93d303c',
-            consumerSecret: 'c4029b29322034bdec54be6f9fa881a4',
-            callbackUrl: 'http://user.mgmt.pixnet/~nobita/pixnet-js-sdk/test/'
+            consumerKey: '你的 consumerKey',
+            consumerSecret: '你的 consumerSecret',
+            callbackUrl: '你的 Callback URL'
         });
     }
 });
