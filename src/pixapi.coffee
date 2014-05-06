@@ -5,6 +5,7 @@
 class NoJquery
   _hasProp: {}.hasOwnProperty
   _extends: (child, parent)->
+    parent = {} if not parent
     for own key of parent
       child[key] = parent[key]
     child
