@@ -58,11 +58,23 @@ class NoJquery
     opts.data = opts.data || {}
     return @_ajax(opts)
 
+  _delete: (url, opts)=>
+    opts.type = 'DELETE'
+    opts.url = url
+    opts.data = opts.data || {}
+    return @_ajax(opts)
+
+  _post: (url, opts)=>
+    opts.type = 'POST'
+    opts.url = url
+    opts.data = opts.data || {}
+    return @_ajax(opts)
+
   _ajax: (opts)=>
     opts = @_extends(@_ajaxOpts, opts)
 
     switch opts.type
-      when 'GET'
+      when 'GET', 'DELETE'
         opts.url += @_serialize(opts.data)
         params = ""
       else
