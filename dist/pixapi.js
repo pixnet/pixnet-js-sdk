@@ -85,6 +85,7 @@
 
     NoJquery.prototype._get = function(url, opts) {
       opts.url = url;
+      opts.data = opts.data || {};
       return this._ajax(opts);
     };
 
