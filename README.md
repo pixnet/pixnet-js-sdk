@@ -30,7 +30,7 @@
 - 新增部落格個人分類 (/blog/categories)
 - 修改部落格個人分類 (/blog/categories/:id)
 - 刪除部落格個人分類 (/blog/categories/:id)
-- 刪除部落格個人分類排序 (/blog/categories/position)
+- 修改部落格個人分類排序 (/blog/categories/position)
 - 列出所有部落格個人文章 (/blog/articles)
 - 讀取部落格個人文章 (/blog/articles/:id)
 - 讀取指定文章之相關文章 (/blog/articles/:id/related)
@@ -51,7 +51,6 @@
 - 將留言設為非廣告留言 (/blog/comments/:id/mark_ham)
 - 刪除部落格留言 (/blog/comments/:id)
 - 列出部落格最新留言 (/blog/comments/latest)
-- 修改部落格個人分類排序 (/blog/categories/position)
 - 列出部落格全站分類 (/blog/site_categories)
 
 #### Album
