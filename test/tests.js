@@ -4,7 +4,7 @@ module('pixnet', {
             // 這裡請 clone 下來的人自行輸入自己的 APP 資訊，SAMPLE 使用的是筆者的測試 APP
             consumerKey: '3cb68e1fbf928ff4f70d3b92c93d303c',
             consumerSecret: 'c4029b29322034bdec54be6f9fa881a4',
-            callbackUrl: 'http://user.mgmt.pixnet/~nobita/pixnet-js-sdk/test/test.html'
+            callbackUrl: 'http://user.mgmt.pixnet/~nobita/pixnet-js-sdk/test/'
         });
     }
 });
@@ -43,9 +43,9 @@ test( "core function test", function() {
 test( "pixnet 初始化測試", function() {
     expect(3);
     var data = pixnet.getData();
-    equal(data.app.consumerKey ,    '3cb68e1fbf928ff4f70d3b92c93d303c',                             "consumerKey");
-    equal(data.app.consumerSecret , 'c4029b29322034bdec54be6f9fa881a4',                             "consumerSecret");
-    equal(data.app.callbackUrl ,    'http://user.mgmt.pixnet/~nobita/pixnet-js-sdk/test/test.html', "callbackUrl");
+    equal(data.app.consumerKey ,    '3cb68e1fbf928ff4f70d3b92c93d303c',                    "consumerKey");
+    equal(data.app.consumerSecret , 'c4029b29322034bdec54be6f9fa881a4',                    "consumerSecret");
+    equal(data.app.callbackUrl ,    'http://user.mgmt.pixnet/~nobita/pixnet-js-sdk/test/', "callbackUrl");
 });
 
 test( "login 基本功能測試", function() {
