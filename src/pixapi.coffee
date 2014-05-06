@@ -10,10 +10,13 @@ class NoJquery
       child[key] = parent[key]
     child
 
-  _defaultRequestOption: ()->
+  _defaultXHROptions: (data, callback)->
     return {
-      done: ()->
-      fail: ()->
+    data: data
+    done: (data)=>
+      callback(JSON.parse(data)) if callback
+    fail: (data)=>
+      callback(JSON.parse(data)) if callback
     }
 
   _serialize: (data)=>
