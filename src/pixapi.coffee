@@ -145,8 +145,11 @@ class Pixnet extends Container
   isLogin: =>
     return @data.app.isLogin
 
-  getData: =>
-    @data
+  getData: (field)=>
+    if field
+      return @data.app[field]
+    else
+      return @data.app
 
   setSceret: (sceret)=>
     @data.app.consumerSecret = sceret
