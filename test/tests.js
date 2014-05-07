@@ -43,9 +43,9 @@ test( "core function test", function() {
 test( "pixnet 初始化測試", function() {
     expect(3);
     var data = pixnet.getData();
-    equal(data.app.consumerKey ,    '3cb68e1fbf928ff4f70d3b92c93d303c',                    "consumerKey");
-    equal(data.app.consumerSecret , 'c4029b29322034bdec54be6f9fa881a4',                    "consumerSecret");
-    equal(data.app.callbackUrl ,    'http://user.mgmt.pixnet/~nobita/pixnet-js-sdk/test/', "callbackUrl");
+    equal(data.consumerKey ,    pixnet.getData('consumerKey'),    "consumerKey");
+    equal(data.consumerSecret , pixnet.getData('consumerSecret'), "consumerSecret");
+    equal(data.callbackUrl ,    pixnet.getData('callbackUrl'),    "callbackUrl");
 });
 
 test( "login 基本功能測試", function() {
