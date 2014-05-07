@@ -14,7 +14,7 @@ test( "extend function test", function() {
     ok(pixnet, "pixnet");
     ok(pixnet._hasProp, "pixnet._hasProp");
     ok(pixnet._extends, "pixnet._extends");
-    ok(pixnet._defaultRequestOption, "pixnet._defaultRequestOption");
+    ok(pixnet._defaultXHROptions, "pixnet._defaultRequestOption");
     ok(pixnet._serialize, "pixnet._serialize");
     ok(pixnet._getUrlPara, "pixnet._getUrlPara");
     ok(pixnet._ajaxOpts, "pixnet._ajaxOpts");
