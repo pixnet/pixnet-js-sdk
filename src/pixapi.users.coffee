@@ -18,10 +18,10 @@ class PixUsers
     })
     return @
 
-  getUser: (callback, userName)->
+  getUser: (callback, userName, optionData)->
 
     data = {}
-
+    data = pixnet._extends(data, optionData)
     pixnet._get "https://emma.pixnet.cc/users/#{userName}", pixnet._defaultXHROptions(data, callback)
     return @
 

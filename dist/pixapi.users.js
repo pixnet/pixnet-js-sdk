@@ -34,9 +34,10 @@
       return this;
     };
 
-    PixUsers.prototype.getUser = function(callback, userName) {
+    PixUsers.prototype.getUser = function(callback, userName, optionData) {
       var data;
       data = {};
+      data = pixnet._extends(data, optionData);
       pixnet._get("https://emma.pixnet.cc/users/" + userName, pixnet._defaultXHROptions(data, callback));
       return this;
     };
