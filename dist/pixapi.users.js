@@ -5,8 +5,8 @@
   PixUsers = (function() {
     function PixUsers() {}
 
-    PixUsers.prototype.getAccount = function(callback) {
-      var data;
+    PixUsers.prototype.getAccount = function(callback, optionData) {
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -14,6 +14,8 @@
       data = {
         access_token: pixnet.getData('accessToken')
       };
+      data = pixnet._extends(data, optionData);
+      args = arguments;
       pixnet._get('https://emma.pixnet.cc/account', {
         data: data,
         done: (function(_this) {
@@ -26,7 +28,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.getAccount.apply(_this, arguments);
+              return _this.getAccount.apply(_this, args);
             }, data);
           };
         })(this)

@@ -26,7 +26,7 @@
     };
 
     PixBlog.prototype.createCategories = function(callback, name, optionData) {
-      var data;
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -36,6 +36,7 @@
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);
+      args = arguments;
       pixnet._post('https://emma.pixnet.cc/blog/categories', {
         data: data,
         done: (function(_this) {
@@ -48,7 +49,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.createBlogCategories.apply(_this, arguments);
+              return _this.createBlogCategories.apply(_this, args);
             }, data);
           };
         })(this)
@@ -57,7 +58,7 @@
     };
 
     PixBlog.prototype.updateCategories = function(callback, name, optionData) {
-      var data;
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -67,6 +68,7 @@
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);
+      args = arguments;
       pixnet._post('https://emma.pixnet.cc/blog/categories', {
         data: data,
         done: (function(_this) {
@@ -79,7 +81,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.updateCategories.apply(_this, arguments);
+              return _this.updateCategories.apply(_this, args);
             }, data);
           };
         })(this)
@@ -88,7 +90,7 @@
     };
 
     PixBlog.prototype.deleteCategories = function(callback, id, optionData) {
-      var data;
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -97,6 +99,7 @@
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);
+      args = arguments;
       pixnet._delete("https://emma.pixnet.cc/blog/categories/" + id, {
         data: data,
         done: (function(_this) {
@@ -109,7 +112,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.deleteBlogCategories.apply(_this, arguments);
+              return _this.deleteBlogCategories.apply(_this, args);
             }, data);
           };
         })(this)
@@ -118,7 +121,7 @@
     };
 
     PixBlog.prototype.sortCategoriesTo = function(callback, ids, optionData) {
-      var data;
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -128,6 +131,7 @@
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);
+      args = arguments;
       pixnet._post("https://emma.pixnet.cc/blog/categories/position", {
         data: data,
         done: (function(_this) {
@@ -140,7 +144,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.sortCategoriesTo.apply(_this, arguments);
+              return _this.sortCategoriesTo.apply(_this, args);
             }, data);
           };
         })(this)
@@ -183,7 +187,7 @@
     };
 
     PixBlog.prototype.createArticle = function(callback, title, body, optionData) {
-      var data;
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -194,6 +198,7 @@
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);
+      args = arguments;
       pixnet._post('https://emma.pixnet.cc/blog/articles', {
         data: data,
         done: (function(_this) {
@@ -206,7 +211,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.createArticle.apply(_this, arguments);
+              return _this.createArticle.apply(_this, args);
             }, data);
           };
         })(this)
@@ -215,7 +220,7 @@
     };
 
     PixBlog.prototype.updateArticle = function(callback, id, optionData) {
-      var data;
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -224,6 +229,7 @@
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);
+      args = arguments;
       pixnet._post("https://emma.pixnet.cc/blog/articles/" + id, {
         data: data,
         done: (function(_this) {
@@ -236,7 +242,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.updateArticle.apply(_this, arguments);
+              return _this.updateArticle.apply(_this, args);
             }, data);
           };
         })(this)
@@ -245,7 +251,7 @@
     };
 
     PixBlog.prototype.deleteArticle = function(callback, id, optionData) {
-      var data;
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -254,6 +260,7 @@
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);
+      args = arguments;
       pixnet._delete("https://emma.pixnet.cc/blog/articles/" + id, {
         data: data,
         done: (function(_this) {
@@ -266,7 +273,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.deleteArticle.apply(_this, arguments);
+              return _this.deleteArticle.apply(_this, args);
             }, data);
           };
         })(this)
@@ -316,7 +323,7 @@
     };
 
     PixBlog.prototype.createComment = function(callback, articleId, body, userName, optionData) {
-      var data;
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -328,6 +335,7 @@
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);
+      args = arguments;
       pixnet._post('https://emma.pixnet.cc/blog/articles', {
         data: data,
         done: (function(_this) {
@@ -340,7 +348,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.createComment.apply(_this, arguments);
+              return _this.createComment.apply(_this, args);
             }, data);
           };
         })(this)
@@ -359,7 +367,7 @@
     };
 
     PixBlog.prototype.replyComment = function(callback, id, body, optionData) {
-      var data;
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -369,6 +377,7 @@
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);
+      args = arguments;
       pixnet._post("https://emma.pixnet.cc/blog/comments/" + id + "/reply", {
         data: data,
         done: (function(_this) {
@@ -381,7 +390,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.replyComment.apply(_this, arguments);
+              return _this.replyComment.apply(_this, args);
             }, data);
           };
         })(this)
@@ -389,8 +398,8 @@
       return this;
     };
 
-    PixBlog.prototype.updateCommentOpen = function(callback, id, isOpen, optionData) {
-      var data, url;
+    PixBlog.prototype.setCommentOpen = function(callback, id, optionData) {
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -398,9 +407,9 @@
       data = {
         access_token: pixnet.getData('accessToken')
       };
-      url = isOpen ? "https://emma.pixnet.cc/blog/comments/" + id + "/open" : "https://emma.pixnet.cc/blog/comments/" + id + "/close";
       data = pixnet._extends(data, optionData);
-      pixnet._post(url, {
+      args = arguments;
+      pixnet._post("https://emma.pixnet.cc/blog/comments/" + id + "/open", {
         data: data,
         done: (function(_this) {
           return function(data) {
@@ -412,7 +421,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.updateCommentOpen.apply(_this, arguments);
+              return _this.setCommentOpen.apply(_this, args);
             }, data);
           };
         })(this)
@@ -420,8 +429,8 @@
       return this;
     };
 
-    PixBlog.prototype.markCommentSpam = function(callback, id, isSpam, optionData) {
-      var data, url;
+    PixBlog.prototype.setCommentClose = function(callback, id, optionData) {
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -429,9 +438,9 @@
       data = {
         access_token: pixnet.getData('accessToken')
       };
-      url = isSpam ? "https://emma.pixnet.cc/blog/comments/" + id + "/mark_spam" : "https://emma.pixnet.cc/blog/comments/" + id + "/mark_ham";
       data = pixnet._extends(data, optionData);
-      pixnet._post(url, {
+      args = arguments;
+      pixnet._post("https://emma.pixnet.cc/blog/comments/" + id + "/close", {
         data: data,
         done: (function(_this) {
           return function(data) {
@@ -443,7 +452,69 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.markCommentSpam.apply(_this, arguments);
+              return _this.setCommentClose.apply(_this, args);
+            }, data);
+          };
+        })(this)
+      });
+      return this;
+    };
+
+    PixBlog.prototype.markCommentSpam = function(callback, id, optionData) {
+      var args, data;
+      if (!pixnet.isLogin) {
+        pixnet._error('Need login');
+        return this;
+      }
+      data = {
+        access_token: pixnet.getData('accessToken')
+      };
+      data = pixnet._extends(data, optionData);
+      args = arguments;
+      pixnet._post("https://emma.pixnet.cc/blog/comments/" + id + "/mark_spam", {
+        data: data,
+        done: (function(_this) {
+          return function(data) {
+            if (callback) {
+              return callback(JSON.parse(data));
+            }
+          };
+        })(this),
+        fail: (function(_this) {
+          return function(data) {
+            return pixnet.apiInvalidGrantFunc(function() {
+              return _this.markCommentSpam.apply(_this, args);
+            }, data);
+          };
+        })(this)
+      });
+      return this;
+    };
+
+    PixBlog.prototype.markCommentHam = function(callback, id, optionData) {
+      var args, data;
+      if (!pixnet.isLogin) {
+        pixnet._error('Need login');
+        return this;
+      }
+      data = {
+        access_token: pixnet.getData('accessToken')
+      };
+      data = pixnet._extends(data, optionData);
+      args = arguments;
+      pixnet._post("https://emma.pixnet.cc/blog/comments/" + id + "/mark_ham", {
+        data: data,
+        done: (function(_this) {
+          return function(data) {
+            if (callback) {
+              return callback(JSON.parse(data));
+            }
+          };
+        })(this),
+        fail: (function(_this) {
+          return function(data) {
+            return pixnet.apiInvalidGrantFunc(function() {
+              return _this.markCommentSpam.apply(_this, args);
             }, data);
           };
         })(this)
@@ -452,7 +523,7 @@
     };
 
     PixBlog.prototype.deleteComment = function(callback, id, optionData) {
-      var data;
+      var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
@@ -461,6 +532,7 @@
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);
+      args = arguments;
       pixnet._delete("https://emma.pixnet.cc/blog/comments/" + id, {
         data: data,
         done: (function(_this) {
@@ -473,7 +545,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.deleteComment.apply(_this, arguments);
+              return _this.deleteComment.apply(_this, args);
             }, data);
           };
         })(this)

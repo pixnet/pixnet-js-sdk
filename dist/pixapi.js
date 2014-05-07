@@ -428,8 +428,6 @@
       });
     };
 
-    Pixnet.prototype.failTimes = 0;
-
     Pixnet.prototype.refreshToken = function(callback, opts) {
       var data;
       data = this._extends(this.data.app, {});
@@ -468,7 +466,6 @@
     Pixnet.prototype.apiInvalidGrantFunc = function(callback, data) {
       var response;
       response = JSON.parse(data);
-      this.failTimes++;
       if (response.error === 'invalid_grant') {
         return this.refreshToken(callback);
       }
