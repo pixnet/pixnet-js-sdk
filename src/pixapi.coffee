@@ -22,7 +22,7 @@ class NoJquery
   _serialize: (data)=>
     dataString = ''
     if typeof data is 'object'
-      for key, val of data
+      for own key, val of data
         if dataString is ''
           dataString += "?#{key}=#{val}"
         else
