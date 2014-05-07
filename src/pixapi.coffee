@@ -27,9 +27,8 @@ class NoJquery
           dataString += "?#{key}=#{val}"
         else
           dataString += "&#{key}=#{val}"
-      return dataString
-    else
-      return dataString
+
+    return dataString
 
   _getUrlPara: (name)=>
     url = window.location.search
@@ -86,7 +85,8 @@ class NoJquery
     request = new XMLHttpRequest()
     request.open(opts.type, opts.url, true)
     request.setRequestHeader('Content-Type', "#{opts.enctype}; charset=#{opts.charset}")
-    request.onload = ()->
+
+    request.onload = ->
       if request.status >= 200 && request.status < 400
         resp = request.responseText
         resp = JSON.parse(resp) if opts.dataType is 'json'
