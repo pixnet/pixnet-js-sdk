@@ -53,7 +53,7 @@ test( "login 基本功能測試", function() {
     equal(pixnet.isLogin(), false, 'Sure be not login.');
     stop();
     pixnet.login(function() {
-        var app = pixnet.getData().app;
+        var app = pixnet.getData();
         equal(pixnet.isLogin(), true, 'Sure be logined.');
         equal(app.code, localStorage['code'], 'code');
         equal(app.accessToken, localStorage['accessToken'], 'accessToken');
