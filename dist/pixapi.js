@@ -60,6 +60,7 @@
       dataString = '';
       if (typeof data === 'object') {
         for (key in data) {
+          if (!__hasProp.call(data, key)) continue;
           val = data[key];
           if (dataString === '') {
             dataString += "?" + key + "=" + val;
@@ -67,10 +68,8 @@
             dataString += "&" + key + "=" + val;
           }
         }
-        return dataString;
-      } else {
-        return dataString;
       }
+      return dataString;
     };
 
     NoJquery.prototype._getUrlPara = function(name) {
@@ -124,18 +123,28 @@
     NoJquery.prototype._ajax = function(opts) {
       var done, fail, params, request;
       opts = this._extends(this._ajaxOpts, opts);
+      if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+      } else {
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+      }
       switch (opts.type) {
         case 'GET':
         case 'DELETE':
           opts.url += this._serialize(opts.data);
           params = "";
           break;
+        case 'POST':
+        case 'PUT':
+          params = this._serialize(opts.data).substr(1);
+          break;
+        case 'UPLOAD':
+          break;
         default:
-          params = JSON.stringify(opts.data);
+          params = "";
       }
       done = opts.done || opts.success || function() {};
       fail = opts.fail || opts.error || function() {};
-      request = new XMLHttpRequest();
       request.open(opts.type, opts.url, true);
       request.setRequestHeader('Content-Type', "" + opts.enctype + "; charset=" + opts.charset);
       request.onload = function() {
@@ -419,6 +428,8 @@
       });
     };
 
+    Pixnet.prototype.failTimes = 0;
+
     Pixnet.prototype.refreshToken = function(callback, opts) {
       var data;
       data = this._extends(this.data.app, {});
@@ -457,6 +468,7 @@
     Pixnet.prototype.apiInvalidGrantFunc = function(callback, data) {
       var response;
       response = JSON.parse(data);
+      this.failTimes++;
       if (response.error === 'invalid_grant') {
         return this.refreshToken(callback);
       }
