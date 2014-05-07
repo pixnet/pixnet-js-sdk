@@ -294,7 +294,7 @@ class PixBlog
     })
     return @
 
-  updateCommentOpen: (callback, id, isOpen, optionData)->
+  setCommentOpen: (callback, id, optionData)->
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
