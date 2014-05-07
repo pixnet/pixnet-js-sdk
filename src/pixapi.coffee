@@ -71,6 +71,12 @@ class NoJquery
 
   _ajax: (opts)=>
     opts = @_extends(@_ajaxOpts, opts)
+    if window.XMLHttpRequest
+      # code for IE7+, Firefox, Chrome, Opera, Safari
+      request = new XMLHttpRequest()
+    else
+      # code for IE6, IE5
+      request = new ActiveXObject("Microsoft.XMLHTTP")
 
     switch opts.type
       when 'GET', 'DELETE'
@@ -82,7 +88,7 @@ class NoJquery
 
     done = opts.done || opts.success || ()->
     fail = opts.fail || opts.error   || ()->
-    request = new XMLHttpRequest()
+
     request.open(opts.type, opts.url, true)
     request.setRequestHeader('Content-Type', "#{opts.enctype}; charset=#{opts.charset}")
 
