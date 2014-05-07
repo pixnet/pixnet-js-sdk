@@ -1,12 +1,12 @@
 class PixUsers
-  getAccount: (callback)->
+  getAccount: (callback, optionData)->
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
 
     data =
       access_token : pixnet.getData('accessToken')
-
+    data = pixnet._extends(data, optionData)
     pixnet._get('https://emma.pixnet.cc/account', {
       data: data
       done: (data)=>
