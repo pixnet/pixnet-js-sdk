@@ -334,13 +334,25 @@ class PixBlog
     })
     return @
 
-  markCommentSpam: (callback, id, isSpam, optionData)->
+  markCommentSpam: (callback, id, optionData)->
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
 
     data =
       access_token : pixnet.getData('accessToken')
+    data = pixnet._extends(data, optionData)
+    args = arguments
+    pixnet._post("https://emma.pixnet.cc/blog/comments/#{id}/mark_spam", {
+      data: data
+      done: (data)=>
+        callback(JSON.parse(data)) if callback
+      fail: (data)=>
+        pixnet.apiInvalidGrantFunc(()=>
+          @markCommentSpam.apply(@, args)
+        , data)
+    })
+    return @
 
     url = if isSpam then "https://emma.pixnet.cc/blog/comments/#{id}/mark_spam" else "https://emma.pixnet.cc/blog/comments/#{id}/mark_ham"
 
