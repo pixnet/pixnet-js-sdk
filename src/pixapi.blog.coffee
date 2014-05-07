@@ -301,6 +301,18 @@ class PixBlog
 
     data =
       access_token : pixnet.getData('accessToken')
+    data = pixnet._extends(data, optionData)
+    args = arguments
+    pixnet._post("https://emma.pixnet.cc/blog/comments/#{id}/open", {
+      data: data
+      done: (data)=>
+        callback(JSON.parse(data)) if callback
+      fail: (data)=>
+        pixnet.apiInvalidGrantFunc(()=>
+          @setCommentOpen.apply(@, args)
+        , data)
+    })
+    return @
 
     url = if isOpen then "https://emma.pixnet.cc/blog/comments/#{id}/open" else "https://emma.pixnet.cc/blog/comments/#{id}/close"
 
