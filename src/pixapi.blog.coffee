@@ -314,10 +314,16 @@ class PixBlog
     })
     return @
 
-    url = if isOpen then "https://emma.pixnet.cc/blog/comments/#{id}/open" else "https://emma.pixnet.cc/blog/comments/#{id}/close"
+  setCommentClose: (callback, id, optionData)->
+    if not pixnet.isLogin
+      pixnet._error 'Need login'
+      return @
 
+    data =
+      access_token : pixnet.getData('accessToken')
     data = pixnet._extends(data, optionData)
-    pixnet._post(url, {
+    args = arguments
+    pixnet._post("https://emma.pixnet.cc/blog/comments/#{id}/close", {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
