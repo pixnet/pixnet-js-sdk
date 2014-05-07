@@ -7,13 +7,14 @@ class PixUsers
     data =
       access_token : pixnet.getData('accessToken')
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._get('https://emma.pixnet.cc/account', {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @getAccount.apply(@, arguments)
+          @getAccount.apply(@, args)
         , data)
     })
     return @
