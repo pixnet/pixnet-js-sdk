@@ -82,8 +82,12 @@ class NoJquery
       when 'GET', 'DELETE'
         opts.url += @_serialize(opts.data)
         params = ""
+
+      when 'POST', 'PUT'
+        params =  @_serialize(opts.data).substr(1)
+
       else
-        params = JSON.stringify(opts.data)
+        params = ""
 
 
     done = opts.done || opts.success || ()->
