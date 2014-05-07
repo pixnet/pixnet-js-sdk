@@ -27,13 +27,14 @@ class PixBlog
       access_token : pixnet.getData('accessToken')
 
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._post('https://emma.pixnet.cc/blog/categories', {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @createBlogCategories.apply(@, arguments)
+          @createBlogCategories.apply(@, args)
         , data)
     })
     return @
@@ -48,13 +49,14 @@ class PixBlog
       access_token : pixnet.getData('accessToken')
 
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._post('https://emma.pixnet.cc/blog/categories', {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @updateCategories.apply(@, arguments)
+          @updateCategories.apply(@, args)
         , data)
     })
     return @
@@ -68,13 +70,14 @@ class PixBlog
       access_token : pixnet.getData('accessToken')
 
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._delete("https://emma.pixnet.cc/blog/categories/#{id}", {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @deleteBlogCategories.apply(@, arguments)
+          @deleteBlogCategories.apply(@, args)
         , data)
     })
     return @
@@ -89,13 +92,14 @@ class PixBlog
       access_token : pixnet.getData('accessToken')
 
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._post("https://emma.pixnet.cc/blog/categories/position", {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @sortCategoriesTo.apply(@, arguments)
+          @sortCategoriesTo.apply(@, args)
         , data)
     })
     return @
@@ -144,13 +148,14 @@ class PixBlog
       access_token : pixnet.getData('accessToken')
 
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._post('https://emma.pixnet.cc/blog/articles', {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @createArticle.apply(@, arguments)
+          @createArticle.apply(@, args)
         , data)
     })
     return @
@@ -164,13 +169,14 @@ class PixBlog
       access_token : pixnet.getData('accessToken')
 
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._post("https://emma.pixnet.cc/blog/articles/#{id}", {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @updateArticle.apply(@, arguments)
+          @updateArticle.apply(@, args)
         , data)
     })
     return @
@@ -184,13 +190,14 @@ class PixBlog
       access_token : pixnet.getData('accessToken')
 
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._delete("https://emma.pixnet.cc/blog/articles/#{id}", {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @deleteArticle.apply(@, arguments)
+          @deleteArticle.apply(@, args)
         , data)
     })
     return @
@@ -244,13 +251,14 @@ class PixBlog
       access_token : pixnet.getData('accessToken')
 
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._post('https://emma.pixnet.cc/blog/articles', {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @createComment.apply(@, arguments)
+          @createComment.apply(@, args)
         , data)
     })
     return @
@@ -274,13 +282,14 @@ class PixBlog
       access_token : pixnet.getData('accessToken')
 
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._post("https://emma.pixnet.cc/blog/comments/#{id}/reply", {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @replyComment.apply(@, arguments)
+          @replyComment.apply(@, args)
         , data)
     })
     return @
@@ -302,7 +311,7 @@ class PixBlog
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @updateCommentOpen.apply(@, arguments)
+          @setCommentClose.apply(@, args)
         , data)
     })
     return @
@@ -324,7 +333,7 @@ class PixBlog
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @markCommentSpam.apply(@, arguments)
+          @markCommentSpam.apply(@, args)
         , data)
     })
     return @
@@ -338,13 +347,14 @@ class PixBlog
       access_token : pixnet.getData('accessToken')
 
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._delete("https://emma.pixnet.cc/blog/comments/#{id}", {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @deleteComment.apply(@, arguments)
+          @deleteComment.apply(@, args)
         , data)
     })
     return @
