@@ -22,7 +22,7 @@
 
 - 最後用瀏覽器打開 test/index.html 就可以看到測試結果了
 
-### Pixnet 功能分類
+### PIXNET 功能分類
 #### Init
 - 參數說明 pixnet.init
 
