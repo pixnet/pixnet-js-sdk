@@ -58,9 +58,10 @@ class NoJquery
     return @_ajax(opts)
 
   _delete: (url, opts)=>
-    opts.type = 'DELETE'
+    opts.type = 'GET'
     opts.url = url
     opts.data = opts.data || {}
+    opts.data['_method'] = 'delete'
     return @_ajax(opts)
 
   _post: (url, opts)=>

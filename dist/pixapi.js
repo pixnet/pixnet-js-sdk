@@ -107,9 +107,10 @@
     };
 
     NoJquery.prototype._delete = function(url, opts) {
-      opts.type = 'DELETE';
+      opts.type = 'GET';
       opts.url = url;
       opts.data = opts.data || {};
+      opts.data['_method'] = 'delete';
       return this._ajax(opts);
     };
 
