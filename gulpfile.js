@@ -9,7 +9,7 @@ var paths = {
 };
 
 gulp.task('scripts', function() {
-    // Minify and copy all JavaScript (except vendor scripts)
+    // Minify and copy all JavaScript
     return gulp.src(paths.scripts)
     .pipe(coffee())
     .pipe(uglify())
