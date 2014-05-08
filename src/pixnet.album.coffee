@@ -509,13 +509,13 @@ class PixAlbum
     pixnet._get "http://emma.pixnet.cc/album/comments/#{id}", pixnet._defaultXHROptions(data, callback)
     return @
 
-  createComment: (callback, setId, userName, body, optionData)->
+  createComment: (callback, elementId, userName, body, optionData)->
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
 
     data =
-      set_id: setId
+      element_id: elementId
       user: userName
       body: body
       access_token : pixnet.getData('accessToken')
@@ -541,7 +541,7 @@ class PixAlbum
       access_token : pixnet.getData('accessToken')
     data = pixnet._extends(data, optionData)
     args = arguments
-    pixnet._post("https://emma.pixnet.cc/album/set_comments/#{id}/mark_spam", {
+    pixnet._post("https://emma.pixnet.cc/album/comments/#{id}/mark_spam", {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
@@ -561,7 +561,7 @@ class PixAlbum
       access_token : pixnet.getData('accessToken')
     data = pixnet._extends(data, optionData)
     args = arguments
-    pixnet._post("https://emma.pixnet.cc/album/set_comments/#{id}/mark_ham", {
+    pixnet._post("https://emma.pixnet.cc/album/comments/#{id}/mark_ham", {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
@@ -581,7 +581,7 @@ class PixAlbum
       access_token : pixnet.getData('accessToken')
     data = pixnet._extends(data, optionData)
     args = arguments
-    pixnet._delete("https://emma.pixnet.cc/album/set_comments/#{id}", {
+    pixnet._delete("https://emma.pixnet.cc/album/comments/#{id}", {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
