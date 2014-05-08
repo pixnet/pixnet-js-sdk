@@ -36,7 +36,7 @@
 <tr><th>參數名稱</th><th>類型</th><th>說明</th></tr>
 <tr><td>callback</td><td>function</td><td>執行後的結果都會丟給這個 callback function</td></tr>
 <tr><td>必要參數</td><td>string</td><td>介於 callback 與 optionData 之間的參數都是必要參數，不可少</td></tr>
-<tr><td>optionData</td><td>object</td><td>所有的 method 都有可選的參數，說明請參考 [API文件說明](http://developer.pixnet.pro/#!/doc/pixnetApi/oauthApi)</td></tr>
+<tr><td>optionData</td><td>object</td><td>所有的 method 都有可選的參數，說明請參考<a href="http://developer.pixnet.pro/#!/doc/pixnetApi/oauthApi">API文件說明</a></td></tr>
 </table>
 
 #### Blog
