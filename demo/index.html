@@ -24,6 +24,22 @@
         pixnet.users.getAccount(function(data) {
           console.log(data);
         });
+        pixnet.blog.getInfo(function(data) {
+          console.log(data);
+        }, 'admin');
+
+        pixnet.blog.createCategories(function(data) {
+          console.log('createCategories', data);
+        }, '測試分類請刪除', { user: 'nobitatest'})
+
+        pixnet.blog.getCategories(function(data) {
+          console.log('getCategories', data);
+          var cate = data.categories;
+          pixnet.blog.deleteCategories(function(data) {
+            console.log('deleteCategories', data);
+          }, cate[0].id);
+        }
+        , 'nobitatest');
       });
     })(pixnet);
   </script>
