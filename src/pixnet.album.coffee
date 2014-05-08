@@ -398,6 +398,103 @@ class PixAlbum
     pixnet._get "http://emma.pixnet.cc/album/elements/nearby", pixnet._defaultXHROptions(data, callback)
     return @
 
+  getSetComments: (callback, userName, optionData)->
+    data =
+      user: userName
+    data = pixnet._extends(data, optionData)
+    pixnet._get "http://emma.pixnet.cc/album/set_comments", pixnet._defaultXHROptions(data, callback)
+    return @
+
+  getSetComment: (callback, id, userName, optionData)->
+    data =
+      user: userName
+    data = pixnet._extends(data, optionData)
+    pixnet._get "http://emma.pixnet.cc/album/set_comments/#{id}", pixnet._defaultXHROptions(data, callback)
+    return @
+
+  createComment: (callback, setId, userName, body, optionData)->
+    if not pixnet.isLogin
+      pixnet._error 'Need login'
+      return @
+
+    data =
+      set_id: setId
+      user: userName
+      body: body
+      access_token : pixnet.getData('accessToken')
+    data = pixnet._extends(data, optionData)
+    args = arguments
+    pixnet._post("https://emma.pixnet.cc/album/set_comments", {
+      data: data
+      done: (data)=>
+        callback(JSON.parse(data)) if callback
+      fail: (data)=>
+        pixnet.apiInvalidGrantFunc(()=>
+          @createComments.apply(@, args)
+        , data)
+    })
+    return @
+
+  markSetCommentSpam: (callback, id, optionData)->
+    if not pixnet.isLogin
+      pixnet._error 'Need login'
+      return @
+
+    data =
+      access_token : pixnet.getData('accessToken')
+    data = pixnet._extends(data, optionData)
+    args = arguments
+    pixnet._post("https://emma.pixnet.cc/album/set_comments/#{id}/mark_spam", {
+      data: data
+      done: (data)=>
+        callback(JSON.parse(data)) if callback
+      fail: (data)=>
+        pixnet.apiInvalidGrantFunc(()=>
+          @markCommentSpam.apply(@, args)
+        , data)
+    })
+    return @
+
+  markSetCommentHam: (callback, id, optionData)->
+    if not pixnet.isLogin
+      pixnet._error 'Need login'
+      return @
+
+    data =
+      access_token : pixnet.getData('accessToken')
+    data = pixnet._extends(data, optionData)
+    args = arguments
+    pixnet._post("https://emma.pixnet.cc/album/set_comments/#{id}/mark_ham", {
+      data: data
+      done: (data)=>
+        callback(JSON.parse(data)) if callback
+      fail: (data)=>
+        pixnet.apiInvalidGrantFunc(()=>
+          @markCommentSpam.apply(@, args)
+        , data)
+    })
+    return @
+
+  deleteSetComment: (callback, id, optionData)->
+    if not pixnet.isLogin
+      pixnet._error 'Need login'
+      return @
+
+    data =
+      access_token : pixnet.getData('accessToken')
+    data = pixnet._extends(data, optionData)
+    args = arguments
+    pixnet._delete("https://emma.pixnet.cc/album/set_comments/#{id}", {
+      data: data
+      done: (data)=>
+        callback(JSON.parse(data)) if callback
+      fail: (data)=>
+        pixnet.apiInvalidGrantFunc(()=>
+          @deleteComment.apply(@, args)
+        , data)
+    })
+    return @
+
   getComments: (callback, userName, optionData)->
     data =
       user: userName
