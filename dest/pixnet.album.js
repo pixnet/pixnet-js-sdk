@@ -602,23 +602,23 @@
       return this;
     };
 
-    PixAlbum.prototype.getComments = function(callback, userName, optionData) {
+    PixAlbum.prototype.getSetComments = function(callback, userName, optionData) {
       var data;
       data = {
         user: userName
       };
       data = pixnet._extends(data, optionData);
-      pixnet._get("http://emma.pixnet.cc/album/comments", pixnet._defaultXHROptions(data, callback));
+      pixnet._get("http://emma.pixnet.cc/album/set_comments", pixnet._defaultXHROptions(data, callback));
       return this;
     };
 
-    PixAlbum.prototype.getComment = function(callback, id, userName, optionData) {
+    PixAlbum.prototype.getSetComment = function(callback, id, userName, optionData) {
       var data;
       data = {
         user: userName
       };
       data = pixnet._extends(data, optionData);
-      pixnet._get("http://emma.pixnet.cc/album/comments/" + id, pixnet._defaultXHROptions(data, callback));
+      pixnet._get("http://emma.pixnet.cc/album/set_comments/" + id, pixnet._defaultXHROptions(data, callback));
       return this;
     };
 
@@ -656,7 +656,7 @@
       return this;
     };
 
-    PixAlbum.prototype.markCommentSpam = function(callback, id, optionData) {
+    PixAlbum.prototype.markSetCommentSpam = function(callback, id, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
@@ -687,7 +687,7 @@
       return this;
     };
 
-    PixAlbum.prototype.markCommentHam = function(callback, id, optionData) {
+    PixAlbum.prototype.markSetCommentHam = function(callback, id, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
@@ -718,7 +718,7 @@
       return this;
     };
 
-    PixAlbum.prototype.deleteComment = function(callback, id, optionData) {
+    PixAlbum.prototype.deleteSetComment = function(callback, id, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
@@ -730,6 +730,153 @@
       data = pixnet._extends(data, optionData);
       args = arguments;
       pixnet._delete("https://emma.pixnet.cc/album/set_comments/" + id, {
+        data: data,
+        done: (function(_this) {
+          return function(data) {
+            if (callback) {
+              return callback(JSON.parse(data));
+            }
+          };
+        })(this),
+        fail: (function(_this) {
+          return function(data) {
+            return pixnet.apiInvalidGrantFunc(function() {
+              return _this.deleteComment.apply(_this, args);
+            }, data);
+          };
+        })(this)
+      });
+      return this;
+    };
+
+    PixAlbum.prototype.getComments = function(callback, userName, optionData) {
+      var data;
+      data = {
+        user: userName
+      };
+      data = pixnet._extends(data, optionData);
+      pixnet._get("http://emma.pixnet.cc/album/comments", pixnet._defaultXHROptions(data, callback));
+      return this;
+    };
+
+    PixAlbum.prototype.getComment = function(callback, id, userName, optionData) {
+      var data;
+      data = {
+        user: userName
+      };
+      data = pixnet._extends(data, optionData);
+      pixnet._get("http://emma.pixnet.cc/album/comments/" + id, pixnet._defaultXHROptions(data, callback));
+      return this;
+    };
+
+    PixAlbum.prototype.createComment = function(callback, elementId, userName, body, optionData) {
+      var args, data;
+      if (!pixnet.isLogin) {
+        pixnet._error('Need login');
+        return this;
+      }
+      data = {
+        element_id: elementId,
+        user: userName,
+        body: body,
+        access_token: pixnet.getData('accessToken')
+      };
+      data = pixnet._extends(data, optionData);
+      args = arguments;
+      pixnet._post("https://emma.pixnet.cc/album/set_comments", {
+        data: data,
+        done: (function(_this) {
+          return function(data) {
+            if (callback) {
+              return callback(JSON.parse(data));
+            }
+          };
+        })(this),
+        fail: (function(_this) {
+          return function(data) {
+            return pixnet.apiInvalidGrantFunc(function() {
+              return _this.createComments.apply(_this, args);
+            }, data);
+          };
+        })(this)
+      });
+      return this;
+    };
+
+    PixAlbum.prototype.markCommentSpam = function(callback, id, optionData) {
+      var args, data;
+      if (!pixnet.isLogin) {
+        pixnet._error('Need login');
+        return this;
+      }
+      data = {
+        access_token: pixnet.getData('accessToken')
+      };
+      data = pixnet._extends(data, optionData);
+      args = arguments;
+      pixnet._post("https://emma.pixnet.cc/album/comments/" + id + "/mark_spam", {
+        data: data,
+        done: (function(_this) {
+          return function(data) {
+            if (callback) {
+              return callback(JSON.parse(data));
+            }
+          };
+        })(this),
+        fail: (function(_this) {
+          return function(data) {
+            return pixnet.apiInvalidGrantFunc(function() {
+              return _this.markCommentSpam.apply(_this, args);
+            }, data);
+          };
+        })(this)
+      });
+      return this;
+    };
+
+    PixAlbum.prototype.markCommentHam = function(callback, id, optionData) {
+      var args, data;
+      if (!pixnet.isLogin) {
+        pixnet._error('Need login');
+        return this;
+      }
+      data = {
+        access_token: pixnet.getData('accessToken')
+      };
+      data = pixnet._extends(data, optionData);
+      args = arguments;
+      pixnet._post("https://emma.pixnet.cc/album/comments/" + id + "/mark_ham", {
+        data: data,
+        done: (function(_this) {
+          return function(data) {
+            if (callback) {
+              return callback(JSON.parse(data));
+            }
+          };
+        })(this),
+        fail: (function(_this) {
+          return function(data) {
+            return pixnet.apiInvalidGrantFunc(function() {
+              return _this.markCommentSpam.apply(_this, args);
+            }, data);
+          };
+        })(this)
+      });
+      return this;
+    };
+
+    PixAlbum.prototype.deleteComment = function(callback, id, optionData) {
+      var args, data;
+      if (!pixnet.isLogin) {
+        pixnet._error('Need login');
+        return this;
+      }
+      data = {
+        access_token: pixnet.getData('accessToken')
+      };
+      data = pixnet._extends(data, optionData);
+      args = arguments;
+      pixnet._delete("https://emma.pixnet.cc/album/comments/" + id, {
         data: data,
         done: (function(_this) {
           return function(data) {
