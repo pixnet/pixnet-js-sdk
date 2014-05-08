@@ -2,26 +2,12 @@
 =============
 痞客邦 emma api 的 js 版 sdk
 
-### 如何 buile js 檔案
-#### 方法一
+### 如何產生 js 檔案
+
 - 因為核心是用 coffeescript 開發，所以如果要自行產生 JS 檔案，可以打以下指令：
-
-        coffee -o dist -c src/*.coffee
-
+    coffee -o dist -c src/*.coffee
 - 如果你的電腦沒有安裝 coffee 可以參考 [coffeescript 官網](http://coffeescript.org/)
-- 如果你不是使用 coffeescript 也沒關係，也可以直接載入 dest 內的 js 進行開發。
-
-#### 方法二
-- 使用 gulp 產生 all.min.js 檔案
-- 打開終端機，進入有 gulpfile.js 的資料夾下，輸入以下指令：
-
-        npm install gulp
-        npm install gulp-coffee
-        npm install gulp-concat
-        npm install gulp-uglify
-        gulp
-
-- 就可以看到 lib/all.min.js 了
+- 如果你不是使用 coffeescript 也沒關係，也可以直接載入 dist 內的 js 進行開發。
 
 ### 如何使用測試程式
 - 先把整個 repo 複製到你的網頁空間（有apache ）的那種
@@ -35,10 +21,10 @@
 
 - 最後用瀏覽器打開 test/index.html 就可以看到測試結果了
 
-### PIXNET 功能分類
+### Pixnet 功能分類
+
 #### Init
 - 參數說明 pixnet.init
-
 <table>
 <tr><td>consumerKey</td><td>string</td><td>你的 consumerKey</td></tr>
 <tr><td>consumerSecret</td><td>string</td><td>你的 consumerSecret</td></tr>
@@ -101,18 +87,18 @@
 - 刪除相簿單篇圖片影片 pixnet.album.deleteElement(callback, id, optionData)
 - 修改相簿圖片影片排序 pixnet.album.sortElement(callback, setId, ids, optionData)
 - 列出附近的相簿圖片影片 pixnet.album.getElementCommentsNear(callback, userName, lat_y, lon_x, optionData)
-- 列出相本留言 pixnet.album.getComments(callback, userName, optionData)
-- 新增相本留言 pixnet.album.getComment(callback, id, userName, optionData)
+- 列出相本留言 pixnet.album.getSetComments(callback, userName, optionData)
+- 新增相本留言 pixnet.album.getSetComment(callback, id, userName, optionData)
 - 讀取單一留言 pixnet.album.createComment(callback, setId, userName, body, optionData)
-- 將留言設為廣告留言 pixnet.album.markCommentSpam(callback, id, optionData)
-- 將留言設為非廣告留言 pixnet.album.markCommentHam(callback, id, optionData)
-- 刪除相本留言 pixnet.album.deleteComment(callback, id, optionData)
-- 列出相片留言 pixnet.album.
-- 新增相片留言 pixnet.album.
-- 讀取單一留言 pixnet.album.
-- 將留言設為廣告留言 pixnet.album.
-- 將留言設為非廣告留言 pixnet.album.
-- 刪除相片留言 pixnet.album.
+- 將留言設為廣告留言 pixnet.album.markSetCommentSpam(callback, id, optionData)
+- 將留言設為非廣告留言 pixnet.markSetCommentHam(callback, id, optionData)
+- 刪除相本留言 pixnet.album.deleteSetComment(callback, id, optionData)
+- 列出相片留言 pixnet.album.getComments(callback, userName, optionData)
+- 新增相片留言 pixnet.album.getComment(callback, id, userName, optionData)
+- 讀取單一留言 pixnet.album.album.createComment(callback, setId, userName, body, optionData)
+- 將留言設為廣告留言 pixnet.album.markCommentHam(callback, id, optionData)
+- 將留言設為非廣告留言 pixnet.album.markCommentSpam(callback, id, optionData)
+- 刪除相片留言 pixnet.album.deleteComment(callback, id, optionData)
 - 新增人臉標記 pixnet.album.createFace(callback, userName, optionData)
 - 更新人臉標記 pixnet.album.updateFace(callback, faceId, userName, elementId, x, y, width, height, optionData)
 - 刪除人臉標記 pixnet.album.deleteFace(callback, faceId, optionData)
