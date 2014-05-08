@@ -53,12 +53,13 @@ class NoJquery
     enctype: 'application/x-www-form-urlencoded'
 
   _get: (url, opts)=>
+    opts.type = 'GET'
     opts.url = url
     opts.data = opts.data || {}
     return @_ajax(opts)
 
   _delete: (url, opts)=>
-    opts.type = 'GET'
+    opts.type = 'POST'
     opts.url = url
     opts.data = opts.data || {}
     opts.data['_method'] = 'delete'
