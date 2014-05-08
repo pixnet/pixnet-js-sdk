@@ -14,6 +14,7 @@
   NoJquery = (function() {
     function NoJquery() {
       this._ajax = __bind(this._ajax, this);
+      this._upload = __bind(this._upload, this);
       this._post = __bind(this._post, this);
       this._delete = __bind(this._delete, this);
       this._get = __bind(this._get, this);
@@ -101,13 +102,14 @@
     };
 
     NoJquery.prototype._get = function(url, opts) {
+      opts.type = 'GET';
       opts.url = url;
       opts.data = opts.data || {};
       return this._ajax(opts);
     };
 
     NoJquery.prototype._delete = function(url, opts) {
-      opts.type = 'GET';
+      opts.type = 'POST';
       opts.url = url;
       opts.data = opts.data || {};
       opts.data['_method'] = 'delete';
@@ -119,6 +121,10 @@
       opts.url = url;
       opts.data = opts.data || {};
       return this._ajax(opts);
+    };
+
+    NoJquery.prototype._upload = function(url, opts) {
+      return this;
     };
 
     NoJquery.prototype._ajax = function(opts) {
