@@ -1,2 +1,3 @@
 *.swp
 fingerprint.txt
+node_modules/
