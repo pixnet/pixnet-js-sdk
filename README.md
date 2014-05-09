@@ -118,8 +118,8 @@
 - 讀取使用者公開資訊 pixnet.users.getUser(callback, userName, [optionData])
 
 #### Index
-- 讀取 API 使用次數資訊 (/index/rate)
-- 讀取 API Server 時間資訊 (/index/now)
+- 讀取 API 使用次數資訊 pixnet.index.rate(callback, [optionData])
+- 讀取 API Server 時間資訊 pixnet.index.now(callback, [optionData])
 
 #### Friend
 - 列出好友群組 pixnet.friend.getGroups(callback, [optionData])
