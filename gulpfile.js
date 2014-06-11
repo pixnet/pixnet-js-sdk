@@ -17,5 +17,10 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('lib/'));
 });
 
+// Rerun the task when a file changes
+gulp.task('watch', function() {
+    gulp.watch(paths.scripts, ['scripts']);
+});
+
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['scripts']);
+gulp.task('default', ['scripts', 'watch']);
