@@ -87,6 +87,9 @@ class PixBlog
       pixnet._error 'Need login'
       return @
 
+    if typeof ids isnt 'string'
+      ids = ids.toString()
+
     data =
       ids : ids
       access_token : pixnet.getData('accessToken')
