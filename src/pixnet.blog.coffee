@@ -39,18 +39,18 @@ class PixBlog
     })
     return @
 
-  updateCategories: (callback, name, optionData)->
+  updateCategories: (callback, id, name, optionData)->
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
 
     data =
-      name         : name
+      name: name
       access_token : pixnet.getData('accessToken')
 
     data = pixnet._extends(data, optionData)
     args = arguments
-    pixnet._post('https://emma.pixnet.cc/blog/categories', {
+    pixnet._post("https://emma.pixnet.cc/blog/categories/#{id}", {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
