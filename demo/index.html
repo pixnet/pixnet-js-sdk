@@ -19,7 +19,7 @@
         });
         pixnet.blog.getInfo(function(data) {
           console.log(data);
-        }, 'admin');
+        }, 'jssdk');
 
         pixnet.blog.createCategories(function(data) {
           console.log('createCategories', data);
@@ -32,7 +32,7 @@
             console.log('deleteCategories', data);
           }, cate[0].id);
         }
-        , 'nobitatest');
+        , 'jssdk');
       });
     })(pixnet);
   </script>
