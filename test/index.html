@@ -3,6 +3,23 @@
 <head>
   <meta charset="utf-8">
   <title>QUnit Example</title>
+  <script>
+    var pixapp = {};
+    pixapp.init = {
+      // 這裡請 clone 下來的人自行輸入自己的 APP 資訊，SAMPLE 使用的是筆者的測試 APP
+      consumerKey: '你的 consumerKey',
+      consumerSecret: '你的 consumerSecret',
+      callbackUrl: '你的 Callback URL'
+    };
+    pixapp.blog = {
+      userName: '你的 username',
+//      cateName: 'test cate',
+//      cateIds: ["2445769", "2445826", "2445712"],
+//      artId: '144790981',
+//      artTitle: 'title',
+//      artBody: '<h1>Body hihi</h1>'
+    }
+  </script>
   <script type="text/javascript" src="../lib/all.src.js"></script>
   <script type="text/javascript" src="../lib/json3.min.js"></script>
   <script type="text/javascript" src="qunit.js"></script>
