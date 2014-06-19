@@ -2,6 +2,7 @@ module('pixnet.users', {
 });
 
 asyncTest("getAccount", function() {
+    expect(1);
     pixnet.login(function() {
         pixnet.users.getAccount(function(data) {
             console.log(data);
