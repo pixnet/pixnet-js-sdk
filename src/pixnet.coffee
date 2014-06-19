@@ -135,10 +135,12 @@ class NoJquery
 訊息回報區
 ###
 class PixConsole
+  _procStop: false
   _log: (msg)->
-    console.log("Pixnet Log:", msg)
-  _error: (msg)->
-    console.error("Pixnet Error", msg)
+    console.log("Pixnet Log: ", msg)
+  _error: (msg, isStop)->
+    console.error("Pixnet Error: ", msg)
+    @_procStop = !isStop
 
 ###
 緩衝繼承區
