@@ -2,6 +2,7 @@ module('pixnet.index', {
 });
 
 asyncTest("rate", function() {
+    expect(1);
     pixnet.login(function() {
         pixnet.index.rate(function(data) {
             console.log(data);
