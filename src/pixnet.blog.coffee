@@ -116,20 +116,14 @@ class PixBlog
     pixnet._get 'https://emma.pixnet.cc/blog/articles', pixnet._defaultXHROptions(data, callback)
     return @
 
-  getArticle: (callback, userName, optionData)->
+  getArticle: (callback, id, userName, optionData)->
 
-    data = {}
+    data =
+      user: userName
+
     data = pixnet._extends(data, optionData)
 
-    pixnet._get "https://emma.pixnet.cc/blog/articles/#{userName}", pixnet._defaultXHROptions(data, callback)
-    return @
-
-  getRelatedArticle: (callback, userName, optionData)->
-
-    data = {}
-    data = pixnet._extends(data, optionData)
-
-    pixnet._get "https://emma.pixnet.cc/blog/articles/#{userName}/related", pixnet._defaultXHROptions(data, callback)
+    pixnet._get "https://emma.pixnet.cc/blog/articles/#{id}", pixnet._defaultXHROptions(data, callback)
     return @
 
   getRelatedArticle: (callback, userName, optionData)->
