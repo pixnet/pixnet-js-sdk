@@ -209,9 +209,17 @@ class Pixnet extends Container
     return @
 
   init: (options)->
+    keyChecker = (key)->
+      return !!(key?.match(/[a-z0-9]{32}/) and key.length is 32)
     @data.app.consumerKey    = options.consumerKey    if options.consumerKey
     @data.app.consumerSecret = options.consumerSecret if options.consumerSecret
     @data.app.callbackUrl    = options.callbackUrl    if options.callbackUrl
+
+    @_error('consumerKey format is wrong')    if not keyChecker(@data.app.consumerKey)
+    @_error('consumerSecret format is wrong') if not keyChecker(@data.app.consumerSecret)
+
+    return if @_procStop
+
     @login(options.loginCallback, @data.app.loginOpts) if options.login is true
     return @
 
