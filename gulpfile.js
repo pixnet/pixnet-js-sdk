@@ -18,6 +18,14 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('lib/'));
 });
 
+gulp.task('scripts_dev', function() {
+    // Minify and copy all JavaScript
+    return gulp.src(paths.scripts)
+        .pipe(coffee())
+        .pipe(concat('all.src.js'))
+        .pipe(gulp.dest('lib/'));
+});
+
 // Rerun the task when a file changes
 gulp.task('watch', function() {
     gulp.watch(paths.coffee[0], function() {
