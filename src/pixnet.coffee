@@ -240,6 +240,7 @@ class Pixnet extends Container
       # 驗證是否有寫入所需資訊
       @_error('callbackUrl is not defined') if not callbackUrl
       @_error('consumerKey is not defined') if not consumerKey
+      return if @_procStop
 
       # 取得 code 的時候
       if @_getUrlPara('code') and opts.type isnt 'custom'
