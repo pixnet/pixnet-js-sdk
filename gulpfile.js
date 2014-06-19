@@ -32,6 +32,11 @@ gulp.task('watch', function() {
         gulp.run('scripts');
     });
 });
+
+gulp.task('watch_dev', function() {
+    gulp.watch(paths.coffee[0], function() {
+        gulp.run('scripts_dev');
+    });
 });
 
 // The default task (called when you run `gulp` from cli)
