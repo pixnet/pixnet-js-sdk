@@ -317,6 +317,7 @@ class Pixnet extends Container
         response = JSON.parse(data)
         @setTokens(response.access_token, response.refresh_token)
         callback.call(@, response) if callback
+        @data.app.isLogin = true
       fail: (data)=>
         response = JSON.parse(data)
         callback.call(@, response) if callback
