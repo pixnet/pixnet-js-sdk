@@ -1,11 +1,6 @@
 module('pixnet', {
     setup: function() {
-        pixnet.init({
-            // 這裡請 clone 下來的人自行輸入自己的 APP 資訊，SAMPLE 使用的是筆者的測試 APP
-            consumerKey: '你的 consumerKey',
-            consumerSecret: '你的 consumerSecret',
-            callbackUrl: '你的 Callback URL'
-        });
+        pixnet.init(pixapp.init);
     }
 });
 
