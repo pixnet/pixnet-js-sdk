@@ -226,11 +226,12 @@ class Pixnet extends Container
   login: (callback, opts)=>
     opts = opts || {}
     # 之前已經有授權過，並存在 localStorage
-    if localStorage["accessToken"] and localStorage["refreshToken"]
+    if localStorage["refreshToken"]
       @setCode(localStorage["code"])
       @setTokens(localStorage["accessToken"], localStorage["refreshToken"])
       @data.app.isLogin = true
-      callback.call(@, @data.app) if callback
+
+      @refreshToken.call(@, callback, @data.app) if callback
 
     else
       opts = @_extends(@data.app.loginOpts, opts)
