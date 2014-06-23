@@ -251,7 +251,7 @@ class PixBlog
 
     data = pixnet._extends(data, optionData)
     args = arguments
-    pixnet._post('https://emma.pixnet.cc/blog/articles', {
+    pixnet._post('https://emma.pixnet.cc/blog/comments', {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
