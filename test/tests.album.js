@@ -125,3 +125,34 @@ asyncTest("getElementCommentsNear", function() {
         }, pixapp.blog.userName, pixapp.album.lat_y, pixapp.album.lon_x);
     });
 });
+asyncTest("album set modify", function() {
+    expect(4);
+    pixnet.login(function() {
+        pixnet.album.createAlbumSet(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+
+            pixapp.album.albumId = data.set.id;
+
+            pixnet.album.updateAlbumSet(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
+
+                pixnet.album.getAlbumSet(function(data) {
+                    console.log(data);
+                    equal(0, data.error, data.message);
+
+                    pixnet.album.deleteAlbumSet(function(data) {
+                        console.log(data);
+                        equal(0, data.error, data.message);
+                        start();
+                    }, pixapp.album.albumId);
+                }, pixapp.album.albumId, pixapp.blog.userName, {
+                    access_token : pixnet.getData('accessToken')
+                });
+            }, pixapp.album.albumId, 'update album', 'update update eteupdatets e update');
+
+        }, 'test album', 'test etst etets e tstest');
+    });
+});
+
