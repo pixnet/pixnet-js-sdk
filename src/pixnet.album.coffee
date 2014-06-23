@@ -618,7 +618,7 @@ class PixAlbum
     })
     return @
 
-  updateFace: (callback, faceId, userName, elementId, x, y, width, height, optionData)->
+  updateFace: (callback, faceId, userName, elementId, posX, posY, width, height, optionData)->
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
@@ -626,8 +626,8 @@ class PixAlbum
     data =
       user: userName
       element_id: elementId
-      x: x
-      y: y
+      x: posX
+      y: posY
       w: width
       h: height
       access_token : pixnet.getData('accessToken')
