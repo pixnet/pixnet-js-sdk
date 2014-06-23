@@ -48,3 +48,12 @@ asyncTest("getArticlesByCategory [latest | 2]", function() {
         start();
     }, 'latest', 2);
 });
+
+asyncTest("getArticlesByCategory [hot_weekly | 3]", function() {
+    expect(1);
+    pixnet.mainpage.getArticlesByCategory(function(data) {
+        console.log(data);
+        equal(true, pixnet.isArray(data), data);
+        start();
+    }, 'hot_weekly', 3);
+});
