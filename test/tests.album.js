@@ -181,3 +181,19 @@ asyncTest("getSetComments by setId", function() {
     });
 });
 
+
+asyncTest("createSetComment", function() {
+    expect(2);
+    pixnet.login(function() {
+        pixnet.album.createSetComment(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+
+            pixnet.album.deleteSetComment(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
+                start();
+            }, data.comment.id);
+        }, pixapp.album.albumIdHasEls, pixapp.blog.userName, 'test comment');
+    });
+});
