@@ -24,5 +24,16 @@ asyncTest("getOne", function() {
     }, pixapp.guestbook.artId, pixapp.blog.userName);
 });
 
+asyncTest("reply", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.guestbook.reply(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.guestbook.artId, 'reply guestbook');
+    });
+});
+
 
 
