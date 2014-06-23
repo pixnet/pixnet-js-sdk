@@ -58,7 +58,7 @@ asyncTest("categories", function() {
 
             pixnet.blog.sortCategoriesTo(function(data) {
                 console.log(data);
-                equal('[object Array]', Object.prototype.toString.call(data.categories), data.message);
+                equal(true, pixnet.isArray(data.categories), data.message);
                 start();
             }, pixapp.blog.cateIds);
 
