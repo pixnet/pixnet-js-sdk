@@ -151,14 +151,14 @@
 - 好友動態 pixnet.friend.getNews(callback, [optionData])
 - 列出訂閱名單 pixnet.friend.getSubscriptions(callback, [optionData])
 - 新增訂閱 pixnet.friend.createSubscription(callback, userName, [optionData])
-- 加入訂閱群組 pixnet.friend.joinSubscriptionGroup(callback, userName, groupIds, [optionData])
-- 離開訂閱群組 pixnet.friend.leaveSubscriptionGroup(callback, userName, groupIds, [optionData])
 - 刪除訂閱 pixnet.friend.deleteSubscription(callback, userName, [optionData])
 - 列出訂閱群組 pixnet.friend.getSubscriptionGroup(callback, [optionData])
 - 新增訂閱群組 pixnet.friend.createSubscriptionGroup(callback, name, [optionData])
 - 修改訂閱群組 pixnet.friend.updateSubscriptionGroup(callback, id, name, [optionData])
 - 刪除訂閱群組 pixnet.friend.deleteSubscriptionGroup(callback, id, [optionData])
 - 修改訂閱群組排序 sortSubscriptionGroupTo(callback, ids, [optionData])
+- 加入訂閱群組 pixnet.friend.joinSubscriptionGroup(callback, userName, groupIds, [optionData])
+- 離開訂閱群組 pixnet.friend.leaveSubscriptionGroup(callback, userName, groupIds, [optionData])
 
 #### Block
 - 列出黑名單 pixnet.block.getBlock(callback, [optionData])
