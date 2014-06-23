@@ -219,3 +219,14 @@ asyncTest("markSetCommentHam", function() {
         }, pixapp.album.setCommentId);
     });
 });
+
+asyncTest("getComments", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.album.getComments(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.blog.userName);
+    });
+});
