@@ -1,6 +1,6 @@
 class PixMainpage
   getBlogColumns: (callback, optionData)->
-    category = if optionData.categoryId then "/#{optionData.categoryId}" else ""
+    category = if optionData?.categoryId then "/#{optionData.categoryId}" else ""
     data = {}
     data = pixnet._extends(data, optionData)
     pixnet._get "https://emma.pixnet.cc/mainpage/blog/columns#{category}", pixnet._defaultXHROptions(data, callback)
