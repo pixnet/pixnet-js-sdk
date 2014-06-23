@@ -77,3 +77,12 @@ asyncTest("friendships modify", function() {
         }, 'test group');
     });
 });
+
+asyncTest("getNews", function() {
+    expect(1);
+    pixnet.friend.getNews(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+    });
+});
