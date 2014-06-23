@@ -208,3 +208,14 @@ asyncTest("markSetCommentSpam", function() {
         }, pixapp.album.setCommentId, pixapp.blog.userName);
     });
 });
+
+asyncTest("markSetCommentHam", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.album.markSetCommentHam(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.album.setCommentId);
+    });
+});
