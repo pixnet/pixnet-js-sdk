@@ -1,4 +1,7 @@
 module('pixnet.index', {
+    setup: function() {
+        pixnet.init(pixapp.init);
+    }
 });
 
 asyncTest("rate", function() {

@@ -1,4 +1,7 @@
 module('pixnet.users', {
+    setup: function() {
+        pixnet.init(pixapp.init);
+    }
 });
 
 asyncTest("getAccount", function() {
