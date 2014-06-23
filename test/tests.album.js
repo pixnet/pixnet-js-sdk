@@ -61,3 +61,17 @@ asyncTest("getAlbumSets", function() {
         }, pixapp.blog.userName);
     });
 });
+
+asyncTest("getAlbumSetElements", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.album.getAlbumSetElements(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+
+            start();
+        }, pixapp.album.albumId, pixapp.blog.userName, {
+            access_token : pixnet.getData('accessToken')
+        });
+    });
+});
