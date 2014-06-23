@@ -156,3 +156,14 @@ asyncTest("album set modify", function() {
     });
 });
 
+
+asyncTest("getAlbumSetsNear", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.album.getAlbumSetsNear(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.blog.userName, pixapp.album.lat_y, pixapp.album.lon_x);
+    });
+});
