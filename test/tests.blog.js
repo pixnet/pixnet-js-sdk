@@ -102,18 +102,81 @@ asyncTest("articles", function() {
         pixnet.blog.getAllArticles(function(data) {
             console.log(data);
             equal(0, data.error, data.message);
-                pixapp.blog.artId = data.articles[0].id;
+
+            pixapp.blog.artId = data.articles[0].id;
+
+            pixnet.blog.getRelatedArticle(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
 
                 pixnet.blog.getArticle(function(data) {
                     console.log(data);
                     equal(0, data.error, data.message);
-                }, pixapp.blog.artId, pixapp.blog.userName);
-
-                pixnet.blog.getRelatedArticle(function(data) {
-                    console.log(data);
-                    equal(0, data.error, data.message);
                     start();
                 }, pixapp.blog.artId, pixapp.blog.userName);
+            }, pixapp.blog.artId, pixapp.blog.userName);
+        }, pixapp.blog.userName);
+    });
+});
+
+asyncTest("getLatestArticle", function() {
+    expect(1);
+    pixnet.blog.getLatestArticle(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+    }, pixapp.blog.userName);
+});
+
+asyncTest("getHotArticle", function() {
+    expect(1);
+    pixnet.blog.getHotArticle(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+    }, pixapp.blog.userName);
+});
+
+asyncTest("searchArticle", function() {
+    expect(1);
+    pixnet.blog.searchArticle(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+    }, 'update', pixapp.blog.userName);
+});
+
+asyncTest("getComments", function() {
+    expect(1);
+    pixnet.blog.getComments(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+    }, pixapp.blog.artId, pixapp.blog.userName);
+});
+
+asyncTest("createComment", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.blog.createComment(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+            pixapp.blog.commentId = data.comment.id;
+        }, pixapp.blog.artId, 'this is a comment test', pixapp.blog.userName);
+    });
+});
+
+asyncTest("getSingleComment", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.blog.getSingleComment(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.blog.commentId, pixapp.blog.userName);
+    });
+});
 
         }, pixapp.blog.userName);
     });
