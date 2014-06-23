@@ -97,3 +97,19 @@ asyncTest("getSubscriptions", function() {
         });
     });
 });
+
+asyncTest("subscriptions modify", function() {
+    expect(2);
+    pixnet.login(function() {
+        pixnet.friend.createSubscription(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+
+            pixnet.friend.deleteSubscription(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
+                start();
+            }, pixapp.friend.friendName);
+        }, pixapp.friend.friendName);
+    });
+});
