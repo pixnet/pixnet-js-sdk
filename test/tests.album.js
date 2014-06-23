@@ -75,3 +75,42 @@ asyncTest("getAlbumSetElements", function() {
         });
     });
 });
+
+asyncTest("getAlbumElements, Comments, one element, and sort", function() {
+    expect(4);
+    pixnet.login(function() {
+        pixnet.album.getAlbumElements(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+
+            var ids = [];
+            for (var i = data.elements.length; i--;) {
+                ids.push(data.elements[i].id);
+            }
+
+            pixapp.album.elementId = data.elements[0].id;
+            pixnet.album.getElement(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
+
+                pixnet.album.getElementComments(function(data) {
+                    console.log(data);
+                    equal(0, data.error, data.message);
+
+                    pixnet.album.sortElement(function(data) {
+                        console.log(data);
+                        equal(true, pixnet.isArray(data.elements), data.message);
+                        start();
+                    }, pixapp.album.albumIdHasEls, ids);
+
+                }, pixapp.album.elementId, pixapp.blog.userName, {
+                    access_token : pixnet.getData('accessToken')
+                });
+            }, pixapp.album.elementId, pixapp.blog.userName, {
+                access_token : pixnet.getData('accessToken')
+            });
+        }, pixapp.album.albumIdHasEls, pixapp.blog.userName, {
+            access_token : pixnet.getData('accessToken')
+        });
+    });
+});
