@@ -180,6 +180,8 @@ class Pixnet extends Container
         type: 'onepage' # onepage, popwin, custom
         popwin: undefined
 
+  isArray: (arr)->
+    return if "[object Array]" is Object.prototype.toString.call(arr) then true else false
   isLogin: =>
     return @data.app.isLogin
 
