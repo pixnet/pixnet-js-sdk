@@ -57,3 +57,30 @@ asyncTest("getArticlesByCategory [hot_weekly | 3]", function() {
         start();
     }, 'hot_weekly', 3);
 });
+
+asyncTest("getAlbumsByCategory [hot | 1]", function() {
+    expect(1);
+    pixnet.mainpage.getAlbumsByCategory(function(data) {
+        console.log(data);
+        equal(true, pixnet.isArray(data), data);
+        start();
+    }, 'hot', 1);
+});
+
+asyncTest("getAlbumsByCategory [latest | 2]", function() {
+    expect(1);
+    pixnet.mainpage.getAlbumsByCategory(function(data) {
+        console.log(data);
+        equal(true, pixnet.isArray(data), data);
+        start();
+    }, 'latest', 2);
+});
+
+asyncTest("getAlbumsByCategory [hot_weekly | 3]", function() {
+    expect(1);
+    pixnet.mainpage.getAlbumsByCategory(function(data) {
+        console.log(data);
+        equal(true, pixnet.isArray(data), data);
+        start();
+    }, 'hot_weekly', 3);
+});
