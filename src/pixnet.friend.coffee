@@ -147,6 +147,9 @@ class PixFriend
       pixnet._error 'Need login'
       return @
 
+    if pixnet.isArray(groupIds)
+      groupIds = groupIds.toString()
+
     data =
       group_ids: groupIds
       access_token : pixnet.getData('accessToken')
