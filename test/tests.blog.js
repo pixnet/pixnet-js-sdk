@@ -211,6 +211,17 @@ asyncTest("setCommentClose", function() {
     });
 });
 
+asyncTest("markCommentSpam", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.blog.markCommentSpam(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.blog.commentId);
+    });
+});
+
 asyncTest("getSiteCategories", function() {
     expect(1);
     pixnet.login(function() {
