@@ -73,7 +73,7 @@
 - 列出所有部落格最新文章 pixnet.blog.getLatestArticle(callback, userName, [optionData])
 - 列出所有部落格熱門文章 pixnet.blog.getHotArticle(callback, userName, [optionData])
 - 搜尋部落格文章 pixnet.blog.searchArticle(callback, keyWord, userName, [optionData])
-- 列出部落格留言 pixnet.blog.getComments(callback, userName, [optionData])
+- 列出部落格留言 pixnet.blog.getComments(callback, id, userName, [optionData])
 - 新增部落格留言 pixnet.blog.createComment(callback, articleId, body, userName, [optionData])
 - 讀取部落格單一留言 pixnet.blog.getSingleComment(callback, id, userName, [optionData])
 - 回覆部落格留言 pixnet.blog.replyComment(callback, id, body, [optionData])

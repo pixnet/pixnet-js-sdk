@@ -228,10 +228,11 @@ class PixBlog
     pixnet._get "https://emma.pixnet.cc/blog/articles/search", pixnet._defaultXHROptions(data, callback)
     return @
 
-  getComments: (callback, userName, optionData)->
+  getComments: (callback, id, userName, optionData)->
 
     data =
       user: userName
+      article_id: id
     data = pixnet._extends(data, optionData)
 
     pixnet._get "https://emma.pixnet.cc/blog/comments", pixnet._defaultXHROptions(data, callback)
