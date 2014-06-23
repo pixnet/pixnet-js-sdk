@@ -36,3 +36,28 @@ asyncTest("getAlbumSetfolders", function() {
         }, pixapp.blog.userName);
     });
 });
+
+asyncTest("getAlbumSets", function() {
+    expect(2);
+    pixnet.login(function() {
+        pixnet.album.getAlbumSets(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+
+            var ids = [], parentId = "0";
+            if (data.sets.length) {
+                parentId = data.sets[0].parent_id;
+            }
+            for (var i = data.sets.length; i--;) {
+                ids.push(data.sets[i].id);
+            }
+
+            pixnet.album.sortAlbumSets(function(data) {
+                console.log(data);
+                equal(true, pixnet.isArray(data.sets), data.message);
+                start();
+            }, parentId, ids.toString());
+
+        }, pixapp.blog.userName);
+    });
+});
