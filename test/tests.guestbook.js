@@ -4,5 +4,16 @@ module('pixnet.guestbook', {
     }
 });
 
+asyncTest("getAll", function() {
+    expect(1);
+    pixnet.guestbook.getAll(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+
+        pixapp.guestbook.artId = data.articles[0].id;
+    }, pixapp.blog.userName);
+});
+
 
 
