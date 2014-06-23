@@ -114,3 +114,14 @@ asyncTest("getAlbumElements, Comments, one element, and sort", function() {
         });
     });
 });
+
+asyncTest("getElementCommentsNear", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.album.getElementCommentsNear(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.blog.userName, pixapp.album.lat_y, pixapp.album.lon_x);
+    });
+});
