@@ -113,3 +113,33 @@ asyncTest("subscriptions modify", function() {
         }, pixapp.friend.friendName);
     });
 });
+
+asyncTest("getSubscriptionGroup", function() {
+    expect(4);
+    pixnet.login(function() {
+        pixnet.friend.getSubscriptionGroup(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+
+            var ids = [];
+            for (var i = data.subscription_groups.length; i--;) {
+                ids.push(data.subscription_groups[i].id);
+            }
+            pixnet.friend.sortSubscriptionGroupTo(function(data) {
+                console.log(data);
+                equal(true, pixnet.isArray(data.subscription_groups), data);
+
+                pixnet.friend.joinSubscriptionGroup(function(data) {
+                    console.log(data);
+                    equal(0, data.error, data.message);
+
+                    pixnet.friend.leaveSubscriptionGroup(function(data) {
+                        console.log(data);
+                        equal(0, data.error, data.message);
+                        start();
+                    }, 'ieon', ids.toString());
+                }, 'ieon', ids.toString());
+            }, ids.toString());
+        });
+    });
+});
