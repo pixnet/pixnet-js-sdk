@@ -104,7 +104,7 @@
 - 新增個人相簿資料夾 pixnet.album.createAlbumFolder(callback, title, description, [optionData])
 - 修改個人相簿資料夾 pixnet.album.updateAlbumFolder(callback, id, title, description, [optionData])
 - 刪除個人相簿資料夾 pixnet.album.deleteAlbumFolder(callback, id, [optionData])
-- 列出相簿圖片影片 pixnet.album.getAlbumElements(callback, id, userName, [optionData])
+- 列出相簿圖片影片 pixnet.album.getAlbumElements(callback, setId, userName, [optionData])
 - 讀取相簿單篇圖片影片 pixnet.album.getElement(callback, elementId, userName, [optionData])
 - 讀取相簿單篇圖片影片留言 pixnet.album.getElementComments(callback, elementId, userName, [optionData])
 - 新增相簿圖片影片 pixnet.album.createElement(callback, setId, uploadFile, [optionData])
