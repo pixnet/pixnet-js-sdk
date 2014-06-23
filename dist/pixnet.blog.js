@@ -311,10 +311,11 @@
       return this;
     };
 
-    PixBlog.prototype.getComments = function(callback, userName, optionData) {
+    PixBlog.prototype.getComments = function(callback, id, userName, optionData) {
       var data;
       data = {
-        user: userName
+        user: userName,
+        article_id: id
       };
       data = pixnet._extends(data, optionData);
       pixnet._get("https://emma.pixnet.cc/blog/comments", pixnet._defaultXHROptions(data, callback));
@@ -335,7 +336,7 @@
       };
       data = pixnet._extends(data, optionData);
       args = arguments;
-      pixnet._post('https://emma.pixnet.cc/blog/articles', {
+      pixnet._post('https://emma.pixnet.cc/blog/comments', {
         data: data,
         done: (function(_this) {
           return function(data) {

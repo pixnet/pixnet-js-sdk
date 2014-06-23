@@ -337,7 +337,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.createAlbumFolders.apply(_this, args);
+              return _this.createAlbumFolder.apply(_this, args);
             }, data);
           };
         })(this)
@@ -370,7 +370,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.createAlbumFolders.apply(_this, args);
+              return _this.updateAlbumFolder.apply(_this, args);
             }, data);
           };
         })(this)
@@ -409,7 +409,7 @@
       return this;
     };
 
-    PixAlbum.prototype.getAlbumSetElements = function(callback, setId, userName, optionData) {
+    PixAlbum.prototype.getAlbumElements = function(callback, setId, userName, optionData) {
       var data;
       data = {
         user: userName,
@@ -420,7 +420,7 @@
       return this;
     };
 
-    PixAlbum.prototype.getElement = function(callback, id, userName, optionData) {
+    PixAlbum.prototype.getElement = function(callback, elementId, userName, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
@@ -432,7 +432,7 @@
       };
       data = pixnet._extends(data, optionData);
       args = arguments;
-      pixnet._get("https://emma.pixnet.cc/album/elements/" + id, {
+      pixnet._get("https://emma.pixnet.cc/album/elements/" + elementId, {
         data: data,
         done: (function(_this) {
           return function(data) {
@@ -452,7 +452,7 @@
       return this;
     };
 
-    PixAlbum.prototype.getElementComments = function(callback, userName, elementId, optionData) {
+    PixAlbum.prototype.getElementComments = function(callback, elementId, userName, optionData) {
       var data;
       data = {
         user: userName
@@ -622,7 +622,7 @@
       return this;
     };
 
-    PixAlbum.prototype.createComment = function(callback, setId, userName, body, optionData) {
+    PixAlbum.prototype.createSetComment = function(callback, setId, userName, body, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
@@ -648,7 +648,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.createComments.apply(_this, args);
+              return _this.createSetComments.apply(_this, args);
             }, data);
           };
         })(this)
@@ -741,7 +741,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.deleteComment.apply(_this, args);
+              return _this.deleteSetComment.apply(_this, args);
             }, data);
           };
         })(this)
@@ -769,7 +769,7 @@
       return this;
     };
 
-    PixAlbum.prototype.createComment = function(callback, elementId, userName, body, optionData) {
+    PixAlbum.prototype.createElementComment = function(callback, elementId, userName, body, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
@@ -783,7 +783,7 @@
       };
       data = pixnet._extends(data, optionData);
       args = arguments;
-      pixnet._post("https://emma.pixnet.cc/album/set_comments", {
+      pixnet._post("https://emma.pixnet.cc/album/comments", {
         data: data,
         done: (function(_this) {
           return function(data) {
@@ -795,7 +795,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.createComments.apply(_this, args);
+              return _this.createElementComments.apply(_this, args);
             }, data);
           };
         })(this)
@@ -803,7 +803,7 @@
       return this;
     };
 
-    PixAlbum.prototype.markCommentSpam = function(callback, id, optionData) {
+    PixAlbum.prototype.markElementCommentSpam = function(callback, commentId, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
@@ -814,7 +814,7 @@
       };
       data = pixnet._extends(data, optionData);
       args = arguments;
-      pixnet._post("https://emma.pixnet.cc/album/comments/" + id + "/mark_spam", {
+      pixnet._post("https://emma.pixnet.cc/album/comments/" + commentId + "/mark_spam", {
         data: data,
         done: (function(_this) {
           return function(data) {
@@ -826,7 +826,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.markCommentSpam.apply(_this, args);
+              return _this.markElementCommentSpam.apply(_this, args);
             }, data);
           };
         })(this)
@@ -834,7 +834,7 @@
       return this;
     };
 
-    PixAlbum.prototype.markCommentHam = function(callback, id, optionData) {
+    PixAlbum.prototype.markElementCommentHam = function(callback, commentId, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
@@ -845,7 +845,7 @@
       };
       data = pixnet._extends(data, optionData);
       args = arguments;
-      pixnet._post("https://emma.pixnet.cc/album/comments/" + id + "/mark_ham", {
+      pixnet._post("https://emma.pixnet.cc/album/comments/" + commentId + "/mark_ham", {
         data: data,
         done: (function(_this) {
           return function(data) {
@@ -857,7 +857,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.markCommentSpam.apply(_this, args);
+              return _this.markElementCommentSpam.apply(_this, args);
             }, data);
           };
         })(this)
@@ -865,7 +865,7 @@
       return this;
     };
 
-    PixAlbum.prototype.deleteComment = function(callback, id, optionData) {
+    PixAlbum.prototype.deleteElementComment = function(callback, commentId, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
@@ -876,7 +876,7 @@
       };
       data = pixnet._extends(data, optionData);
       args = arguments;
-      pixnet._delete("https://emma.pixnet.cc/album/comments/" + id, {
+      pixnet._delete("https://emma.pixnet.cc/album/comments/" + commentId, {
         data: data,
         done: (function(_this) {
           return function(data) {
@@ -888,7 +888,7 @@
         fail: (function(_this) {
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
-              return _this.deleteComment.apply(_this, args);
+              return _this.deleteElementComment.apply(_this, args);
             }, data);
           };
         })(this)
@@ -896,7 +896,7 @@
       return this;
     };
 
-    PixAlbum.prototype.createFace = function(callback, userName, optionData) {
+    PixAlbum.prototype.createFace = function(callback, userName, elementId, posX, posY, width, height, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
@@ -904,6 +904,11 @@
       }
       data = {
         user: userName,
+        element_id: elementId,
+        x: posX,
+        y: posY,
+        w: width,
+        h: height,
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);
@@ -928,7 +933,7 @@
       return this;
     };
 
-    PixAlbum.prototype.updateFace = function(callback, faceId, userName, elementId, x, y, width, height, optionData) {
+    PixAlbum.prototype.updateFace = function(callback, faceId, userName, elementId, posX, posY, width, height, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
@@ -937,8 +942,8 @@
       data = {
         user: userName,
         element_id: elementId,
-        x: x,
-        y: y,
+        x: posX,
+        y: posY,
         w: width,
         h: height,
         access_token: pixnet.getData('accessToken')

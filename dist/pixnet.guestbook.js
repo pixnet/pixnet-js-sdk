@@ -22,7 +22,7 @@
         return this;
       }
       data = {
-        name: userName,
+        user: userName,
         body: body,
         access_token: pixnet.getData('accessToken')
       };
@@ -58,15 +58,14 @@
       return this;
     };
 
-    PixGuestbook.prototype.reply = function(callback, userName, body, optionData) {
+    PixGuestbook.prototype.reply = function(callback, id, body, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
       }
       data = {
-        name: userName,
-        body: body,
+        reply: body,
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);

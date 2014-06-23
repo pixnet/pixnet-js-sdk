@@ -7,7 +7,7 @@
 
     PixMainpage.prototype.getBlogColumns = function(callback, optionData) {
       var category, data;
-      category = optionData.categoryId ? "/" + optionData.categoryId : "";
+      category = (optionData != null ? optionData.categoryId : void 0) ? "/" + optionData.categoryId : "";
       data = {};
       data = pixnet._extends(data, optionData);
       pixnet._get("https://emma.pixnet.cc/mainpage/blog/columns" + category, pixnet._defaultXHROptions(data, callback));

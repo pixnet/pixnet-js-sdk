@@ -102,6 +102,9 @@
     };
 
     NoJquery.prototype._get = function(url, opts) {
+      if (opts.data.access_token && !url.match(/^https/)) {
+        url = url.replace(/^http\:\/\//, "https://");
+      }
       opts.type = 'GET';
       opts.url = url;
       opts.data = opts.data || {};
@@ -286,6 +289,14 @@
           type: 'onepage',
           popwin: void 0
         }
+      }
+    };
+
+    Pixnet.prototype.isArray = function(arr) {
+      if ("[object Array]" === Object.prototype.toString.call(arr)) {
+        return true;
+      } else {
+        return false;
       }
     };
 

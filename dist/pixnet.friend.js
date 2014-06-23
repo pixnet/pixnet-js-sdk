@@ -231,6 +231,9 @@
         pixnet._error('Need login');
         return this;
       }
+      if (pixnet.isArray(groupIds)) {
+        groupIds = groupIds.toString();
+      }
       data = {
         group_ids: groupIds,
         access_token: pixnet.getData('accessToken')
