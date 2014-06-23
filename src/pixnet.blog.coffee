@@ -136,6 +136,7 @@ class PixBlog
     return @
 
   createArticle: (callback, title, body, optionData)->
+
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
@@ -159,6 +160,7 @@ class PixBlog
     return @
 
   updateArticle: (callback, id, optionData)->
+
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
@@ -180,6 +182,7 @@ class PixBlog
     return @
 
   deleteArticle: (callback, id, optionData)->
+
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
@@ -201,7 +204,6 @@ class PixBlog
     return @
 
   getLatestArticle: (callback, userName, optionData)->
-
     data =
       user: userName
     data = pixnet._extends(data, optionData)
@@ -210,7 +212,6 @@ class PixBlog
     return @
 
   getHotArticle: (callback, userName, optionData)->
-
     data =
       user: userName
     data = pixnet._extends(data, optionData)
@@ -219,7 +220,6 @@ class PixBlog
     return @
 
   searchArticle: (callback, keyWord, userName, optionData)->
-
     data =
       key: keyWord
       user: userName
