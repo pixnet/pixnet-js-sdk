@@ -21,3 +21,12 @@ asyncTest("getBlogColumnsCategories", function() {
         start();
     });
 });
+
+asyncTest("getAlbumColumns", function() {
+    expect(1);
+    pixnet.mainpage.getAlbumColumns(function(data) {
+        console.log(data);
+        equal(true, pixnet.isArray(data), data);
+        start();
+    });
+});
