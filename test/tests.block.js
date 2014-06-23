@@ -4,6 +4,16 @@ module('pixnet.block', {
     }
 });
 
+asyncTest("getBlock", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.block.getBlock(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        });
+    });
+});
 
 asyncTest("createBlock", function() {
     expect(1);
