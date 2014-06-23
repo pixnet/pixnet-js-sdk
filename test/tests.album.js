@@ -197,3 +197,14 @@ asyncTest("createSetComment", function() {
         }, pixapp.album.albumIdHasEls, pixapp.blog.userName, 'test comment');
     });
 });
+
+asyncTest("markSetCommentSpam", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.album.markSetCommentSpam(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.album.setCommentId, pixapp.blog.userName);
+    });
+});
