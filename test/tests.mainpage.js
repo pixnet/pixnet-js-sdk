@@ -39,3 +39,12 @@ asyncTest("getArticlesByCategory [hot | 1]", function() {
         start();
     }, 'hot', 1);
 });
+
+asyncTest("getArticlesByCategory [latest | 2]", function() {
+    expect(1);
+    pixnet.mainpage.getArticlesByCategory(function(data) {
+        console.log(data);
+        equal(true, pixnet.isArray(data), data);
+        start();
+    }, 'latest', 2);
+});
