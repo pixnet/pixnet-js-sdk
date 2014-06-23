@@ -5,6 +5,17 @@ module('pixnet.block', {
 });
 
 
+asyncTest("createBlock", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.block.createBlock(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.friend.friendName);
+    });
+});
+
 asyncTest("deleteBlock", function() {
     expect(1);
     pixnet.login(function() {
