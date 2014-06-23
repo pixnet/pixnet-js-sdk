@@ -222,7 +222,7 @@ class PixAlbum
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @createAlbumFolders.apply(@, args)
+          @createAlbumFolder.apply(@, args)
         , data)
     })
     return @
@@ -244,7 +244,7 @@ class PixAlbum
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @createAlbumFolders.apply(@, args)
+          @updateAlbumFolder.apply(@, args)
         , data)
     })
     return @
