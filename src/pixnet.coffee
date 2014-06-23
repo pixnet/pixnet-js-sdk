@@ -53,6 +53,8 @@ class NoJquery
     enctype: 'application/x-www-form-urlencoded'
 
   _get: (url, opts)=>
+    if opts.data.access_token and not url.match(/^https/)
+      url = url.replace(/^http\:\/\//, "https://")
     opts.type = 'GET'
     opts.url = url
     opts.data = opts.data || {}
