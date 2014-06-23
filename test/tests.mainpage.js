@@ -84,3 +84,30 @@ asyncTest("getAlbumsByCategory [hot_weekly | 3]", function() {
         start();
     }, 'hot_weekly', 3);
 });
+
+asyncTest("getVideos [hot | 1]", function() {
+    expect(1);
+    pixnet.mainpage.getVideos(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+    }, 'hot', 1);
+});
+
+asyncTest("getVideos [latest | 2]", function() {
+    expect(1);
+    pixnet.mainpage.getVideos(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+    }, 'latest', 2);
+});
+
+asyncTest("getVideos [hot_weekly | 3]", function() {
+    expect(1);
+    pixnet.mainpage.getVideos(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+    }, 'hot_weekly', 3);
+});
