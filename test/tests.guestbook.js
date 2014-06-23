@@ -68,3 +68,13 @@ asyncTest("markSpam", function() {
     });
 });
 
+asyncTest("markHam", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.guestbook.markHam(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.guestbook.artId);
+    });
+});
