@@ -581,24 +581,29 @@ class PixAlbum
       access_token : pixnet.getData('accessToken')
     data = pixnet._extends(data, optionData)
     args = arguments
-    pixnet._delete("https://emma.pixnet.cc/album/comments/#{id}", {
+    pixnet._delete("https://emma.pixnet.cc/album/comments/#{commentId}", {
       data: data
       done: (data)=>
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @deleteComment.apply(@, args)
+          @deleteElementComment.apply(@, args)
         , data)
     })
     return @
 
-  createFace: (callback, userName, optionData)->
+  createFace: (callback, userName, elementId, posX, posY, width, height, optionData)->
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
 
     data =
       user: userName
+      element_id: elementId
+      x: posX
+      y: posY
+      w: width
+      h: height
       access_token : pixnet.getData('accessToken')
     data = pixnet._extends(data, optionData)
     args = arguments
