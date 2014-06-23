@@ -169,7 +169,7 @@
 - 列出留言板留言 pixnet.guestbook.getAll(callback, userName, [optionData])
 - 新增留言板留言 pixnet.guestbook.create(callback, userName, body, [optionData])
 - 讀取單一留言 pixnet.guestbook.getOne(callback, id, userName, [optionData])
-- 回覆留言板留言 pixnet.guestbook.reply(callback, userName, body, [optionData])
+- 回覆留言板留言 pixnet.guestbook.reply(callback, id, userName, body, [optionData])
 - 將留言設為公開 pixnet.guestbook.setOpen(callback, id, [optionData])
 - 將留言設為悄悄話 pixnet.guestbook.setClose(callback, id, [optionData])
 - 將留言設為廣告留言 pixnet.guestbook.markSpam(callback, id, [optionData])
