@@ -67,7 +67,6 @@
 - 列出所有部落格個人文章 pixnet.blog.getAllArticles(callback, userName, [optionData])
 - 讀取部落格個人文章 pixnet.blog.getArticle(callback, id, userName, [optionData])
 - 讀取指定文章之相關文章 pixnet.blog.getRelatedArticle(callback, id, userName, [optionData])
-- 讀取指定文章之留言 pixnet.blog.getRelatedArticle(callback, userName, [optionData])
 - 新增部落格個人文章 pixnet.blog.createArticle(callback, title, body, [optionData])
 - 修改部落格個人文章 pixnet.blog.updateArticle(callback, id, [optionData])
 - 刪除部落格個人文章 pixnet.blog.deleteArticle(callback, id, [optionData])
