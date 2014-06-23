@@ -137,8 +137,8 @@ asyncTest("getSubscriptionGroup", function() {
                         console.log(data);
                         equal(0, data.error, data.message);
                         start();
-                    }, 'ieon', ids.toString());
-                }, 'ieon', ids.toString());
+                    }, pixapp.friend.friendName, ids.toString());
+                }, pixapp.friend.friendName, ids.toString());
             }, ids.toString());
         });
     });
