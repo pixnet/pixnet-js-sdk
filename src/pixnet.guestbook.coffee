@@ -12,7 +12,7 @@ class PixGuestbook
       return @
 
     data =
-      name: userName
+      user: userName
       body: body
       access_token : pixnet.getData('accessToken')
     data = pixnet._extends(data, optionData)
@@ -35,14 +35,13 @@ class PixGuestbook
     pixnet._get "https://emma.pixnet.cc/guestbook/#{id}", pixnet._defaultXHROptions(data, callback)
     return @
 
-  reply: (callback, userName, body, optionData)->
+  reply: (callback, id, body, optionData)->
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
 
     data =
-      name: userName
-      body: body
+      reply: body
       access_token : pixnet.getData('accessToken')
     data = pixnet._extends(data, optionData)
     args = arguments
