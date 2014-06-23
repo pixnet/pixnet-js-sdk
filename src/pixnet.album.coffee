@@ -269,7 +269,7 @@ class PixAlbum
     })
     return @
 
-  getAlbumSetElements: (callback, setId, userName, optionData)->
+  getAlbumElements: (callback, setId, userName, optionData)->
     data =
       user: userName
       set_id: setId
@@ -412,7 +412,7 @@ class PixAlbum
     pixnet._get "http://emma.pixnet.cc/album/set_comments/#{id}", pixnet._defaultXHROptions(data, callback)
     return @
 
-  createComment: (callback, setId, userName, body, optionData)->
+  createSetComment: (callback, setId, userName, body, optionData)->
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
@@ -430,7 +430,7 @@ class PixAlbum
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @createComments.apply(@, args)
+          @createSetComments.apply(@, args)
         , data)
     })
     return @
@@ -490,7 +490,7 @@ class PixAlbum
         callback(JSON.parse(data)) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @deleteComment.apply(@, args)
+          @deleteSetComment.apply(@, args)
         , data)
     })
     return @
