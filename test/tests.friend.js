@@ -47,3 +47,33 @@ asyncTest("getFriendships", function() {
         });
     });
 });
+
+asyncTest("friendships modify", function() {
+    expect(4);
+    pixnet.login(function() {
+        pixnet.friend.createGroup(function(data) {
+            pixapp.friend.groupId = data.friend_group.id;
+
+            pixnet.friend.createFriendship(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
+
+                pixnet.friend.appendFriendshipGroup(function(data) {
+                    console.log(data);
+                    equal(0, data.error, data.message);
+
+                    pixnet.friend.removeFriendshipGroup(function(data) {
+                        console.log(data);
+                        equal(0, data.error, data.message);
+
+                        pixnet.friend.deleteFriendship(function(data) {
+                            console.log(data);
+                            equal(0, data.error, data.message);
+                            start();
+                        }, pixapp.friend.friendName);
+                    }, pixapp.friend.friendName, pixapp.friend.groupId);
+                }, pixapp.friend.friendName, pixapp.friend.groupId);
+            }, pixapp.friend.friendName);
+        }, 'test group');
+    });
+});
