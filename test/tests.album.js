@@ -230,3 +230,28 @@ asyncTest("getComments", function() {
         }, pixapp.blog.userName);
     });
 });
+
+asyncTest("element comment modify", function() {
+    expect(4);
+    pixnet.login(function() {
+        pixnet.album.createElementComment(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+
+            pixapp.album.commentId = data.comment.id;
+            pixnet.album.markElementCommentSpam(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
+                pixnet.album.markElementCommentHam(function(data) {
+                    console.log(data);
+                    equal(0, data.error, data.message);
+                    pixnet.album.deleteElementComment(function(data) {
+                        console.log(data);
+                        equal(0, data.error, data.message);
+                        start();
+                    }, pixapp.album.commentId);
+                }, pixapp.album.commentId);
+            }, pixapp.album.commentId);
+        }, pixapp.album.elementId, pixapp.blog.userName, 'test element comment.');
+    });
+});
