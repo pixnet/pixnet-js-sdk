@@ -143,3 +143,25 @@ asyncTest("getSubscriptionGroup", function() {
         });
     });
 });
+
+asyncTest("subscription group modify", function() {
+    expect(3);
+    pixnet.login(function() {
+        pixnet.friend.createSubscriptionGroup(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+
+            pixapp.friend.subscriptionId = data.subscription_group.id;
+            pixnet.friend.updateSubscriptionGroup(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
+
+                pixnet.friend.deleteSubscriptionGroup(function(data) {
+                    console.log(data);
+                    equal(0, data.error, data.message);
+                    start();
+                }, pixapp.friend.subscriptionId);
+            }, pixapp.friend.subscriptionId, 'update subscription group');
+        }, 'test subscription group');
+    });
+});
