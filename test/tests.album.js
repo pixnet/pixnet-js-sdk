@@ -167,3 +167,17 @@ asyncTest("getAlbumSetsNear", function() {
         }, pixapp.blog.userName, pixapp.album.lat_y, pixapp.album.lon_x);
     });
 });
+
+asyncTest("getSetComments by setId", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.album.getSetComments(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.blog.userName, {
+            set_id: pixapp.album.albumIdHasEls
+        });
+    });
+});
+
