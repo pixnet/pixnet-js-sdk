@@ -255,3 +255,24 @@ asyncTest("element comment modify", function() {
         }, pixapp.album.elementId, pixapp.blog.userName, 'test element comment.');
     });
 });
+
+asyncTest("face modify", function() {
+    expect(3);
+    pixnet.login(function() {
+        pixnet.album.createFace(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+
+            pixapp.album.face = data.element.faces.tagged[0];
+            pixnet.album.updateFace(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
+                pixnet.album.deleteFace(function(data) {
+                    console.log(data);
+                    equal(0, data.error, data.message);
+                    start();
+                }, pixapp.album.face.id);
+            }, pixapp.album.face.id, pixapp.album.face.user, pixapp.album.elementId, 10, 10, 10, 10);
+        }, pixapp.album.faceUser, pixapp.album.elementId, 100, 100, 100, 100);
+    });
+});
