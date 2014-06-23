@@ -276,3 +276,14 @@ asyncTest("face modify", function() {
         }, pixapp.album.faceUser, pixapp.album.elementId, 100, 100, 100, 100);
     });
 });
+
+asyncTest("getConfig", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.album.getConfig(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        });
+    });
+});
