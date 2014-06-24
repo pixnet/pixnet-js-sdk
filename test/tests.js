@@ -45,7 +45,13 @@ test( "pixnet 初始化測試", function() {
 
 test( "login 基本功能測試", function() {
     expect(9);
-    equal(pixnet.isLogin(), false, 'Sure be not login.');
+    var ans = pixnet.isLogin();
+    if (ans) {
+        pixnet.logout(function() {
+            location.href = location.href.replace(location.search, "");
+        })
+    }
+    equal(ans, false, 'Sure be not login.');
     stop();
     pixnet.login(function() {
         var app = pixnet.getData();
