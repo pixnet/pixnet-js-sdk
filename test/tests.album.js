@@ -263,7 +263,10 @@ asyncTest("face modify", function() {
             console.log(data);
             equal(0, data.error, data.message);
 
-            pixapp.album.face = data.element.faces.tagged[0];
+            if (data.element) {
+                pixapp.album.face = data.element.faces.tagged[0];
+            }
+
             pixnet.album.updateFace(function(data) {
                 console.log(data);
                 equal(0, data.error, data.message);
