@@ -29,7 +29,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.getBlock.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -61,7 +61,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createBlock.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -93,7 +93,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteBlock.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });

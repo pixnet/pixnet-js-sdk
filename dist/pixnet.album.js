@@ -29,7 +29,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.getAlbumMain.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -61,7 +61,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.getAlbumSets.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -93,7 +93,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.sortSetFolders.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -166,7 +166,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createAlbumSet.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -199,7 +199,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.updateAlbumSet.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -230,7 +230,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteAlbumSet.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -263,7 +263,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.sortAlbumSets.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -338,7 +338,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createAlbumFolder.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -371,7 +371,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.updateAlbumFolder.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -402,7 +402,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteAlbumFolder.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -445,7 +445,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.getElement.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -488,7 +488,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createElement.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -519,7 +519,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.updateElement.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -550,7 +550,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteElementt.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -583,7 +583,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.sortElement.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -649,7 +649,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createSetComments.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -680,7 +680,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.markCommentSpam.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -711,7 +711,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.markCommentSpam.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -742,7 +742,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteSetComment.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -796,7 +796,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createElementComments.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -827,7 +827,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.markElementCommentSpam.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -858,7 +858,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.markElementCommentSpam.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -889,7 +889,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteElementComment.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -926,7 +926,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createFace.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -963,7 +963,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.updateFace.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -994,7 +994,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteFace.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -1025,7 +1025,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.getConfig.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });

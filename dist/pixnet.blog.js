@@ -50,7 +50,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createBlogCategories.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -82,7 +82,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.updateCategories.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -113,7 +113,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteBlogCategories.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -148,7 +148,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.sortCategoriesTo.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -211,7 +211,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createArticle.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -242,7 +242,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.updateArticle.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -273,7 +273,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteArticle.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -349,7 +349,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createComment.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -391,7 +391,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.replyComment.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -422,7 +422,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.setCommentOpen.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -453,7 +453,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.setCommentClose.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -484,7 +484,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.markCommentSpam.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -515,7 +515,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.markCommentSpam.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -546,7 +546,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteComment.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });

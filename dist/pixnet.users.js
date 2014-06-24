@@ -29,7 +29,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.getAccount.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });

@@ -29,7 +29,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.getGroups.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -61,7 +61,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createGroup.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -93,7 +93,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.updateGroup.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -124,7 +124,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteGroup.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -155,7 +155,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.getNews.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -186,7 +186,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.getSubscriptions.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -218,7 +218,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createSubscription.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -253,7 +253,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.joinSubscriptionGroup.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -285,7 +285,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.leaveSubscriptionGroup.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -316,7 +316,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.leaveSubscriptionGroup.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -347,7 +347,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.getSubscriptionGroup.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -379,7 +379,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createSubscriptionGroup.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -411,7 +411,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.updateSubscriptionGroup.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -443,7 +443,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteSubscriptionGroup.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -475,7 +475,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.sortSubscriptionGroupTo.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -506,7 +506,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.getFriendships.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -538,7 +538,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.createFriendship.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -570,7 +570,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.deleteFriendship.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -603,7 +603,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.appendFriendshipGroup.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
@@ -636,7 +636,7 @@
           return function(data) {
             return pixnet.apiInvalidGrantFunc(function() {
               return _this.removeFriendshipGroup.apply(_this, args);
-            }, data);
+            }, data, args);
           };
         })(this)
       });
