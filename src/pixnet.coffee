@@ -294,14 +294,13 @@ class Pixnet extends Container
         client_secret: data.consumerSecret
         code:          data.code
         grant_type:    "authorization_code"
-      done: (data)=>
-        response = JSON.parse(data)
+      done: (res)=>
+        response = JSON.parse(res)
         @setTokens(response.access_token, response.refresh_token)
         @data.app.isLogin = true
         callback.call(@, response) if callback
-      fail: (data)=>
-        response = JSON.parse(data)
-        @_error(response)
+      fail: (res)=>
+        response = JSON.parse(res)
         if response.error is 'invalid_grant'
           @setCode('')
           @_error response
