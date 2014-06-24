@@ -15,44 +15,14 @@ asyncTest("getGroups", function() {
     });
 });
 
-asyncTest("group modify", function() {
-    expect(3);
+asyncTest("group and friendship modify", function() {
+    expect(7);
     pixnet.login(function() {
         pixnet.friend.createGroup(function(data) {
             console.log(data);
             equal(0, data.error, data.message);
             pixapp.friend.groupId = data.friend_group.id;
 
-            pixnet.friend.updateGroup(function(data) {
-                console.log(data);
-                equal(0, data.error, data.message);
-            }, pixapp.friend.groupId, 'update group');
-
-            pixnet.friend.deleteGroup(function(data) {
-                console.log(data);
-                equal(0, data.error, data.message);
-                start();
-            }, pixapp.friend.groupId);
-        }, 'test group');
-    });
-});
-
-asyncTest("getFriendships", function() {
-    expect(1);
-    pixnet.login(function() {
-        pixnet.friend.getFriendships(function(data) {
-            console.log(data);
-            equal(0, data.error, data.message);
-            start();
-        });
-    });
-});
-
-asyncTest("friendships modify", function() {
-    expect(4);
-    pixnet.login(function() {
-        pixnet.friend.createGroup(function(data) {
-            pixapp.friend.groupId = data.friend_group.id;
 
             pixnet.friend.createFriendship(function(data) {
                 console.log(data);
@@ -69,7 +39,17 @@ asyncTest("friendships modify", function() {
                         pixnet.friend.deleteFriendship(function(data) {
                             console.log(data);
                             equal(0, data.error, data.message);
-                            start();
+
+                            pixnet.friend.updateGroup(function(data) {
+                                console.log(data);
+                                equal(0, data.error, data.message);
+
+                                pixnet.friend.deleteGroup(function(data) {
+                                    console.log(data);
+                                    equal(0, data.error, data.message);
+                                    start();
+                                }, pixapp.friend.groupId);
+                            }, pixapp.friend.groupId, 'update group');
                         }, pixapp.friend.friendName);
                     }, pixapp.friend.friendName, pixapp.friend.groupId);
                 }, pixapp.friend.friendName, pixapp.friend.groupId);
@@ -78,12 +58,24 @@ asyncTest("friendships modify", function() {
     });
 });
 
+asyncTest("getFriendships", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.friend.getFriendships(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        });
+    });
+});
+
 asyncTest("getNews", function() {
     expect(1);
-    pixnet.friend.getNews(function(data) {
-        console.log(data);
-        equal(0, data.error, data.message);
-        start();
+    pixnet.login(function() {
+        pixnet.friend.getNews(function(data) {
+            equal(0, data.error, data.message);
+            start();
+        });
     });
 });
 
@@ -98,70 +90,65 @@ asyncTest("getSubscriptions", function() {
     });
 });
 
-asyncTest("subscriptions modify", function() {
-    expect(2);
+asyncTest("subscriptions modify, and list; subscription group modify, list, sort, join, and leave", function() {
+    expect(10);
     pixnet.login(function() {
         pixnet.friend.createSubscription(function(data) {
             console.log(data);
             equal(0, data.error, data.message);
 
-            pixnet.friend.deleteSubscription(function(data) {
+            pixnet.friend.getSubscriptions(function(data) {
                 console.log(data);
                 equal(0, data.error, data.message);
-                start();
-            }, pixapp.friend.friendName);
-        }, pixapp.friend.friendName);
-    });
-});
 
-asyncTest("getSubscriptionGroup", function() {
-    expect(4);
-    pixnet.login(function() {
-        pixnet.friend.getSubscriptionGroup(function(data) {
-            console.log(data);
-            equal(0, data.error, data.message);
-
-            var ids = [];
-            for (var i = data.subscription_groups.length; i--;) {
-                ids.push(data.subscription_groups[i].id);
-            }
-            pixnet.friend.sortSubscriptionGroupTo(function(data) {
-                console.log(data);
-                equal(true, pixnet.isArray(data.subscription_groups), data);
-
-                pixnet.friend.joinSubscriptionGroup(function(data) {
+                pixnet.friend.createSubscriptionGroup(function(data) {
                     console.log(data);
                     equal(0, data.error, data.message);
 
-                    pixnet.friend.leaveSubscriptionGroup(function(data) {
+                    pixapp.friend.subscriptionId = data.subscription_group.id;
+                    pixnet.friend.updateSubscriptionGroup(function(data) {
                         console.log(data);
                         equal(0, data.error, data.message);
-                        start();
-                    }, pixapp.friend.friendName, ids.toString());
-                }, pixapp.friend.friendName, ids.toString());
-            }, ids.toString());
-        });
-    });
-});
 
-asyncTest("subscription group modify", function() {
-    expect(3);
-    pixnet.login(function() {
-        pixnet.friend.createSubscriptionGroup(function(data) {
-            console.log(data);
-            equal(0, data.error, data.message);
+                        pixnet.friend.getSubscriptionGroup(function(data) {
+                            console.log(data);
+                            equal(0, data.error, data.message);
 
-            pixapp.friend.subscriptionId = data.subscription_group.id;
-            pixnet.friend.updateSubscriptionGroup(function(data) {
-                console.log(data);
-                equal(0, data.error, data.message);
+                            var ids = [];
+                            for (var i = data.subscription_groups.length; i--;) {
+                                ids.push(data.subscription_groups[i].id);
+                            }
 
-                pixnet.friend.deleteSubscriptionGroup(function(data) {
-                    console.log(data);
-                    equal(0, data.error, data.message);
-                    start();
-                }, pixapp.friend.subscriptionId);
-            }, pixapp.friend.subscriptionId, 'update subscription group');
-        }, 'test subscription group');
+                            pixnet.friend.sortSubscriptionGroupTo(function(data) {
+                                console.log(data);
+                                equal(true, pixnet.isArray(data.subscription_groups), data);
+
+                                pixnet.friend.joinSubscriptionGroup(function(data) {
+                                    console.log(data);
+                                    equal(0, data.error, data.message);
+
+                                    pixnet.friend.leaveSubscriptionGroup(function(data) {
+                                        console.log(data);
+                                        equal(0, data.error, data.message);
+
+                                        pixnet.friend.deleteSubscriptionGroup(function(data) {
+                                            console.log(data);
+                                            equal(0, data.error, data.message);
+
+                                            pixnet.friend.deleteSubscription(function(data) {
+                                                console.log(data);
+                                                equal(0, data.error, data.message);
+
+                                                start();
+                                            }, pixapp.friend.friendName);
+                                        }, pixapp.friend.subscriptionId);
+                                    }, pixapp.friend.friendName, ids.toString());
+                                }, pixapp.friend.friendName, ids.toString());
+                            }, ids.toString());
+                        });
+                    }, pixapp.friend.subscriptionId, 'update subscription group');
+                }, 'test subscription group');
+            });
+        }, pixapp.friend.friendName);
     });
 });
