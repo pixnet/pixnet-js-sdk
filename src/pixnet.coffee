@@ -140,9 +140,9 @@ class PixConsole
   _procStop: false
   _log: (msg)->
     console.log("Pixnet Log: ", msg)
-  _error: (msg, isStop)->
+  _error: (msg, keepGoing)->
     console.error("Pixnet Error: ", msg)
-    @_procStop = !isStop
+    @_procStop = !keepGoing
 
 ###
 緩衝繼承區
