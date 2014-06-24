@@ -221,7 +221,6 @@ class Pixnet extends Container
 
     @_error('consumerKey format is wrong')    if not keyChecker(@data.app.consumerKey)
     @_error('consumerSecret format is wrong') if not keyChecker(@data.app.consumerSecret)
-
     return if @_procStop
 
     @login(options.loginCallback, @data.app.loginOpts) if options.login is true
@@ -236,7 +235,6 @@ class Pixnet extends Container
       @data.app.isLogin = true
 
       @refreshToken.call(@, callback, @data.app) if callback
-
     else
       opts = @_extends(@data.app.loginOpts, opts)
       callbackUrl = opts.callbackUrl || @data.app.callbackUrl
