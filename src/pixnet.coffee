@@ -303,7 +303,12 @@ class Pixnet extends Container
         response = JSON.parse(res)
         if response.error is 'invalid_grant'
           @setCode('')
-          @_error response
+          opts = @_extends(data, {
+            type: 'custom'
+            custom: =>
+              location.href = @getAuthorizeUrl(data.callbackUrl, data.consumerKey)
+          })
+          @login(callback, opts)
         callback.call(@, response) if callback
     })
 
