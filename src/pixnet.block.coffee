@@ -15,7 +15,7 @@ class PixBlock
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getBlock.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -36,7 +36,7 @@ class PixBlock
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createBlock.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -57,7 +57,7 @@ class PixBlock
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteBlock.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 

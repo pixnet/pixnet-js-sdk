@@ -15,7 +15,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getAlbumMain.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -36,7 +36,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getAlbumSets.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -57,7 +57,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @sortSetFolders.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -107,7 +107,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createAlbumSet.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -129,7 +129,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateAlbumSet.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -149,7 +149,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteAlbumSet.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -171,7 +171,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @sortAlbumSets.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -223,7 +223,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createAlbumFolder.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -245,7 +245,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateAlbumFolder.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -265,7 +265,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteAlbumFolder.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -294,7 +294,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getElement.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -323,7 +323,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createElement.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -343,7 +343,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateElement.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -363,7 +363,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteElementt.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -385,7 +385,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @sortElement.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -397,6 +397,7 @@ class PixAlbum
     data = pixnet._extends(data, optionData)
     pixnet._get "http://emma.pixnet.cc/album/elements/nearby", pixnet._defaultXHROptions(data, callback)
     return @
+
 
   getSetComments: (callback, userName, optionData)->
     data =
@@ -431,7 +432,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createSetComments.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -451,7 +452,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @markCommentSpam.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -471,7 +472,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @markCommentSpam.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -491,7 +492,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteSetComment.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -528,7 +529,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createElementComments.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -548,7 +549,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @markElementCommentSpam.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -568,7 +569,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @markElementCommentSpam.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -588,7 +589,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteElementComment.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -614,7 +615,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createFace.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -640,7 +641,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateFace.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -660,7 +661,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteFace.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -680,7 +681,7 @@ class PixAlbum
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getConfig.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 

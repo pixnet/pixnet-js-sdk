@@ -15,7 +15,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getGroups.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -36,7 +36,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createGroup.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -57,7 +57,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateGroup.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -77,7 +77,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteGroup.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -97,7 +97,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getNews.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -117,7 +117,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getSubscriptions.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -138,7 +138,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createSubscription.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -162,7 +162,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @joinSubscriptionGroup.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -183,7 +183,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @leaveSubscriptionGroup.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -203,7 +203,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @leaveSubscriptionGroup.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -223,7 +223,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getSubscriptionGroup.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -244,7 +244,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createSubscriptionGroup.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -265,7 +265,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateSubscriptionGroup.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -286,7 +286,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteSubscriptionGroup.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -307,7 +307,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @sortSubscriptionGroupTo.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -327,7 +327,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getFriendships.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -348,7 +348,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createFriendship.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -369,7 +369,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteFriendship.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -391,7 +391,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @appendFriendshipGroup.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -413,7 +413,7 @@ class PixFriend
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @removeFriendshipGroup.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 

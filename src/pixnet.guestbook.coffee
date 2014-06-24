@@ -24,7 +24,7 @@ class PixGuestbook
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createGuestbook.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -52,7 +52,7 @@ class PixGuestbook
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @replyGuestbook.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -72,7 +72,7 @@ class PixGuestbook
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setOpen.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -92,7 +92,7 @@ class PixGuestbook
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setClose.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -112,7 +112,7 @@ class PixGuestbook
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setClose.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -132,7 +132,7 @@ class PixGuestbook
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setClose.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -152,7 +152,7 @@ class PixGuestbook
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setClose.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 

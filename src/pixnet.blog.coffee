@@ -35,7 +35,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createBlogCategories.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -57,7 +57,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateCategories.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -78,7 +78,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteBlogCategories.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -103,7 +103,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @sortCategoriesTo.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -155,7 +155,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createArticle.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -177,7 +177,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateArticle.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -199,7 +199,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteArticle.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -258,7 +258,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createComment.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -289,7 +289,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @replyComment.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -309,7 +309,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setCommentOpen.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -329,7 +329,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setCommentClose.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -349,7 +349,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @markCommentSpam.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -369,7 +369,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @markCommentSpam.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
@@ -390,7 +390,7 @@ class PixBlog
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteComment.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 

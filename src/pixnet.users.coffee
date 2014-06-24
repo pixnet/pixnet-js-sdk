@@ -15,7 +15,7 @@ class PixUsers
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getAccount.apply(@, args)
-        , data)
+        , data, args)
     })
     return @
 
