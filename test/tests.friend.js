@@ -73,6 +73,7 @@ asyncTest("getNews", function() {
     expect(1);
     pixnet.login(function() {
         pixnet.friend.getNews(function(data) {
+            console.log(data);
             equal(0, data.error, data.message);
             start();
         });
