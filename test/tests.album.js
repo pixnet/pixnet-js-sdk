@@ -276,7 +276,7 @@ asyncTest("face modify", function() {
                     start();
                 }, pixapp.album.face.id);
             }, pixapp.album.face.id, pixapp.album.face.user, pixapp.album.elementId, 10, 10, 10, 10);
-        }, pixapp.album.faceUser, pixapp.album.elementId, 100, 100, 100, 100);
+        }, pixapp.album.face.user, pixapp.album.elementId, 100, 100, 100, 100);
     });
 });
 
