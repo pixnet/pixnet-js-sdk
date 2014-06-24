@@ -256,7 +256,7 @@ class Pixnet extends Container
 
       # 還沒取得 code ，正要去取的時候
       else
-        url = "https://emma.pixnet.cc/oauth2/authorize?redirect_uri=#{callbackUrl}&client_id=#{consumerKey}&response_type=code"
+        url = @getAuthorizeUrl(callbackUrl, consumerKey)
         switch opts.type
         # 使用者自定函數去取得授權 code
           when 'custom'
@@ -272,6 +272,9 @@ class Pixnet extends Container
 
             location.href = url
     return @
+
+  getAuthorizeUrl: (callbackUrl, consumerKey)=>
+    return "https://emma.pixnet.cc/oauth2/authorize?redirect_uri=#{callbackUrl}&client_id=#{consumerKey}&response_type=code"
 
   logout: (callback)=>
     @setCode('')
