@@ -333,11 +333,16 @@ class Pixnet extends Container
     })
 
   apiInvalidGrantFunc: (callback, data, args)=>
-    response = JSON.parse(data)
+    if data and typeof data is "string"
+      response = JSON.parse(data)
+    else
+      response = data
+
     if response.error is 'invalid_grant'
       @refreshToken(callback)
     else
       args[0].call(@, response)
+      @_error(response.message)
 
 
 window.pixnet = new Pixnet()
