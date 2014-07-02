@@ -210,8 +210,8 @@ class Pixnet extends Container
     else
       return @data.app
 
-  setSceret: (sceret)=>
-    @data.app.consumerSecret = sceret
+  setSecret: (secret)=>
+    @data.app.consumerSecret = secret
     return @
 
   setKey: (key)=>
