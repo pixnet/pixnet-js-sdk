@@ -5,6 +5,10 @@ module('pixnet.album', {
         pixnet.login(function() {
             pixnet.users.getAccount(function(data) {
                 pixapp.blog.userName = data.account.name;
+
+                pixapp.album.albumId       = "12286204";
+                pixapp.album.albumIdHasEls = "12286204";
+                pixapp.album.elementId = "529082305";
                 start();
             });
         });
