@@ -312,27 +312,28 @@ class Pixnet extends Container
         client_secret: data.consumerSecret
         code:          data.code
         grant_type:    "authorization_code"
-      done: (res)=>
-        response = JSON.parse(res)
+      done: (response)=>
         @setTokens(response.access_token, response.refresh_token)
         @data.app.isLogin = true
         callback.call(@, response) if callback
-      fail: (res)=>
-        response = JSON.parse(res)
+      fail: (rep)=>
+        if data and typeof rep is "string"
+          response = JSON.parse(rep)
+        else
+          response = rep
+
         if response.error is 'invalid_grant'
-          @setCode('')
-          opts = @_extends(data, {
-            type: 'custom'
-            custom: =>
-              location.href = @getAuthorizeUrl(data.callbackUrl, data.consumerKey)
-          })
-          @login(callback, opts)
-        callback.call(@, response) if callback
+          @refreshToken(callback)
+        else
+          callback.call(@, response) if callback
     })
 
   refreshToken: (callback, opts)=>
     data = @_extends(@data.app, {})
+    @_error('refreshToken is not defined')   if not data.refreshToken
+    @_error('consumerKey is not defined')    if not data.consumerKey
     @_error('consumerSecret is not defined') if not data.consumerSecret
+    return if @_procStop
 
     @_get('https://emma.pixnet.cc/oauth2/grant', {
       data:
