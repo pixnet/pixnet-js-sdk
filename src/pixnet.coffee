@@ -95,9 +95,7 @@ class NoJquery
     return @_ajax(opts)
 
   _upload: (url, opts)=>
-    @
     opts.type = 'UPLOAD'
-#    opts.enctype = 'multipart/form-data'
     opts.url = url
     opts.data = opts.data || {}
     opts.data['format'] = 'json'
@@ -141,7 +139,7 @@ class NoJquery
     fail = opts.fail || opts.error   || ()->
 
     request.open(opts.type, opts.url)
-    request.setRequestHeader('content-type', contenType) if contenType
+    request.setRequestHeader('Content-Type', contenType) if contenType
 
     request.onload = ->
       if request.status >= 200 && request.status < 400
@@ -377,6 +375,5 @@ class Pixnet extends Container
     else
       args[0].call(@, response)
       @_error(response.message)
-
 
 window.pixnet = new Pixnet()
