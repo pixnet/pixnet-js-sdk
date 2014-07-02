@@ -249,7 +249,6 @@ asyncTest("album set modify", function() {
     });
 });
 
-
 asyncTest("getAlbumSetsNear", function() {
     expect(1);
     pixnet.login(function() {
