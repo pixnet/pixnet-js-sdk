@@ -1,43 +1,229 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pixnet Emma js SDK</title>
-  <script type="text/javascript" src="../lib/json3.min.js"></script>
-  <script type="text/javascript" src="../lib/all.min.js"></script>
-
-  <script>
-    (function(pixnet) {
-      pixnet.init({
         consumerKey: '你的 consumerKey',
         consumerSecret: '你的 consumerSecret',
         callbackUrl: '你的 Callback URL'
-      });
+    <title>Pixnet Emma js SDK</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/json3.min.js"></script>
+    <script type="text/javascript" src="../lib/all.src.js"></script>
 
-      pixnet.login(function() {
-        pixnet.users.getAccount(function(data) {
-          console.log(data);
-        });
-        pixnet.blog.getInfo(function(data) {
-          console.log(data);
-        }, 'jssdk');
+    <script>
+        (function($, pixnet) {
+            var username;
+            pixnet.init({
+            });
 
-        pixnet.blog.createCategories(function(data) {
-          console.log('createCategories', data);
-        }, '測試分類請刪除', { user: 'nobitatest'})
+            pixnet.login(function() {
+                pixnet.users.getAccount(function(data) {
+                    $('#getAccount').val(data);
+                    data = JSON.parse(data);
+                    console.log(data);
+                    username = data.account.name;
 
-        pixnet.blog.getCategories(function(data) {
-          console.log('getCategories', data);
-          var cate = data.categories;
-          pixnet.blog.deleteCategories(function(data) {
-            console.log('deleteCategories', data);
-          }, cate[0].id);
+                    pixnet.blog.getInfo(function(data) {
+                        console.log(data);
+                    }, username);
+
+                    pixnet.blog.createCategories(function(data) {
+                        $('#createCategories').val(data);
+                        console.log('createCategories', data);
+                        data = JSON.parse(data);
+
+
+                        pixnet.blog.getCategories(function(data) {
+                            console.log('getCategories', data);
+                            var cate = data.categories;
+                            pixnet.blog.deleteCategories(function(data) {
+                              $('#deleteCategories').val(data);
+                                data = JSON.parse(data);
+                              console.log('deleteCategories', data);
+                            }, cate[0].id, {
+                                pretty_print: 1
+                            });
+                        }, username);
+
+
+
+
+                    }, '測試分類請刪除', {
+                        user: username,
+                        pretty_print: 1
+                    });
+
+                    pixnet.album.getAlbumSets(function(data) {
+                        var setId = data.sets[0].id;
+                        $('#uploadFile').change(function() {
+                            uploadFiles(setId, this);
+                        });
+
+                        $('#uploadFile_base64').change(function() {
+                            uploadFile_base64(setId, this);
+                        });
+                    }, username);
+                }, {
+                    pretty_print: 1
+                });
+
+            });
+
+            var uploadFiles = function(setId, files) {
+                if (files.files.length) {
+                    pixnet.album.createElement(function(data) {
+                        $('#createElement').val(data);
+                        data = JSON.parse(data);
+                        // console.log(data);
+                    }, setId, files.files[0], {
+                        pretty_print: 1
+                    });
+                }
+            };
+
+            var uploadFile_base64 = function(setId, files) {
+                var fileReader = new FileReader();
+                if (files.files.length) {
+                    fileReader.onload = function(readerEvt) {
+                        var dataURL = readerEvt.target.result;
+                        $('#aaa').val(dataURL);
+
+                        pixnet.album.createElement(function(data) {
+                            $('#createElementBase64').val(data);
+                            data = JSON.parse(data);
+                            // console.log(data);
+                        }, setId, dataURL, {
+                            upload_method: 'base64',
+                            pretty_print: 1
+                        });
+                    };
+                    fileReader.readAsDataURL(files.files[0]);
+                }
+            };
+
+        })(jQuery, pixnet);
+    </script>
+    <style>
+        .info {
+            width: 500px;
+            height: 300px;
+            background-color: #eee;
+            border: 1px solid #999;
         }
-        , 'jssdk');
-      });
-    })(pixnet);
-  </script>
+        pre {
+            width: 500px;
+            background-color: #b3cdee;
+            border: 1px solid #999;
+        }
+    </style>
 </head>
 <body>
+  <h3>取得資料</h3>
+  <hr>
+  <p>Sample Code</p>
+  <pre>
+    pixnet.login(function() {
+        pixnet.users.getAccount(function(data) {
+            $('#getAccount').val(data);
+            data = JSON.parse(data);
+            console.log(data);
+        }, {
+            pretty_print: 1
+        });
+    });
+  </pre>
+  <p>Demo</p>
+  <textarea class="info" id="getAccount"></textarea>
+  
+  <h3>新增資料</h3>
+  <hr>
+  <p>Sample Code</p>
+  <pre>
+    pixnet.login(function() {
+        pixnet.blog.createCategories(function(data) {
+            $('#createCategories').val(data);
+
+        }, '測試分類請刪除', {
+            user: username,
+            pretty_print: 1
+        });
+    });
+  </pre>
+  <p>Demo</p>
+  <textarea class="info" id="createCategories"></textarea>
+  
+  <h3>刪除資料</h3>
+  <hr>
+  <p>Sample Code</p>
+  <pre>
+    pixnet.login(function() {
+        pixnet.blog.deleteCategories(function(data) {
+          $('#deleteCategories').val(data);
+
+        }, cateId, {
+            pretty_print: 1
+        });
+});
+  </pre>
+  <p>Demo</p>
+  <textarea class="info" id="deleteCategories"></textarea>
+  
+  <h3>上傳圖片</h3>
+  <hr>
+  <p>Sample Code</p>
+  <pre>
+    pixnet.login(function() {
+        $('#uploadFile').change(function() {
+            uploadFiles(setId, this);
+        });
+    });
+    var uploadFiles = function(setId, files) {
+        if (files.files.length) {
+            pixnet.album.createElement(function(data) {
+                $('#createElement').val(data);
+                data = JSON.parse(data);
+                // console.log(data);
+            }, setId, files.files[0], {
+                pretty_print: 1
+            });
+        }
+    };
+  </pre>
+  <p>Demo</p>
+  <input type="file" id="uploadFile" name="upload_file" multiple/><br/>
+  <textarea class="info" id="createElement"></textarea>
+  
+  <h3>上傳圖片 base64</h3>
+  <hr>
+  <p>Sample Code</p>
+  <pre>
+    pixnet.login(function() {
+        $('#uploadFile_base64').change(function() {
+            uploadFiles(setId, this);
+        });
+    });
+    var uploadFile_base64 = function(setId, files) {
+        var fileReader = new FileReader();
+        if (files.files.length) {
+            fileReader.onload = function(readerEvt) {
+                var dataURL = readerEvt.target.result;
+                $('#aaa').val(dataURL);
+
+                pixnet.album.createElement(function(data) {
+                    $('#createElementBase64').val(data);
+                    data = JSON.parse(data);
+                    // console.log(data);
+                }, setId, dataURL, {
+                    upload_method: 'base64',
+                    pretty_print: 1
+                });
+            };
+            fileReader.readAsDataURL(files.files[0]);
+        }
+    };
+  </pre>
+  <p>Demo</p>
+  <input type="file" id="uploadFile_base64" name="upload_file" multiple/><br/>
+  <textarea class="info" id="createElementBase64"></textarea>
 
 </body>
 </html>
