@@ -96,10 +96,12 @@ class NoJquery
 
   _upload: (url, opts)=>
     @
-#    opts.type = 'POST'
-#    opts.url = url
-#    opts.data = opts.data || {}
-#    return @_ajax(opts)
+    opts.type = 'UPLOAD'
+#    opts.enctype = 'multipart/form-data'
+    opts.url = url
+    opts.data = opts.data || {}
+    opts.data['format'] = 'json'
+    return @_ajax(opts)
 
   _ajax: (opts)=>
     opts = @_extends(@_ajaxOpts, opts)
@@ -110,6 +112,8 @@ class NoJquery
       # code for IE6, IE5
       request = new ActiveXObject("Microsoft.XMLHTTP")
 
+    contenType = "#{opts.enctype}; charset=#{opts.charset}"
+
     switch opts.type
       when 'GET', 'DELETE'
         opts.url += @_serialize(opts.data)
@@ -119,29 +123,19 @@ class NoJquery
         params =  @_serialize(opts.data).substr(1)
 
       when 'UPLOAD'
-#        iframe = document.createElement("IFRAME")
-#        iframe.setAttribute("action", opts.url)
-#        iframe.setAttribute("method", opts.type)
-#
-#        iframe.style.display = "none"
-#        for own key, val of opts.data
-#          input = document.createElement("INPUT")
-#          input.setAttribute("type", "hidden")
-#          input.setAttribute("name", key)
-#          input.setAttribute("value", val)
-#          iframe.appendChild(input)
-#
-#        document.body.appendChild(iframe)
-
+        opts.type = 'POST'
+        params = new FormData()
+        for own key, val of opts.data
+          params.append key, val
+        contenType = null
       else
         params = ""
-
 
     done = opts.done || opts.success || ()->
     fail = opts.fail || opts.error   || ()->
 
-    request.open(opts.type, opts.url, true)
-    request.setRequestHeader('Content-Type', "#{opts.enctype}; charset=#{opts.charset}")
+    request.open(opts.type, opts.url)
+    request.setRequestHeader('content-type', contenType) if contenType
 
     request.onload = ->
       if request.status >= 200 && request.status < 400
