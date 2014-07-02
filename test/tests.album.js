@@ -282,6 +282,35 @@ asyncTest("getAlbumFolder", function() {
     });
 });
 
+asyncTest("album folder modify", function() {
+    expect(4);
+    pixnet.login(function() {
+        pixnet.album.createAlbumFolder(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+
+            pixapp.album.folderId = data.folder.id;
+
+            pixnet.album.updateAlbumFolder(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
+
+                pixnet.album.getAlbumFolder(function(data) {
+                    console.log(data);
+                    equal(0, data.error, data.message);
+
+                    pixnet.album.deleteAlbumFolder(function(data) {
+                        console.log(data);
+                        equal(0, data.error, data.message);
+                        start();
+                    }, pixapp.album.folderId);
+                }, pixapp.album.folderId, pixapp.blog.userName);
+            }, pixapp.album.folderId, 'update album', 'update update eteupdatets e update');
+
+        }, 'test folder', 'folderfolderfolderfolderfolder');
+    });
+});
+
 asyncTest("getSetComments by setId", function() {
     expect(1);
     pixnet.login(function() {
