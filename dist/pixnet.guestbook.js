@@ -15,15 +15,16 @@
       return this;
     };
 
-    PixGuestbook.prototype.create = function(callback, userName, body, optionData) {
+    PixGuestbook.prototype.create = function(callback, title, body, userName, optionData) {
       var args, data;
       if (!pixnet.isLogin) {
         pixnet._error('Need login');
         return this;
       }
       data = {
-        user: userName,
+        title: title,
         body: body,
+        user: userName,
         access_token: pixnet.getData('accessToken')
       };
       data = pixnet._extends(data, optionData);
