@@ -11,7 +11,7 @@ class PixUsers
     pixnet._get('https://emma.pixnet.cc/account', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getAccount.apply(@, args)

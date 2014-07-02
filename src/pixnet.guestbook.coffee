@@ -20,7 +20,7 @@ class PixGuestbook
     pixnet._post("https://emma.pixnet.cc/guestbook", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createGuestbook.apply(@, args)
@@ -48,7 +48,7 @@ class PixGuestbook
     pixnet._post("https://emma.pixnet.cc/guestbook/#{id}/reply", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @replyGuestbook.apply(@, args)
@@ -68,7 +68,7 @@ class PixGuestbook
     pixnet._post("https://emma.pixnet.cc/guestbook/#{id}/open", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setOpen.apply(@, args)
@@ -88,7 +88,7 @@ class PixGuestbook
     pixnet._post("https://emma.pixnet.cc/guestbook/#{id}/close", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setClose.apply(@, args)
@@ -108,7 +108,7 @@ class PixGuestbook
     pixnet._post("https://emma.pixnet.cc/guestbook/#{id}/mark_spam", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setClose.apply(@, args)
@@ -128,7 +128,7 @@ class PixGuestbook
     pixnet._post("https://emma.pixnet.cc/guestbook/#{id}/mark_ham", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setClose.apply(@, args)
@@ -148,7 +148,7 @@ class PixGuestbook
     pixnet._delete("https://emma.pixnet.cc/guestbook/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setClose.apply(@, args)

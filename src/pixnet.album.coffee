@@ -11,7 +11,7 @@ class PixAlbum
     pixnet._get('https://emma.pixnet.cc/album/main', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getAlbumMain.apply(@, args)
@@ -32,7 +32,7 @@ class PixAlbum
     pixnet._get('https://emma.pixnet.cc/album/setfolders', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getAlbumSets.apply(@, args)
@@ -53,7 +53,7 @@ class PixAlbum
     pixnet._post('https://emma.pixnet.cc/album/setfolders/position', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @sortSetFolders.apply(@, args)
@@ -103,7 +103,7 @@ class PixAlbum
     pixnet._post('https://emma.pixnet.cc/album/sets', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createAlbumSet.apply(@, args)
@@ -125,7 +125,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/sets/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateAlbumSet.apply(@, args)
@@ -145,7 +145,7 @@ class PixAlbum
     pixnet._delete("https://emma.pixnet.cc/album/sets/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteAlbumSet.apply(@, args)
@@ -167,7 +167,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/sets/position", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @sortAlbumSets.apply(@, args)
@@ -219,7 +219,7 @@ class PixAlbum
     pixnet._post('https://emma.pixnet.cc/album/folders', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createAlbumFolder.apply(@, args)
@@ -241,7 +241,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/folders/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateAlbumFolder.apply(@, args)
@@ -261,7 +261,7 @@ class PixAlbum
     pixnet._delete("https://emma.pixnet.cc/album/folders/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteAlbumFolder.apply(@, args)
@@ -290,7 +290,7 @@ class PixAlbum
     pixnet._get("https://emma.pixnet.cc/album/elements/#{elementId}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getElement.apply(@, args)
@@ -322,7 +322,7 @@ class PixAlbum
     pixnet._upload("https://emma.pixnet.cc/album/elements", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createElement.apply(@, args)
@@ -342,7 +342,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/elements/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateElement.apply(@, args)
@@ -362,7 +362,7 @@ class PixAlbum
     pixnet._delete("https://emma.pixnet.cc/album/elements/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteElementt.apply(@, args)
@@ -384,7 +384,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/elements/position", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @sortElement.apply(@, args)
@@ -431,7 +431,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/set_comments", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createSetComments.apply(@, args)
@@ -451,7 +451,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/set_comments/#{id}/mark_spam", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @markCommentSpam.apply(@, args)
@@ -471,7 +471,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/set_comments/#{id}/mark_ham", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @markCommentSpam.apply(@, args)
@@ -491,7 +491,7 @@ class PixAlbum
     pixnet._delete("https://emma.pixnet.cc/album/set_comments/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteSetComment.apply(@, args)
@@ -528,7 +528,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/comments", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createElementComments.apply(@, args)
@@ -548,7 +548,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/comments/#{commentId}/mark_spam", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @markElementCommentSpam.apply(@, args)
@@ -568,7 +568,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/comments/#{commentId}/mark_ham", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @markElementCommentSpam.apply(@, args)
@@ -588,7 +588,7 @@ class PixAlbum
     pixnet._delete("https://emma.pixnet.cc/album/comments/#{commentId}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteElementComment.apply(@, args)
@@ -614,7 +614,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/faces", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createFace.apply(@, args)
@@ -640,7 +640,7 @@ class PixAlbum
     pixnet._post("https://emma.pixnet.cc/album/faces/#{faceId}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateFace.apply(@, args)
@@ -660,7 +660,7 @@ class PixAlbum
     pixnet._delete("https://emma.pixnet.cc/album/faces/#{faceId}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteFace.apply(@, args)
@@ -680,7 +680,7 @@ class PixAlbum
     pixnet._get("https://emma.pixnet.cc/album/config", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getConfig.apply(@, args)

@@ -31,7 +31,7 @@ class PixBlog
     pixnet._post('https://emma.pixnet.cc/blog/categories', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createBlogCategories.apply(@, args)
@@ -53,7 +53,7 @@ class PixBlog
     pixnet._post("https://emma.pixnet.cc/blog/categories/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateCategories.apply(@, args)
@@ -74,7 +74,7 @@ class PixBlog
     pixnet._delete("https://emma.pixnet.cc/blog/categories/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteBlogCategories.apply(@, args)
@@ -99,7 +99,7 @@ class PixBlog
     pixnet._post("https://emma.pixnet.cc/blog/categories/position", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @sortCategoriesTo.apply(@, args)
@@ -151,7 +151,7 @@ class PixBlog
     pixnet._post('https://emma.pixnet.cc/blog/articles', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createArticle.apply(@, args)
@@ -173,7 +173,7 @@ class PixBlog
     pixnet._post("https://emma.pixnet.cc/blog/articles/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateArticle.apply(@, args)
@@ -195,7 +195,7 @@ class PixBlog
     pixnet._delete("https://emma.pixnet.cc/blog/articles/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteArticle.apply(@, args)
@@ -254,7 +254,7 @@ class PixBlog
     pixnet._post('https://emma.pixnet.cc/blog/comments', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createComment.apply(@, args)
@@ -285,7 +285,7 @@ class PixBlog
     pixnet._post("https://emma.pixnet.cc/blog/comments/#{id}/reply", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @replyComment.apply(@, args)
@@ -305,7 +305,7 @@ class PixBlog
     pixnet._post("https://emma.pixnet.cc/blog/comments/#{id}/open", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setCommentOpen.apply(@, args)
@@ -325,7 +325,7 @@ class PixBlog
     pixnet._post("https://emma.pixnet.cc/blog/comments/#{id}/close", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @setCommentClose.apply(@, args)
@@ -345,7 +345,7 @@ class PixBlog
     pixnet._post("https://emma.pixnet.cc/blog/comments/#{id}/mark_spam", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @markCommentSpam.apply(@, args)
@@ -365,7 +365,7 @@ class PixBlog
     pixnet._post("https://emma.pixnet.cc/blog/comments/#{id}/mark_ham", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @markCommentSpam.apply(@, args)
@@ -386,7 +386,7 @@ class PixBlog
     pixnet._delete("https://emma.pixnet.cc/blog/comments/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteComment.apply(@, args)

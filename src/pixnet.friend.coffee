@@ -11,7 +11,7 @@ class PixFriend
     pixnet._get('https://emma.pixnet.cc/friend/groups', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getGroups.apply(@, args)
@@ -32,7 +32,7 @@ class PixFriend
     pixnet._post('https://emma.pixnet.cc/friend/groups', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createGroup.apply(@, args)
@@ -53,7 +53,7 @@ class PixFriend
     pixnet._post("https://emma.pixnet.cc/friend/groups/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateGroup.apply(@, args)
@@ -73,7 +73,7 @@ class PixFriend
     pixnet._delete("https://emma.pixnet.cc/friend/groups/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteGroup.apply(@, args)
@@ -93,7 +93,7 @@ class PixFriend
     pixnet._get('https://emma.pixnet.cc/friend/news', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getNews.apply(@, args)
@@ -113,7 +113,7 @@ class PixFriend
     pixnet._get('https://emma.pixnet.cc/friend/subscriptions', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getSubscriptions.apply(@, args)
@@ -134,7 +134,7 @@ class PixFriend
     pixnet._post('https://emma.pixnet.cc/friend/subscriptions', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createSubscription.apply(@, args)
@@ -158,7 +158,7 @@ class PixFriend
     pixnet._post("https://emma.pixnet.cc/friend/subscriptions/#{userName}/join_subscription_group", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @joinSubscriptionGroup.apply(@, args)
@@ -179,7 +179,7 @@ class PixFriend
     pixnet._post("https://emma.pixnet.cc/friend/subscriptions/#{userName}/leave_subscription_group", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @leaveSubscriptionGroup.apply(@, args)
@@ -199,7 +199,7 @@ class PixFriend
     pixnet._delete("https://emma.pixnet.cc/friend/subscriptions/#{userName}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @leaveSubscriptionGroup.apply(@, args)
@@ -219,7 +219,7 @@ class PixFriend
     pixnet._get('https://emma.pixnet.cc/friend/subscription_groups', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getSubscriptionGroup.apply(@, args)
@@ -240,7 +240,7 @@ class PixFriend
     pixnet._post('https://emma.pixnet.cc/friend/subscription_groups', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createSubscriptionGroup.apply(@, args)
@@ -261,7 +261,7 @@ class PixFriend
     pixnet._post("https://emma.pixnet.cc/friend/subscription_groups/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @updateSubscriptionGroup.apply(@, args)
@@ -282,7 +282,7 @@ class PixFriend
     pixnet._delete("https://emma.pixnet.cc/friend/subscription_groups/#{id}", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteSubscriptionGroup.apply(@, args)
@@ -303,7 +303,7 @@ class PixFriend
     pixnet._post("https://emma.pixnet.cc/friend/subscription_groups/position", {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @sortSubscriptionGroupTo.apply(@, args)
@@ -323,7 +323,7 @@ class PixFriend
     pixnet._get('https://emma.pixnet.cc/friendships', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getFriendships.apply(@, args)
@@ -344,7 +344,7 @@ class PixFriend
     pixnet._post('https://emma.pixnet.cc/friendships', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createFriendship.apply(@, args)
@@ -365,7 +365,7 @@ class PixFriend
     pixnet._delete('https://emma.pixnet.cc/friendships/delete', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteFriendship.apply(@, args)
@@ -387,7 +387,7 @@ class PixFriend
     pixnet._post('https://emma.pixnet.cc/friendships/append_group', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @appendFriendshipGroup.apply(@, args)
@@ -409,7 +409,7 @@ class PixFriend
     pixnet._post('https://emma.pixnet.cc/friendships/remove_group', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @removeFriendshipGroup.apply(@, args)

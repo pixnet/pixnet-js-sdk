@@ -11,7 +11,7 @@ class PixBlock
     pixnet._get('https://emma.pixnet.cc/blocks', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @getBlock.apply(@, args)
@@ -32,7 +32,7 @@ class PixBlock
     pixnet._post('https://emma.pixnet.cc/blocks/create', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @createBlock.apply(@, args)
@@ -53,7 +53,7 @@ class PixBlock
     pixnet._delete('https://emma.pixnet.cc/blocks/delete', {
       data: data
       done: (data)=>
-        callback(JSON.parse(data)) if callback
+        callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
           @deleteBlock.apply(@, args)
