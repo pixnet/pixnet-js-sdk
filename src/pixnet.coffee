@@ -3,7 +3,25 @@
 自幹工具區
 ###
 class NoJquery
+  _getDoc: (frame)->
+    # IE8 cascading access check
+    try
+      if frame.contentWindow
+        doc = frame.contentWindow.document;
+    catch err
+      @_log('cannot get iframe.contentWindow document: ' + err)
+    if doc  # successful getting content
+      return doc
+    try # // simply checking may throw in ie8 under ssl or mismatched protocol
+      doc = if frame.contentDocument then frame.contentDocument else frame.document
+    catch err
+    # last attempt
+      @_log('cannot get iframe.contentDocument: ' + err)
+      doc = frame.document
+    return doc
+
   _hasProp: {}.hasOwnProperty
+
   _extends: (child, parent)->
     parent = {} if not parent
     for own key of parent
