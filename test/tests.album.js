@@ -324,6 +324,18 @@ asyncTest("getSetComments by setId", function() {
     });
 });
 
+asyncTest("getSetComments by elementId", function() {
+    expect(1);
+    pixnet.login(function() {
+        pixnet.album.getSetComments(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.blog.userName, {
+            element_id: pixapp.album.elementId
+        });
+    });
+});
 
 asyncTest("createSetComment", function() {
     expect(2);
