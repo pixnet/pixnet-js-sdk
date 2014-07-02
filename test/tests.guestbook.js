@@ -85,3 +85,20 @@ asyncTest("markHam", function() {
         }, pixapp.guestbook.artId);
     });
 });
+
+asyncTest("guestbook modify", function() {
+    expect(2);
+    pixnet.login(function() {
+        pixnet.guestbook.create(function(data) {
+            console.log(data);
+            data.article.id;
+            equal(0, data.error, data.message);
+
+            pixnet.guestbook.delete(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
+                start();
+            }, data.article.id);
+        }, 'create guestbook', 'body guestbook', pixapp.blog.userName);
+    });
+});
