@@ -221,14 +221,13 @@ class Pixnet extends Container
   setTokens: (accessToken, refreshToken)=>
     @data.app.accessToken  = accessToken
     @data.app.refreshToken = refreshToken
-    localStorage["accessToken"]  = accessToken
-    localStorage["refreshToken"] = refreshToken
+    localStorage["#{@data.app.consumerKey}accessToken"]  = accessToken
+    localStorage["#{@data.app.consumerKey}refreshToken"] = refreshToken
 
     return @
 
   setCode: (code)=>
     @data.app.code = code
-    localStorage["code"] = code
     return @
 
   init: (options)->
@@ -248,12 +247,12 @@ class Pixnet extends Container
   login: (callback, opts)=>
     opts = opts || {}
     # 之前已經有授權過，並存在 localStorage
-    if localStorage["refreshToken"]
-      @setCode(localStorage["code"])
-      @setTokens(localStorage["accessToken"], localStorage["refreshToken"])
+    if localStorage["#{@data.app.consumerKey}accessToken"]
+      @setCode(localStorage["#{@data.app.consumerKey}code"])
+      @setTokens(localStorage["#{@data.app.consumerKey}accessToken"], localStorage["#{@data.app.consumerKey}refreshToken"])
       @data.app.isLogin = true
+      callback.call(@, @data.app) if callback
 
-      @refreshToken.call(@, callback, @data.app) if callback
     else
       opts = @_extends(@data.app.loginOpts, opts)
       callbackUrl = opts.callbackUrl || @data.app.callbackUrl
