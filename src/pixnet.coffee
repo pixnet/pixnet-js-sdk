@@ -30,11 +30,11 @@ class NoJquery
 
   _defaultXHROptions: (data, callback)->
     return {
-    data: data
-    done: (data)=>
-      callback(JSON.parse(data)) if callback
-    fail: (data)=>
-      callback(JSON.parse(data)) if callback
+      data: data
+      done: (data)=>
+        callback(data) if callback
+      fail: (data)=>
+        callback(data) if callback
     }
 
   _serialize: (data)=>
@@ -66,7 +66,7 @@ class NoJquery
     type: 'GET'
     url: ''
     data: {}
-    dataType: 'text'
+    dataType: 'json'
     charset: 'UTF-8'
     enctype: 'application/x-www-form-urlencoded'
 
@@ -105,6 +105,12 @@ class NoJquery
 
   _ajax: (opts)=>
     opts = @_extends(@_ajaxOpts, opts)
+
+    if opts.data.pretty_print in [1, "1"]
+      dataType = "text"
+    else
+      dataType = opts.dataType
+
     if window.XMLHttpRequest
       # code for IE7+, Firefox, Chrome, Opera, Safari
       request = new XMLHttpRequest()
@@ -140,7 +146,7 @@ class NoJquery
     request.onload = ->
       if request.status >= 200 && request.status < 400
         resp = request.responseText
-        resp = JSON.parse(resp) if opts.dataType is 'json'
+        resp = JSON.parse(resp) if dataType is 'json'
         done(resp) if typeof done is 'function'
       else
         resp = request.responseText
@@ -337,14 +343,27 @@ class Pixnet extends Container
         client_id:     data.consumerKey
         client_secret: data.consumerSecret
         grant_type:    "refresh_token"
-      done: (data)=>
-        response = JSON.parse(data)
+      done: (response)=>
         @setTokens(response.access_token, response.refresh_token)
-        callback.call(@, response) if callback
         @data.app.isLogin = true
-      fail: (data)=>
-        response = JSON.parse(data)
         callback.call(@, response) if callback
+
+      fail: (rep)=>
+        if data and typeof rep is "string"
+          response = JSON.parse(rep)
+        else
+          response = rep
+
+        if response.error is 'invalid_grant'
+          @setCode('')
+          opts = @_extends(data, {
+            type: 'custom'
+            custom: =>
+              location.href = @getAuthorizeUrl(data.callbackUrl, data.consumerKey)
+          })
+          @login(callback, opts)
+        else
+          callback.call(@, response) if callback
     })
 
   apiInvalidGrantFunc: (callback, data, args)=>
