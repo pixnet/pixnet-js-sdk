@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-        consumerKey: '你的 consumerKey',
-        consumerSecret: '你的 consumerSecret',
-        callbackUrl: '你的 Callback URL'
     <title>Pixnet Emma js SDK</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="../lib/json3.min.js"></script>
@@ -13,6 +10,9 @@
         (function($, pixnet) {
             var username;
             pixnet.init({
+                consumerKey: '你的 consumerKey',
+                consumerSecret: '你的 consumerSecret',
+                callbackUrl: '你的 Callback URL'
             });
 
             pixnet.login(function() {
