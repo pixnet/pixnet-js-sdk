@@ -146,7 +146,7 @@ class NoJquery
         resp = request.responseText
         fail(resp) if typeof fail is 'function'
 
-    request.send(params)
+    request.send params
     return request
 ###
 訊息回報區
