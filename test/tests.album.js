@@ -58,6 +58,7 @@ asyncTest("getAlbumSets", function() {
             var ids = [], parentId = "0";
             if (data.sets.length) {
                 parentId = data.sets[0].parent_id;
+                pixapp.album.albumId = data.sets[0].id;
             }
             for (var i = data.sets.length; i--;) {
                 ids.push(data.sets[i].id);
