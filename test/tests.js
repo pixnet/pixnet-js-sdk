@@ -51,24 +51,15 @@ test( "pixnet 初始化測試", function() {
 });
 
 test( "login 基本功能測試", function() {
-    expect(9);
-    var ans = pixnet.isLogin();
+    expect(4);
 
-    equal(ans, true, 'Sure be login.');
     stop();
     pixnet.login(function() {
         var app = pixnet.getData();
         equal(pixnet.isLogin(), true, 'Sure be logined.');
-        equal(app.code, localStorage['code'], 'code');
-        equal(app.accessToken, localStorage['accessToken'], 'accessToken');
-        equal(app.refreshToken, localStorage['refreshToken'], 'refreshToken');
-
-        pixnet.logout(function() {
-            equal(pixnet.isLogin(), false, 'Sure be logout.');
-            ok(!localStorage['code'], 'free code');
-            ok(!localStorage['accessToken'], 'free accessToken');
-            ok(!localStorage['refreshToken'], 'free refreshToken');
-            start();
-        });
+        equal(app.code,         localStorage[pixnet.getData('consumerKey') + 'code'],         'code');
+        equal(app.accessToken,  localStorage[pixnet.getData('consumerKey') + 'accessToken'],  'accessToken');
+        equal(app.refreshToken, localStorage[pixnet.getData('consumerKey') + 'refreshToken'], 'refreshToken');
+        start();
     });
 });
