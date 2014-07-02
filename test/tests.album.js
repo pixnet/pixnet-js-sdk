@@ -88,8 +88,54 @@ asyncTest("getAlbumSetElements", function() {
     });
 });
 
-asyncTest("getAlbumElements, Comments, one element, and sort", function() {
-    expect(4);
+
+
+asyncTest("getAlbumElements, Comments, one element, face modify and sort", function() {
+    expect(7);
+
+    var callback = function(ids) {
+        return function() {
+            pixnet.album.getElementComments(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
+
+                pixnet.album.sortElement(function(data) {
+                    console.log(data);
+                    equal(true, pixnet.isArray(data.elements), data.message);
+                    start();
+                }, pixapp.album.albumIdHasEls, ids);
+
+            }, pixapp.album.elementId, pixapp.blog.userName, {
+                access_token : pixnet.getData('accessToken')
+            });
+        };
+    };
+
+    var faceModify = function(cb) {
+        pixnet.album.createFace(function(data) {
+            console.log(data);
+            equal(0, data.error, data.message);
+
+            if (data.element) {
+                pixapp.album.face = data.element.faces.tagged[0];
+            }
+
+            pixnet.album.updateFace(function(data) {
+                console.log(data);
+                equal(0, data.error, data.message);
+                pixnet.album.deleteFace(function(data) {
+                    console.log(data);
+                    equal(0, data.error, data.message);
+
+                    if (cb) {
+                        cb();
+                    } else {
+                        start();
+                    }
+                }, pixapp.album.face.id);
+            }, pixapp.album.face.id, pixapp.album.face.user, pixapp.album.elementId, 10, 10, 10, 10);
+        }, pixapp.album.face.user, pixapp.album.elementId, 5, 5, 5, 5);
+    };
     pixnet.login(function() {
         pixnet.album.getAlbumElements(function(data) {
             console.log(data);
@@ -105,19 +151,16 @@ asyncTest("getAlbumElements, Comments, one element, and sort", function() {
                 console.log(data);
                 equal(0, data.error, data.message);
 
-                pixnet.album.getElementComments(function(data) {
-                    console.log(data);
-                    equal(0, data.error, data.message);
+                if (data.element.faces.tagged.length) {
+                    pixapp.album.face.id = data.element.faces.tagged[0].id;
 
-                    pixnet.album.sortElement(function(data) {
+                    pixnet.album.deleteFace(function(data) {
                         console.log(data);
-                        equal(true, pixnet.isArray(data.elements), data.message);
-                        start();
-                    }, pixapp.album.albumIdHasEls, ids);
-
-                }, pixapp.album.elementId, pixapp.blog.userName, {
-                    access_token : pixnet.getData('accessToken')
-                });
+                        faceModify(callback(ids));
+                    }, pixapp.album.face.id);
+                } else {
+                    faceModify(callback(ids));
+                }
             }, pixapp.album.elementId, pixapp.blog.userName, {
                 access_token : pixnet.getData('accessToken')
             });
@@ -265,30 +308,6 @@ asyncTest("element comment modify", function() {
                 }, pixapp.album.commentId);
             }, pixapp.album.commentId);
         }, pixapp.album.elementId, pixapp.blog.userName, 'test element comment.');
-    });
-});
-
-asyncTest("face modify", function() {
-    expect(3);
-    pixnet.login(function() {
-        pixnet.album.createFace(function(data) {
-            console.log(data);
-            equal(0, data.error, data.message);
-
-            if (data.element) {
-                pixapp.album.face = data.element.faces.tagged[0];
-            }
-
-            pixnet.album.updateFace(function(data) {
-                console.log(data);
-                equal(0, data.error, data.message);
-                pixnet.album.deleteFace(function(data) {
-                    console.log(data);
-                    equal(0, data.error, data.message);
-                    start();
-                }, pixapp.album.face.id);
-            }, pixapp.album.face.id, pixapp.album.face.user, pixapp.album.elementId, 10, 10, 10, 10);
-        }, pixapp.album.face.user, pixapp.album.elementId, 100, 100, 100, 100);
     });
 });
 
