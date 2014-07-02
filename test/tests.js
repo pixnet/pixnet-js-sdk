@@ -30,7 +30,7 @@ test( "core function test", function() {
     expect(12);
     ok(pixnet.isLogin, "pixnet.isLogin");
     ok(pixnet.getData, "pixnet.getData");
-    ok(pixnet.setSceret, "pixnet.setSceret");
+    ok(pixnet.setSecret, "pixnet.setSecret");
     ok(pixnet.setKey, "pixnet.setKey");
     ok(pixnet.setTokens, "pixnet.setTokens");
     ok(pixnet.setCode, "pixnet.setCode");
