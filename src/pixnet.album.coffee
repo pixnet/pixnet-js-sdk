@@ -316,6 +316,9 @@ class PixAlbum
       access_token : pixnet.getData('accessToken')
     data = pixnet._extends(data, optionData)
     args = arguments
+
+    data.upload_file = uploadFile.replace('data:image/png;base64,', '') if data.upload_method is "base64"
+
     pixnet._upload("https://emma.pixnet.cc/album/elements", {
       data: data
       done: (data)=>
