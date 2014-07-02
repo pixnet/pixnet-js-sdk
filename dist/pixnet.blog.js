@@ -42,7 +42,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -74,7 +74,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -105,7 +105,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -140,7 +140,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -203,7 +203,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -234,7 +234,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -265,7 +265,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -341,7 +341,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -383,7 +383,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -414,7 +414,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -445,7 +445,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -476,7 +476,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -507,7 +507,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
@@ -538,7 +538,7 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),

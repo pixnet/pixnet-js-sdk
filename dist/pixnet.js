@@ -22,6 +22,29 @@
       this._serialize = __bind(this._serialize, this);
     }
 
+    NoJquery.prototype._getDoc = function(frame) {
+      var doc, err;
+      try {
+        if (frame.contentWindow) {
+          doc = frame.contentWindow.document;
+        }
+      } catch (_error) {
+        err = _error;
+        this._log('cannot get iframe.contentWindow document: ' + err);
+      }
+      if (doc) {
+        return doc;
+      }
+      try {
+        doc = frame.contentDocument ? frame.contentDocument : frame.document;
+      } catch (_error) {
+        err = _error;
+        this._log('cannot get iframe.contentDocument: ' + err);
+        doc = frame.document;
+      }
+      return doc;
+    };
+
     NoJquery.prototype._hasProp = {}.hasOwnProperty;
 
     NoJquery.prototype._extends = function(child, parent) {
@@ -42,14 +65,14 @@
         done: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this),
         fail: (function(_this) {
           return function(data) {
             if (callback) {
-              return callback(JSON.parse(data));
+              return callback(data);
             }
           };
         })(this)
@@ -96,7 +119,7 @@
       type: 'GET',
       url: '',
       data: {},
-      dataType: 'text',
+      dataType: 'json',
       charset: 'UTF-8',
       enctype: 'application/x-www-form-urlencoded'
     };
@@ -108,6 +131,7 @@
       opts.type = 'GET';
       opts.url = url;
       opts.data = opts.data || {};
+      opts.data['format'] = 'json';
       return this._ajax(opts);
     };
 
@@ -116,6 +140,7 @@
       opts.url = url;
       opts.data = opts.data || {};
       opts.data['_method'] = 'delete';
+      opts.data['format'] = 'json';
       return this._ajax(opts);
     };
 
@@ -123,21 +148,32 @@
       opts.type = 'POST';
       opts.url = url;
       opts.data = opts.data || {};
+      opts.data['format'] = 'json';
       return this._ajax(opts);
     };
 
     NoJquery.prototype._upload = function(url, opts) {
-      return this;
+      opts.type = 'UPLOAD';
+      opts.url = url;
+      opts.data = opts.data || {};
+      opts.data['format'] = 'json';
+      return this._ajax(opts);
     };
 
     NoJquery.prototype._ajax = function(opts) {
-      var done, fail, params, request;
+      var contenType, dataType, done, fail, key, params, request, val, _ref, _ref1;
       opts = this._extends(this._ajaxOpts, opts);
+      if ((_ref = opts.data.pretty_print) === 1 || _ref === "1") {
+        dataType = "text";
+      } else {
+        dataType = opts.dataType;
+      }
       if (window.XMLHttpRequest) {
         request = new XMLHttpRequest();
       } else {
         request = new ActiveXObject("Microsoft.XMLHTTP");
       }
+      contenType = "" + opts.enctype + "; charset=" + opts.charset;
       switch (opts.type) {
         case 'GET':
         case 'DELETE':
@@ -149,19 +185,30 @@
           params = this._serialize(opts.data).substr(1);
           break;
         case 'UPLOAD':
+          opts.type = 'POST';
+          params = new FormData();
+          _ref1 = opts.data;
+          for (key in _ref1) {
+            if (!__hasProp.call(_ref1, key)) continue;
+            val = _ref1[key];
+            params.append(key, val);
+          }
+          contenType = null;
           break;
         default:
           params = "";
       }
       done = opts.done || opts.success || function() {};
       fail = opts.fail || opts.error || function() {};
-      request.open(opts.type, opts.url, true);
-      request.setRequestHeader('Content-Type', "" + opts.enctype + "; charset=" + opts.charset);
+      request.open(opts.type, opts.url);
+      if (contenType) {
+        request.setRequestHeader('Content-Type', contenType);
+      }
       request.onload = function() {
         var resp;
         if (request.status >= 200 && request.status < 400) {
           resp = request.responseText;
-          if (opts.dataType === 'json') {
+          if (dataType === 'json') {
             resp = JSON.parse(resp);
           }
           if (typeof done === 'function') {
@@ -271,7 +318,7 @@
       this.setCode = __bind(this.setCode, this);
       this.setTokens = __bind(this.setTokens, this);
       this.setKey = __bind(this.setKey, this);
-      this.setSceret = __bind(this.setSceret, this);
+      this.setSecret = __bind(this.setSecret, this);
       this.getData = __bind(this.getData, this);
       this.isLogin = __bind(this.isLogin, this);
       return Pixnet.__super__.constructor.apply(this, arguments);
@@ -313,8 +360,8 @@
       }
     };
 
-    Pixnet.prototype.setSceret = function(sceret) {
-      this.data.app.consumerSecret = sceret;
+    Pixnet.prototype.setSecret = function(secret) {
+      this.data.app.consumerSecret = secret;
       return this;
     };
 
@@ -326,14 +373,13 @@
     Pixnet.prototype.setTokens = function(accessToken, refreshToken) {
       this.data.app.accessToken = accessToken;
       this.data.app.refreshToken = refreshToken;
-      localStorage["accessToken"] = accessToken;
-      localStorage["refreshToken"] = refreshToken;
+      localStorage["" + this.data.app.consumerKey + "accessToken"] = accessToken;
+      localStorage["" + this.data.app.consumerKey + "refreshToken"] = refreshToken;
       return this;
     };
 
     Pixnet.prototype.setCode = function(code) {
       this.data.app.code = code;
-      localStorage["code"] = code;
       return this;
     };
 
@@ -369,12 +415,12 @@
     Pixnet.prototype.login = function(callback, opts) {
       var callbackUrl, consumerKey, url;
       opts = opts || {};
-      if (localStorage["refreshToken"]) {
-        this.setCode(localStorage["code"]);
-        this.setTokens(localStorage["accessToken"], localStorage["refreshToken"]);
+      if (localStorage["" + this.data.app.consumerKey + "accessToken"]) {
+        this.setCode(localStorage["" + this.data.app.consumerKey + "code"]);
+        this.setTokens(localStorage["" + this.data.app.consumerKey + "accessToken"], localStorage["" + this.data.app.consumerKey + "refreshToken"]);
         this.data.app.isLogin = true;
         if (callback) {
-          this.refreshToken.call(this, callback, this.data.app);
+          callback.call(this, this.data.app);
         }
       } else {
         opts = this._extends(this.data.app.loginOpts, opts);
@@ -443,9 +489,7 @@
           grant_type: "authorization_code"
         },
         done: (function(_this) {
-          return function(res) {
-            var response;
-            response = JSON.parse(res);
+          return function(response) {
             _this.setTokens(response.access_token, response.refresh_token);
             _this.data.app.isLogin = true;
             if (callback) {
@@ -454,21 +498,19 @@
           };
         })(this),
         fail: (function(_this) {
-          return function(res) {
-            var opts, response;
-            response = JSON.parse(res);
-            if (response.error === 'invalid_grant') {
-              _this.setCode('');
-              opts = _this._extends(data, {
-                type: 'custom',
-                custom: function() {
-                  return location.href = _this.getAuthorizeUrl(data.callbackUrl, data.consumerKey);
-                }
-              });
-              _this.login(callback, opts);
+          return function(rep) {
+            var response;
+            if (data && typeof rep === "string") {
+              response = JSON.parse(rep);
+            } else {
+              response = rep;
             }
-            if (callback) {
-              return callback.call(_this, response);
+            if (response.error === 'invalid_grant') {
+              return _this.refreshToken(callback);
+            } else {
+              if (callback) {
+                return callback.call(_this, response);
+              }
             }
           };
         })(this)
@@ -478,8 +520,17 @@
     Pixnet.prototype.refreshToken = function(callback, opts) {
       var data;
       data = this._extends(this.data.app, {});
+      if (!data.refreshToken) {
+        this._error('refreshToken is not defined');
+      }
+      if (!data.consumerKey) {
+        this._error('consumerKey is not defined');
+      }
       if (!data.consumerSecret) {
         this._error('consumerSecret is not defined');
+      }
+      if (this._procStop) {
+        return;
       }
       return this._get('https://emma.pixnet.cc/oauth2/grant', {
         data: {
@@ -489,22 +540,35 @@
           grant_type: "refresh_token"
         },
         done: (function(_this) {
-          return function(data) {
-            var response;
-            response = JSON.parse(data);
+          return function(response) {
             _this.setTokens(response.access_token, response.refresh_token);
+            _this.data.app.isLogin = true;
             if (callback) {
-              callback.call(_this, response);
+              return callback.call(_this, response);
             }
-            return _this.data.app.isLogin = true;
           };
         })(this),
         fail: (function(_this) {
-          return function(data) {
+          return function(rep) {
             var response;
-            response = JSON.parse(data);
-            if (callback) {
-              return callback.call(_this, response);
+            if (data && typeof rep === "string") {
+              response = JSON.parse(rep);
+            } else {
+              response = rep;
+            }
+            if (response.error === 'invalid_grant') {
+              _this.setCode('');
+              opts = _this._extends(data, {
+                type: 'custom',
+                custom: function() {
+                  return location.href = _this.getAuthorizeUrl(data.callbackUrl, data.consumerKey);
+                }
+              });
+              return _this.login(callback, opts);
+            } else {
+              if (callback) {
+                return callback.call(_this, response);
+              }
             }
           };
         })(this)
