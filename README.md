@@ -36,10 +36,6 @@
         consumerSecret: '你的 consumerSecret',
         callbackUrl: '你的 Callback URL'
 
-- 還有第 15 行，改成你的 username
-
-        userName: '你的 username',
-
 - 最後用瀏覽器打開 test/index.html 就可以看到測試結果了
 
 ### Pixnet 功能分類
