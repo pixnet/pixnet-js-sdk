@@ -48,7 +48,7 @@
 <tr><td>callbackUrl</td><td>string</td><td>你的 Callback URL</td></tr>
 </table>
 
-- 參數說明 pixnet.*.*
+- 參數說明 pixnet.xxx.xxx
 <table>
 <tr><th>參數名稱</th><th>類型</th><th>說明</th></tr>
 <tr><td>callback</td><td>function</td><td>執行後的結果都會丟給這個 callback function</td></tr>
