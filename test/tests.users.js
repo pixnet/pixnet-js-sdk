@@ -22,6 +22,15 @@ asyncTest("getAccount", function() {
     });
 });
 
+asyncTest("updateAccount", function (){
+   expect(1);
+    pixnet.users.updateAccount(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+    }, pixapp.init.userPassword);
+
+});
 asyncTest("getUser", function() {
     expect(1);
     pixnet.users.getUser(function(data) {

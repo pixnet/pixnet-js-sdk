@@ -19,6 +19,27 @@ class PixUsers
     })
     return @
 
+  updateAccount: (callback, password = '', optionData)->
+    if not pixnet.isLogin
+      pixnet._error 'Need login'
+      return @
+
+    data = {
+      password: password
+      access_token: pixnet.getData('accessToken')
+    }
+    data = pixnet._extends(data, optionData)
+    pixnet._post('https://emma.pixnet.cc/account/info', {
+      data: data
+      done: (data)=>
+        callback(data) if callback
+      fail: (data)=>
+        pixnet.apiInvalidGrantFunc(()=>
+          @updateAccount.apply(@, arguments)
+        , data, arguments)
+    })
+    return @
+
 
   getUser: (callback, userName, optionData)->
 
