@@ -30,3 +30,12 @@ asyncTest("getUser", function() {
         start();
     }, pixapp.blog.userName);
 });
+
+asyncTest("getAnalyticsData", function() {
+    expect(1);
+    pixnet.users.getAnalyticsData(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+    });
+});
