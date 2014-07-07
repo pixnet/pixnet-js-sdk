@@ -1,0 +1,27 @@
+{
+  "name": "pixnet-js-sdk",
+  "version": "0.0.0",
+  "description": "痞客邦 emma api 的 js 版 sdk",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pixnet/pixnet-js-sdk.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/pixnet/pixnet-js-sdk/issues"
+  },
+  "devDependencies": {
+    "gulp": "~3.8.5",
+    "gulp-coffee": "~2.0.1",
+    "gulp-concat": "~2.2.0",
+    "gulp-uglify": "~0.3.1"
+  }
+}
