@@ -26,9 +26,25 @@ asyncTest("updateAccount", function (){
         console.log('updateAccount', data);
         equal(0, data.error, data.message);
         start();
-    }, pixapp.init.userPassword);
+    }, pixapp.user.userPassword);
 
 });
+
+asyncTest("updatePassword", function (){
+    expect(2);
+    pixnet.users.updatePassword(function(data) {
+        console.log('updatePassword', data);
+        equal(0, data.error, data.message);
+        // change password back
+        pixnet.users.updatePassword(function(data) {
+            console.log('updatePassword again', data);
+            equal(0, data.error, data.message);
+            start();
+        }, pixapp.user.newPassword, pixapp.user.userPassword);
+    }, pixapp.user.userPassword, pixapp.user.newPassword);
+
+});
+
 asyncTest("getUser", function() {
     expect(1);
     pixnet.users.getUser(function(data) {
