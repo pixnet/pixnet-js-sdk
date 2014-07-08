@@ -13,19 +13,17 @@ module('pixnet.users', {
 
 asyncTest("getAccount", function() {
     expect(1);
-    pixnet.login(function() {
         pixnet.users.getAccount(function(data) {
-            console.log(data);
+            console.log('getAccount', data);
             equal(0, data.error, data.message);
             start();
         });
-    });
 });
 
 asyncTest("updateAccount", function (){
    expect(1);
     pixnet.users.updateAccount(function(data) {
-        console.log(data);
+        console.log('updateAccount', data);
         equal(0, data.error, data.message);
         start();
     }, pixapp.init.userPassword);
@@ -34,7 +32,7 @@ asyncTest("updateAccount", function (){
 asyncTest("getUser", function() {
     expect(1);
     pixnet.users.getUser(function(data) {
-        console.log(data);
+        console.log('getUser', data);
         equal(0, data.error, data.message);
         start();
     }, pixapp.blog.userName);
@@ -43,8 +41,18 @@ asyncTest("getUser", function() {
 asyncTest("getAnalyticsData", function() {
     expect(1);
     pixnet.users.getAnalyticsData(function(data) {
-        console.log(data);
+        console.log('getAnalyticsData', data);
         equal(0, data.error, data.message);
         start();
     });
 });
+
+asyncTest("getNotifications", function() {
+    expect(1);
+    pixnet.users.getNotifications(function(data) {
+        console.log('getNotifications', data);
+        equal(0, data.error, data.message);
+        start();
+    });
+});
+

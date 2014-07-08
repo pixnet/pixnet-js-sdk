@@ -52,7 +52,6 @@ class PixUsers
     if not pixnet.isLogin
       pixnet._error 'Need login'
       return @
-
     data = {
       access_token : pixnet.getData('accessToken')
     }
@@ -67,5 +66,26 @@ class PixUsers
         , data, arguments)
     })
     return @
+
+  getNotifications: (callback, optionData) ->
+    if not pixnet.isLogin
+      pixnet._error 'Need login'
+      return @
+
+    data = {
+        access_token : pixnet.getData('accessToken')
+    }
+    data = pixnet._extends(data, optionData)
+    pixnet._get('https://emma.pixnet.cc/account/notifications', {
+      data: data
+      done: (data)=>
+        callback(data) if callback
+      fail: (data)=>
+        pixnet.apiInvalidGrantFunc(()=>
+          @getNotifications.apply(@, arguments)
+        , data, arguments)
+    })
+    return @
+
 
 pixnet.users = new PixUsers()
