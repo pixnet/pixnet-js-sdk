@@ -35,8 +35,9 @@
         consumerKey: '你的 consumerKey',
         consumerSecret: '你的 consumerSecret',
         callbackUrl: '你的 Callback URL'
-
-    修改 33 行，pixapp.user 資訊
+        
+- 修改 test/index.html 33 行，pixapp.user 資訊
+        
         userPassword: '你的使用者密碼'
 
 - 最後用瀏覽器打開 test/index.html 就可以看到測試結果了
