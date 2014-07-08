@@ -29,17 +29,17 @@ class PixUsers
       access_token: pixnet.getData('accessToken')
     }
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._post('https://emma.pixnet.cc/account/info', {
       data: data
       done: (data)=>
         callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @updateAccount.apply(@, arguments)
-        , data, arguments)
+          @updateAccount.apply(@, args)
+        , data, args)
     })
     return @
-
 
   getUser: (callback, userName, optionData)->
 
@@ -56,14 +56,15 @@ class PixUsers
       access_token : pixnet.getData('accessToken')
     }
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._get('https://emma.pixnet.cc/account/analytics', {
       data: data
       done: (data)=>
         callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @getAnalyticsData.apply(@, arguments)
-        , data, arguments)
+          @getAnalyticsData.apply(@, args)
+        , data, args)
     })
     return @
 
@@ -76,14 +77,15 @@ class PixUsers
         access_token : pixnet.getData('accessToken')
     }
     data = pixnet._extends(data, optionData)
+    args = arguments
     pixnet._get('https://emma.pixnet.cc/account/notifications', {
       data: data
       done: (data)=>
         callback(data) if callback
       fail: (data)=>
         pixnet.apiInvalidGrantFunc(()=>
-          @getNotifications.apply(@, arguments)
-        , data, arguments)
+          @getNotifications.apply(@, args)
+        , data, args)
     })
     return @
 
