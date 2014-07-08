@@ -6,7 +6,7 @@
 - gulp 建立了四個工作(task)，分別為：scripts, scripts_dev, watch, watch_dev。
 - 先安裝 gulp 和相關套件:
 
-        npm install gulp gulp-coffee gulp-concat gulp-uglify
+        npm install
 
 - 然後在 gulpfile.js 目錄下，輸入：
 
@@ -35,6 +35,7 @@
         consumerKey: '你的 consumerKey',
         consumerSecret: '你的 consumerSecret',
         callbackUrl: '你的 Callback URL'
+        userPassword: '你的使用者密碼' # 修改認證使用者資訊 測試使用 (updateAccount)
 
 - 最後用瀏覽器打開 test/index.html 就可以看到測試結果了
 
