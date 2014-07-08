@@ -35,7 +35,9 @@
         consumerKey: '你的 consumerKey',
         consumerSecret: '你的 consumerSecret',
         callbackUrl: '你的 Callback URL'
-        userPassword: '你的使用者密碼' # 修改認證使用者資訊 測試使用 (updateAccount)
+
+    修改 33 行，pixapp.user 資訊
+        userPassword: '你的使用者密碼'
 
 - 最後用瀏覽器打開 test/index.html 就可以看到測試結果了
 
@@ -59,6 +61,7 @@
 
 #### Blog
 - 列出部落格資訊 pixnet.blog.getInfo(callback, userName, [optionData])
+- 修改部落格資訊 pixnet.blog.updateInfo(callback, [optionData])
 - 列出所有部落格個人分類 pixnet.blog.getCategories(callback, userName, [optionData])
 - 新增部落格個人分類 pixnet.blog.createCategories(callback, name, [optionData])
 - 修改部落格個人分類 pixnet.blog.updateCategories(callback, id, [optionData])
@@ -132,8 +135,10 @@
 
 #### Users
 - 讀取認證使用者資訊 pixnet.users.getAccount(callback, [optionData])
+- 修改認證使用者資訊 pixnet.users.updateAccount(callback, password, [optionData])
 - 讀取使用者公開資訊 pixnet.users.getUser(callback, userName, [optionData])
 - 取得拜訪紀錄分析資料 pixnet.users.getAnalyticsData(callback, [optionData])
+- 修改密碼 pixnet.users.updatePassword(callback, oldPassword, newPassword, [optionData])
 - 列出通知 pixnet.users.getNotifications(callback, [optionData])
 
 #### Index
