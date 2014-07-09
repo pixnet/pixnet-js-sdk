@@ -1,29 +1,66 @@
 class PixUsers
   getAccount: (callback, optionData)->
-    if not pixnet.isLogin
-      pixnet._error 'Need login'
-      return @
+    options = {
+      'callback': callback
+      'optionData': optionData
+      'mainUri': 'account'
+    }
+    pixnet.getAuthApiFunc(@, @getAccount, arguments, options)
+    return @
 
-    data =
-      access_token : pixnet.getData('accessToken')
+  updateAccount: (callback, password = '', optionData) ->
+    data = {
+      password: password
+    }
     data = pixnet._extends(data, optionData)
-    args = arguments
-    pixnet._get('https://emma.pixnet.cc/account', {
-      data: data
-      done: (data)=>
-        callback(data) if callback
-      fail: (data)=>
-        pixnet.apiInvalidGrantFunc(()=>
-          @getAccount.apply(@, args)
-        , data, args)
-    })
+    options = {
+      'callback': callback
+      'optionData': data
+      'mainUri': 'account/info'
+    }
+    pixnet.postAuthApiFunc(@, @updateAccount, arguments, options)
+    return @
+
+  updatePassword: (callback, pwd, newPwd, optionData) ->
+    if not pwd or not newPwd
+      pixnet._error 'need password arguments'
+      return @
+    data = {
+        password: pwd
+        new_password: newPwd
+    }
+    data = pixnet._extends(data, optionData)
+    options = {
+      'callback': callback
+      'optionData': data
+      'mainUri': 'account/password'
+    }
+    pixnet.postAuthApiFunc(@, @updatePassword, arguments, options)
     return @
 
   getUser: (callback, userName, optionData)->
-
     data = {}
     data = pixnet._extends(data, optionData)
     pixnet._get "https://emma.pixnet.cc/users/#{userName}", pixnet._defaultXHROptions(data, callback)
     return @
+
+  getAnalyticsData: (callback, optionData) ->
+    options = {
+      'callback': callback
+      'optionData': optionData
+      'mainUri': 'account/analytics'
+    }
+    pixnet.getAuthApiFunc(@, @getAnalyticsData, arguments, options)
+    return @
+
+  getNotifications: (callback, optionData) ->
+    options = {
+      'callback': callback
+      'optionData': optionData
+      'mainUri': 'account/notifications'
+    }
+    pixnet.getAuthApiFunc(@, @getNotifications, arguments, options)
+    return @
+
 
 pixnet.users = new PixUsers()

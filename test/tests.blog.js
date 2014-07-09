@@ -15,10 +15,19 @@ asyncTest("getInfo", function() {
     expect(1);
     pixnet.login(function() {
         pixnet.blog.getInfo(function(data) {
-            console.log(data);
+            console.log('getInfo', data);
             equal(0, data.error, data.message);
             start();
         }, pixapp.blog.userName);
+    });
+});
+
+asyncTest("updateInfo", function () {
+    expect(1);
+    pixnet.blog.updateInfo(function (data) {
+        console.log('updateInfo', data);
+        equal(0, data.error, data.message);
+        start();
     });
 });
 

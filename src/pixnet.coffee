@@ -376,4 +376,38 @@ class Pixnet extends Container
       args[0].call(@, response)
       @_error(response.message)
 
+  authApiFunc: (method, mainThis, mainFunc, args, options) =>
+    switch method
+      when 'get' then apiMethodFunc = @_get
+      when 'post' then apiMethodFunc = @_post
+      else return that
+
+    callback = options.callback
+    optionData = options.optionData || {}
+    mainUri = options.mainUri
+
+    if not pixnet.isLogin
+      @._error 'Need login'
+      return mainThis
+    data = {
+      access_token: @.getData('accessToken')
+    }
+    data = @._extends(data, optionData)
+    apiMethodFunc.call(@, "https://emma.pixnet.cc/#{mainUri}", {
+      data: data
+      done: (data)=>
+        callback(data) if callback
+      fail: (data)=>
+        pixnet.apiInvalidGrantFunc(() =>
+          mainFunc.apply(mainThis, args)
+        , data, args)
+    })
+    return mainThis
+
+  getAuthApiFunc: (mainThis, mainFunc, args, options) =>
+    @.authApiFunc('get', mainThis, mainFunc, args, options)
+
+  postAuthApiFunc: (mainThis, mainFunc, args, options) =>
+    @.authApiFunc('post', mainThis, mainFunc, args, options)
+
 window.pixnet = new Pixnet()
