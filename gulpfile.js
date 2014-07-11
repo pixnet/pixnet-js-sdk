@@ -28,6 +28,7 @@ gulp.task('scripts_dev', function() {
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
+    gulp.run(['scripts_dev', 'scripts']);
     gulp.watch(paths.coffee[0], function() {
         gulp.run('scripts');
     });
