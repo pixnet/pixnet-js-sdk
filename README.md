@@ -3,14 +3,14 @@
 痞客邦 emma api 的 js 版 sdk
 
 ### 如何使用 gulp 開發
-- gulp 建立了四個工作(task)，分別為：scripts, scripts_dev, watch, watch_dev。
+- gulp 建立了四個工作(task)，分別為：scripts, scripts_dev, watch。
 - 先安裝 gulp 和相關套件:
 
         npm install
 
 - 然後在 gulpfile.js 目錄下，輸入：
 
-        gulp watch_dev
+        gulp watch
 
 - 如此就可以隨時監控 coffee 檔案並自動產生 lib/all.src.js
 
