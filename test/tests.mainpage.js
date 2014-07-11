@@ -38,6 +38,15 @@ asyncTest("getAlbumColumns", function() {
     });
 });
 
+asyncTest("getAlbumBestSelected", function() {
+    expect(1);
+    pixnet.mainpage.getAlbumBestSelected(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+    });
+});
+
 asyncTest("getArticlesByCategory [hot | 1]", function() {
     expect(1);
     pixnet.mainpage.getArticlesByCategory(function(data) {
