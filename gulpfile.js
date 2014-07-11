@@ -19,7 +19,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('scripts_dev', function() {
-    // Minify and copy all JavaScript
+    // Copy all JavaScript
     return gulp.src(paths.scripts)
         .pipe(coffee())
         .pipe(concat('all.src.js'))
