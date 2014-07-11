@@ -76,7 +76,7 @@ class NoJquery
     opts.type = 'GET'
     opts.url = url
     opts.data = opts.data || {}
-    opts.data['format'] = 'json'
+    opts.data['format'] = 'json' if not opts.data['format']
     return @_ajax(opts)
 
   _delete: (url, opts)=>
@@ -84,21 +84,21 @@ class NoJquery
     opts.url = url
     opts.data = opts.data || {}
     opts.data['_method'] = 'delete'
-    opts.data['format'] = 'json'
+    opts.data['format'] = 'json' if not opts.data['format']
     return @_ajax(opts)
 
   _post: (url, opts)=>
     opts.type = 'POST'
     opts.url = url
     opts.data = opts.data || {}
-    opts.data['format'] = 'json'
+    opts.data['format'] = 'json' if not opts.data['format']
     return @_ajax(opts)
 
   _upload: (url, opts)=>
     opts.type = 'UPLOAD'
     opts.url = url
     opts.data = opts.data || {}
-    opts.data['format'] = 'json'
+    opts.data['format'] = 'json' if not opts.data['format']
     return @_ajax(opts)
 
   _ajax: (opts)=>
