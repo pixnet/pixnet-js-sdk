@@ -25,7 +25,10 @@ class NoJquery
   _extends: (child, parent)->
     parent = {} if not parent
     for own key of parent
-      child[key] = parent[key]
+      if typeof parent[key] is 'object'
+        child[key] = @_extends({}, parent[key])
+      else
+        child[key] = parent[key]
     child
 
   _defaultXHROptions: (data, callback)->
