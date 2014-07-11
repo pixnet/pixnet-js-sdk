@@ -1,13 +1,6 @@
 module('pixnet', {
     setup: function() {
         pixnet.init(pixapp.init);
-        stop();
-        pixnet.login(function() {
-            pixnet.users.getAccount(function(data) {
-                pixapp.blog.userName = data.account.name;
-                start();
-            });
-        });
     }
 });
 
