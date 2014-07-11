@@ -6,33 +6,51 @@
     function PixUsers() {}
 
     PixUsers.prototype.getAccount = function(callback, optionData) {
-      var args, data;
-      if (!pixnet.isLogin) {
-        pixnet._error('Need login');
+      var options;
+      options = {
+        'callback': callback,
+        'optionData': optionData,
+        'mainUri': 'account'
+      };
+      pixnet.getAuthApiFunc(this, this.getAccount, arguments, options);
+      return this;
+    };
+
+    PixUsers.prototype.updateAccount = function(callback, password, optionData) {
+      var data, options;
+      if (password == null) {
+        password = '';
+      }
+      data = {
+        password: password
+      };
+      data = pixnet._extends(data, optionData);
+      options = {
+        'callback': callback,
+        'optionData': data,
+        'mainUri': 'account/info'
+      };
+      pixnet.postAuthApiFunc(this, this.updateAccount, arguments, options);
+      return this;
+    };
+
+    PixUsers.prototype.updatePassword = function(callback, pwd, newPwd, optionData) {
+      var data, options;
+      if (!pwd || !newPwd) {
+        pixnet._error('need password arguments');
         return this;
       }
       data = {
-        access_token: pixnet.getData('accessToken')
+        password: pwd,
+        new_password: newPwd
       };
       data = pixnet._extends(data, optionData);
-      args = arguments;
-      pixnet._get('https://emma.pixnet.cc/account', {
-        data: data,
-        done: (function(_this) {
-          return function(data) {
-            if (callback) {
-              return callback(data);
-            }
-          };
-        })(this),
-        fail: (function(_this) {
-          return function(data) {
-            return pixnet.apiInvalidGrantFunc(function() {
-              return _this.getAccount.apply(_this, args);
-            }, data, args);
-          };
-        })(this)
-      });
+      options = {
+        'callback': callback,
+        'optionData': data,
+        'mainUri': 'account/password'
+      };
+      pixnet.postAuthApiFunc(this, this.updatePassword, arguments, options);
       return this;
     };
 
@@ -41,6 +59,28 @@
       data = {};
       data = pixnet._extends(data, optionData);
       pixnet._get("https://emma.pixnet.cc/users/" + userName, pixnet._defaultXHROptions(data, callback));
+      return this;
+    };
+
+    PixUsers.prototype.getAnalyticsData = function(callback, optionData) {
+      var options;
+      options = {
+        'callback': callback,
+        'optionData': optionData,
+        'mainUri': 'account/analytics'
+      };
+      pixnet.getAuthApiFunc(this, this.getAnalyticsData, arguments, options);
+      return this;
+    };
+
+    PixUsers.prototype.getNotifications = function(callback, optionData) {
+      var options;
+      options = {
+        'callback': callback,
+        'optionData': optionData,
+        'mainUri': 'account/notifications'
+      };
+      pixnet.getAuthApiFunc(this, this.getNotifications, arguments, options);
       return this;
     };
 

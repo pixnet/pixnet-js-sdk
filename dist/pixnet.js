@@ -131,7 +131,9 @@
       opts.type = 'GET';
       opts.url = url;
       opts.data = opts.data || {};
-      opts.data['format'] = 'json';
+      if (!opts.data['format']) {
+        opts.data['format'] = 'json';
+      }
       return this._ajax(opts);
     };
 
@@ -140,7 +142,9 @@
       opts.url = url;
       opts.data = opts.data || {};
       opts.data['_method'] = 'delete';
-      opts.data['format'] = 'json';
+      if (!opts.data['format']) {
+        opts.data['format'] = 'json';
+      }
       return this._ajax(opts);
     };
 
@@ -148,7 +152,9 @@
       opts.type = 'POST';
       opts.url = url;
       opts.data = opts.data || {};
-      opts.data['format'] = 'json';
+      if (!opts.data['format']) {
+        opts.data['format'] = 'json';
+      }
       return this._ajax(opts);
     };
 
@@ -156,7 +162,9 @@
       opts.type = 'UPLOAD';
       opts.url = url;
       opts.data = opts.data || {};
-      opts.data['format'] = 'json';
+      if (!opts.data['format']) {
+        opts.data['format'] = 'json';
+      }
       return this._ajax(opts);
     };
 
@@ -309,6 +317,9 @@
     __extends(Pixnet, _super);
 
     function Pixnet() {
+      this.postAuthApiFunc = __bind(this.postAuthApiFunc, this);
+      this.getAuthApiFunc = __bind(this.getAuthApiFunc, this);
+      this.authApiFunc = __bind(this.authApiFunc, this);
       this.apiInvalidGrantFunc = __bind(this.apiInvalidGrantFunc, this);
       this.refreshToken = __bind(this.refreshToken, this);
       this.requestTokens = __bind(this.requestTokens, this);
@@ -588,6 +599,57 @@
         args[0].call(this, response);
         return this._error(response.message);
       }
+    };
+
+    Pixnet.prototype.authApiFunc = function(method, mainThis, mainFunc, args, options) {
+      var apiMethodFunc, callback, data, mainUri, optionData;
+      switch (method) {
+        case 'get':
+          apiMethodFunc = this._get;
+          break;
+        case 'post':
+          apiMethodFunc = this._post;
+          break;
+        default:
+          return that;
+      }
+      callback = options.callback;
+      optionData = options.optionData || {};
+      mainUri = options.mainUri;
+      if (!pixnet.isLogin) {
+        this._error('Need login');
+        return mainThis;
+      }
+      data = {
+        access_token: this.getData('accessToken')
+      };
+      data = this._extends(data, optionData);
+      apiMethodFunc.call(this, "https://emma.pixnet.cc/" + mainUri, {
+        data: data,
+        done: (function(_this) {
+          return function(data) {
+            if (callback) {
+              return callback(data);
+            }
+          };
+        })(this),
+        fail: (function(_this) {
+          return function(data) {
+            return pixnet.apiInvalidGrantFunc(function() {
+              return mainFunc.apply(mainThis, args);
+            }, data, args);
+          };
+        })(this)
+      });
+      return mainThis;
+    };
+
+    Pixnet.prototype.getAuthApiFunc = function(mainThis, mainFunc, args, options) {
+      return this.authApiFunc('get', mainThis, mainFunc, args, options);
+    };
+
+    Pixnet.prototype.postAuthApiFunc = function(mainThis, mainFunc, args, options) {
+      return this.authApiFunc('post', mainThis, mainFunc, args, options);
     };
 
     return Pixnet;

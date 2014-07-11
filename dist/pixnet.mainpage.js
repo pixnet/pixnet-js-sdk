@@ -54,6 +54,14 @@
       return this;
     };
 
+    PixMainpage.prototype.getAlbumBestSelected = function(callback, optionData) {
+      var data;
+      data = {};
+      data = pixnet._extends(data, optionData);
+      pixnet._get("https://emma.pixnet.cc/mainpage/album/best_selected", pixnet._defaultXHROptions(data, callback));
+      return this;
+    };
+
     return PixMainpage;
 
   })();
