@@ -190,4 +190,5 @@
 - 列出相簿專欄 pixnet.mainpage.getAlbumColumns(callback, [optionData])
 - 列出分類熱門、最新、近期文章 pixnet.mainpage.getArticlesByCategory(callback, type, categoryId, [optionData])
 - 列出分類熱門、最新、近期相簿 pixnet.mainpage.getAlbumsByCategory(callback, type, categoryId, [optionData])
+- 列出全站熱門、最新、近期、精選相簿 pixnet.mainpage.getAlbumBestSelected(callback, [optionData])
 - 列出熱門、最新、近期影音 pixnet.mainpage.getVideos(callback, type, categoryId, [optionData])
