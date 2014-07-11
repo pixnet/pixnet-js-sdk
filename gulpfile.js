@@ -35,4 +35,4 @@ gulp.task('watch', function() {
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['scripts']);
+gulp.task('default', ['scripts_dev', 'scripts']);
