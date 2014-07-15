@@ -1,104 +1,72 @@
 module('pixnet.guestbook', {
     setup: function() {
-        pixnet.init(pixapp.init);
+        pixapp = pixapp || {};
+        pixapp.guestbook = pixapp.guestbook || {};
+        pixapp.guestbook.title = 'create guestbook title';
+        pixapp.guestbook.body = 'body guestbook';
+        pixapp.guestbook.replyBody = 'reply guestbook';
+
         stop();
-        pixnet.login(function() {
-            pixnet.users.getAccount(function(data) {
-                pixapp.blog.userName = data.account.name;
-                start();
-            });
-        });
+        var init = pixnet._extends({
+            login: true,
+            loginCallback: function() {
+                pixnet.users.getAccount(function(data) {
+                    pixapp.guestbook.userName = data.account.name;
+                    start();
+                });
+            }
+        }, pixapp.init);
+        pixnet.init(init);
     }
 });
 
-asyncTest("getAll", function() {
-    expect(1);
-    pixnet.guestbook.getAll(function(data) {
+asyncTest("guest book test case", function() {
+    expect(9);
+    pixnet.guestbook.create(function(data) {
         console.log(data);
         equal(0, data.error, data.message);
-        start();
 
-        pixapp.guestbook.artId = data.articles[0].id;
-    }, pixapp.blog.userName);
-});
-
-asyncTest("getOne", function() {
-    expect(1);
-    pixnet.guestbook.getOne(function(data) {
-        console.log(data);
-        equal(0, data.error, data.message);
-        start();
-    }, pixapp.guestbook.artId, pixapp.blog.userName);
-});
-
-asyncTest("reply", function() {
-    expect(1);
-    pixnet.login(function() {
-        pixnet.guestbook.reply(function(data) {
+        pixnet.guestbook.getAll(function(data) {
             console.log(data);
             equal(0, data.error, data.message);
-            start();
-        }, pixapp.guestbook.artId, 'reply guestbook');
-    });
-});
 
-asyncTest("setOpen", function() {
-    expect(1);
-    pixnet.login(function() {
-        pixnet.guestbook.setOpen(function(data) {
-            console.log(data);
-            equal(0, data.error, data.message);
-            start();
-        }, pixapp.guestbook.artId);
-    });
-});
+            pixapp.guestbook.artId = data.articles[0].id;
 
-asyncTest("setClose", function() {
-    expect(1);
-    pixnet.login(function() {
-        pixnet.guestbook.setClose(function(data) {
-            console.log(data);
-            equal(0, data.error, data.message);
-            start();
-        }, pixapp.guestbook.artId);
-    });
-});
-
-asyncTest("markSpam", function() {
-    expect(1);
-    pixnet.login(function() {
-        pixnet.guestbook.markSpam(function(data) {
-            console.log(data);
-            equal(0, data.error, data.message);
-            start();
-        }, pixapp.guestbook.artId);
-    });
-});
-
-asyncTest("markHam", function() {
-    expect(1);
-    pixnet.login(function() {
-        pixnet.guestbook.markHam(function(data) {
-            console.log(data);
-            equal(0, data.error, data.message);
-            start();
-        }, pixapp.guestbook.artId);
-    });
-});
-
-asyncTest("guestbook modify", function() {
-    expect(2);
-    pixnet.login(function() {
-        pixnet.guestbook.create(function(data) {
-            console.log(data);
-            data.article.id;
-            equal(0, data.error, data.message);
-
-            pixnet.guestbook.delete(function(data) {
+            pixnet.guestbook.getOne(function(data) {
                 console.log(data);
                 equal(0, data.error, data.message);
-                start();
-            }, data.article.id);
-        }, 'create guestbook', 'body guestbook', pixapp.blog.userName);
-    });
+
+                pixnet.guestbook.reply(function(data) {
+                    console.log(data);
+                    equal(0, data.error, data.message);
+
+                    pixnet.guestbook.setOpen(function(data) {
+                        console.log(data);
+                        equal(0, data.error, data.message);
+
+                        pixnet.guestbook.setClose(function(data) {
+                            console.log(data);
+                            equal(0, data.error, data.message);
+
+                            pixnet.guestbook.markSpam(function(data) {
+                                console.log(data);
+                                equal(0, data.error, data.message);
+
+                                pixnet.guestbook.markHam(function(data) {
+                                    console.log(data);
+                                    equal(0, data.error, data.message);
+
+                                    pixnet.guestbook.delete(function(data) {
+                                        console.log(data);
+                                        equal(0, data.error, data.message);
+                                        start();
+                                    }, pixapp.guestbook.artId);
+                                }, pixapp.guestbook.artId);
+                            }, pixapp.guestbook.artId);
+                        }, pixapp.guestbook.artId);
+                    }, pixapp.guestbook.artId);
+                }, pixapp.guestbook.artId, pixapp.guestbook.replyBody);
+            }, pixapp.guestbook.artId, pixapp.guestbook.userName);
+        }, pixapp.guestbook.userName);
+    }, pixapp.guestbook.title, pixapp.guestbook.body, pixapp.guestbook.userName);
 });
