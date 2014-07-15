@@ -26,6 +26,8 @@
 
         gulp scripts
 
+- 另外，也可以到 Makefile 路徑下，輸入 make ，也可以完成上面兩個步驟。
+
 ### 如何使用測試程式
 - 先把整個 repo 複製到你的網頁空間（有apache ）的那種
 - 然後到 [這裡](http://developer.pixnet.pro/#!/apps) 申請一個測試用的 app
@@ -36,7 +38,7 @@
         consumerSecret: '你的 consumerSecret',
         callbackUrl: '你的 Callback URL'
         
-- 修改 test/index.html 33 行，pixapp.user 資訊
+- 修改 test/index.html 14 行，pixapp.user 資訊
         
         userPassword: '你的使用者密碼'
 
