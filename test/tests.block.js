@@ -1,45 +1,43 @@
 module('pixnet.block', {
     setup: function() {
-        pixnet.init(pixapp.init);
+        pixapp = pixapp || {};
+        pixapp.block = pixapp.block || {};
+        pixapp.block.friendName = 'phpsdk';
+
         stop();
-        pixnet.login(function() {
-            pixnet.users.getAccount(function(data) {
-                pixapp.blog.userName = data.account.name;
-                start();
-            });
-        });
+        var init = pixnet._extends({
+            login: true,
+            loginCallback: function() {
+                pixnet.friend.createSubscription(function(data) {
+                    start();
+                }, pixapp.block.friendName);
+            }
+        }, pixapp.init);
+        pixnet.init(init);
     }
 });
 
-asyncTest("getBlock", function() {
-    expect(1);
-    pixnet.login(function() {
-        pixnet.block.getBlock(function(data) {
+asyncTest("block modify", function() {
+    expect(4);
+    pixnet.block.createBlock(function(data) { // 新增黑名單
+        console.log(data);
+        equal(0, data.error, data.message);
+
+        pixnet.block.getBlock(function(data) { // 取得黑名單
             console.log(data);
             equal(0, data.error, data.message);
-            start();
+
+            pixnet.block.deleteBlock(function(data) { // 刪除黑名單
+                console.log(data);
+                equal(0, data.error, data.message);
+
+                pixnet.friend.deleteSubscription(function(data) { // 刪除朋友
+                    console.log(data);
+                    equal(0, data.error, data.message);
+
+                    start();
+                }, pixapp.block.friendName);
+            }, pixapp.block.friendName);
         });
-    });
-});
-
-asyncTest("createBlock", function() {
-    expect(1);
-    pixnet.login(function() {
-        pixnet.block.createBlock(function(data) {
-            console.log(data);
-            equal(0, data.error, data.message);
-            start();
-        }, pixapp.friend.friendName);
-    });
-});
-
-asyncTest("deleteBlock", function() {
-    expect(1);
-    pixnet.login(function() {
-        pixnet.block.deleteBlock(function(data) {
-            console.log(data);
-            equal(0, data.error, data.message);
-            start();
-        }, pixapp.friend.friendName);
-    });
+    }, pixapp.block.friendName);
 });

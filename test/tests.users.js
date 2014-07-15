@@ -1,13 +1,20 @@
 module('pixnet.users', {
     setup: function() {
-        pixnet.init(pixapp.init);
+        pixapp = pixapp || {};
+        pixapp.user = pixapp.user || {};
+        pixapp.user.newPassword = pixapp.user.userPassword + '_new';
+
         stop();
-        pixnet.login(function() {
-            pixnet.users.getAccount(function(data) {
-                pixapp.blog.userName = data.account.name;
-                start();
-            });
-        });
+        var init = pixnet._extends({
+            login: true,
+            loginCallback: function() {
+                pixnet.users.getAccount(function(data) {
+                    pixapp.user.userName = data.account.name;
+                    start();
+                });
+            }
+        }, pixapp.init);
+        pixnet.init(init);
     }
 });
 
@@ -51,7 +58,7 @@ asyncTest("getUser", function() {
         console.log('getUser', data);
         equal(0, data.error, data.message);
         start();
-    }, pixapp.blog.userName);
+    }, pixapp.user.userName);
 });
 
 asyncTest("getAnalyticsData", function() {

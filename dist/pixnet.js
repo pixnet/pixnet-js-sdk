@@ -54,7 +54,11 @@
       }
       for (key in parent) {
         if (!__hasProp.call(parent, key)) continue;
-        child[key] = parent[key];
+        if (typeof parent[key] === 'object') {
+          child[key] = this._extends({}, parent[key]);
+        } else {
+          child[key] = parent[key];
+        }
       }
       return child;
     };
