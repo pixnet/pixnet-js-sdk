@@ -44,13 +44,12 @@ test( "pixnet 初始化測試", function() {
 });
 
 test( "login 基本功能測試", function() {
-    expect(4);
+    expect(3);
 
     stop();
     pixnet.login(function() {
         var app = pixnet.getData();
         equal(pixnet.isLogin(), true, 'Sure be logined.');
-        equal(app.code,         localStorage[pixnet.getData('consumerKey') + 'code'],         'code');
         equal(app.accessToken,  localStorage[pixnet.getData('consumerKey') + 'accessToken'],  'accessToken');
         equal(app.refreshToken, localStorage[pixnet.getData('consumerKey') + 'refreshToken'], 'refreshToken');
         start();
