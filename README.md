@@ -44,6 +44,11 @@
 
 - 最後用瀏覽器打開 test/index.html 就可以看到測試結果了
 
+## 聯絡我們
+
+Email: pixnetapi@pixnet.tw
+Twitter: @pixnetapi
+
 ### Pixnet 功能分類
 #### Init
 - 參數說明 pixnet.init
