@@ -81,3 +81,26 @@ asyncTest("getMIBAccount", function() {
     });
 });
 
+asyncTest("getMIBPositionData", function() {
+    expect(2);
+    pixnet.users.getMIBAccount(function(data) {
+        equal(0, data.error, data.message);
+        var positions = data.mib.blog.positions,
+            posId = 0;
+        if (positions.article.length != 0 ) {
+            posId = positions.article[0].id;
+        } else if (positions.blog.length != 0) {
+            posId = positions.blog[0].id;
+        } else if (positions.other.length != 0) {
+            posId = positions.other[0].id;
+        }
+        pixnet.users.getMIBPositionData(function(data) {
+            console.log('getMIBPositionData', data);
+            equal(0, data.error, data.message);
+            start();
+        }, posId);
+    });
+});
+
+
+
