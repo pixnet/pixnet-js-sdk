@@ -62,5 +62,42 @@ class PixUsers
     pixnet.getAuthApiFunc(@, @getNotifications, arguments, options)
     return @
 
+  ## MIB Method
+
+  getMIBAccount: (callback, optionData) ->
+    options = {
+      'callback': callback
+      'optionData': optionData
+      'mainUri': 'account/mib'
+    }
+    pixnet.getAuthApiFunc(@, @getMIBAccount, arguments, options)
+    return @
+
+  getMIBPositionData: (callback, id = '', optionData) ->
+    options = {
+      'callback': callback
+      'optionData': optionData
+      'mainUri': "account/positions#{id}"
+    }
+    pixnet.getAuthApiFunc(@, @getMIBPositionData, arguments, options)
+    return @
+
+  updateMIBPositionData: (callback, id = '', optionData) ->
+    options = {
+      'callback': callback
+      'optionData': optionData
+      'mainUri': "account/positions#{id}"
+    }
+    pixnet.postAuthApiFunc(@, @updateMIBPositionData, arguments, options)
+    return @
+
+  getMIBPay: (callback, optionData) ->
+    options = {
+      'callback': callback
+      'optionData': optionData
+      'mainUri': 'account/mibpay'
+    }
+    pixnet.getAuthApiFunc(@, @getMIBPay, arguments, options)
+    return @
 
 pixnet.users = new PixUsers()
