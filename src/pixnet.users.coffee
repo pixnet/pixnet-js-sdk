@@ -85,14 +85,16 @@ class PixUsers
     pixnet.getAuthApiFunc(@, @getMIBPositionData, arguments, options)
     return @
 
-  updateMIBPositionData: (callback, id, optionData) ->
-    if id is undefined
-      return pixnet._error 'Do not give position id';
+  updateMIBPositionData: (callback, id, fixedadbox, enabled, optionData) ->
+    if id is undefined or (fixedadbox is undefined and enabled is undefined)
+      return pixnet._error 'Do not give need params';
 
-    data = {
-      'fixedadbox': 1
-      'enabled': 1
-    }
+    data = {}
+    # make sure fixedadbox and enabled have one exist in params
+    if (0 is fixedadbox or 1 is fixedadbox)
+      data.fixedadbox = fixedadbox;
+    if (0 is enabled or 1 is enabled)
+      data.enabled = enabled;
     data = pixnet._extends(data, optionData)
     options = {
       'callback': callback

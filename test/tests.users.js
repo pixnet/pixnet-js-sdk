@@ -119,7 +119,7 @@ asyncTest("updateMIBPositionData", function (){
             console.log('getMIBPositionData', data);
             equal(0, data.error, data.message);
             start();
-        }, posId);
+        }, posId, 1, 1);
     });
 });
 
