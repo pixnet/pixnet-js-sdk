@@ -85,10 +85,18 @@ class PixUsers
     pixnet.getAuthApiFunc(@, @getMIBPositionData, arguments, options)
     return @
 
-  updateMIBPositionData: (callback, id = '', optionData) ->
+  updateMIBPositionData: (callback, id, optionData) ->
+    if id is undefined
+      return pixnet._error 'Do not give position id';
+
+    data = {
+      'fixedadbox': 1
+      'enabled': 1
+    }
+    data = pixnet._extends(data, optionData)
     options = {
       'callback': callback
-      'optionData': optionData
+      'optionData': data
       'mainUri': "account/mib/positions/#{id}"
     }
     pixnet.postAuthApiFunc(@, @updateMIBPositionData, arguments, options)
