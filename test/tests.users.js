@@ -72,3 +72,12 @@ asyncTest("getNotifications", function() {
     });
 });
 
+asyncTest("getMIBAccount", function() {
+    expect(1);
+    pixnet.users.getMIBAccount(function(data) {
+        console.log('getMIBAccount', data);
+        equal(0, data.error, data.message);
+        start();
+    });
+});
+
