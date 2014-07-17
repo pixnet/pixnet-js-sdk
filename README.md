@@ -63,11 +63,13 @@
 #### Blog
 - 列出部落格資訊 pixnet.blog.getInfo(callback, userName, [optionData])
 - 修改部落格資訊 pixnet.blog.updateInfo(callback, [optionData])
+##### 分類
 - 列出所有部落格個人分類 pixnet.blog.getCategories(callback, userName, [optionData])
 - 新增部落格個人分類 pixnet.blog.createCategories(callback, name, [optionData])
 - 修改部落格個人分類 pixnet.blog.updateCategories(callback, id, [optionData])
 - 刪除部落格個人分類 pixnet.blog.deleteCategories(callback, id, [optionData])
 - 修改部落格個人分類排序 pixnet.blog.sortCategoriesTo(callback, ids, [optionData])
+##### 文章
 - 列出所有部落格個人文章 pixnet.blog.getAllArticles(callback, userName, [optionData])
 - 讀取部落格個人文章 pixnet.blog.getArticle(callback, id, userName, [optionData])
 - 讀取指定文章之相關文章 pixnet.blog.getRelatedArticle(callback, id, userName, [optionData])
@@ -77,6 +79,7 @@
 - 列出所有部落格最新文章 pixnet.blog.getLatestArticle(callback, userName, [optionData])
 - 列出所有部落格熱門文章 pixnet.blog.getHotArticle(callback, userName, [optionData])
 - 搜尋部落格文章 pixnet.blog.searchArticle(callback, keyWord, userName, [optionData])
+##### 留言
 - 列出部落格留言 pixnet.blog.getComments(callback, id, userName, [optionData])
 - 新增部落格留言 pixnet.blog.createComment(callback, articleId, body, userName, [optionData])
 - 讀取部落格單一留言 pixnet.blog.getSingleComment(callback, id, userName, [optionData])
@@ -87,6 +90,7 @@
 - 將留言設為非廣告留言 pixnet.blog.markCommentHam(callback, id, [optionData])
 - 刪除部落格留言 pixnet.blog.deleteComment(callback, id, [optionData])
 - 列出部落格最新留言 pixnet.blog.getLatestComment(callback, userName, [optionData])
+##### Site Categories
 - 列出部落格全站分類 pixnet.blog.getSiteCategories(callback, [optionData])
 
 #### Album
