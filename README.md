@@ -66,7 +66,6 @@ Pixnet 功能分類
 - 修改部落格資訊 pixnet.blog.updateInfo(callback, [optionData])
 
 #### 分類
-
 - 列出所有部落格個人分類 pixnet.blog.getCategories(callback, userName, [optionData])
 - 新增部落格個人分類 pixnet.blog.createCategories(callback, name, [optionData])
 - 修改部落格個人分類 pixnet.blog.updateCategories(callback, id, [optionData])
@@ -74,7 +73,6 @@ Pixnet 功能分類
 - 修改部落格個人分類排序 pixnet.blog.sortCategoriesTo(callback, ids, [optionData])
 
 #### 文章
-
 - 列出所有部落格個人文章 pixnet.blog.getAllArticles(callback, userName, [optionData])
 - 讀取部落格個人文章 pixnet.blog.getArticle(callback, id, userName, [optionData])
 - 讀取指定文章之相關文章 pixnet.blog.getRelatedArticle(callback, id, userName, [optionData])
@@ -86,7 +84,6 @@ Pixnet 功能分類
 - 搜尋部落格文章 pixnet.blog.searchArticle(callback, keyWord, userName, [optionData])
 
 #### 留言
-
 - 列出部落格留言 pixnet.blog.getComments(callback, id, userName, [optionData])
 - 新增部落格留言 pixnet.blog.createComment(callback, articleId, body, userName, [optionData])
 - 讀取部落格單一留言 pixnet.blog.getSingleComment(callback, id, userName, [optionData])
@@ -99,13 +96,18 @@ Pixnet 功能分類
 - 列出部落格最新留言 pixnet.blog.getLatestComment(callback, userName, [optionData])
 
 #### Site Categories
-
 - 列出部落格全站分類 pixnet.blog.getSiteCategories(callback, [optionData])
 
-#### Album
+### Album
+
+#### Main
 - 列出相簿主圖及相片牆 pixnet.album.getAlbumMain(callback, [optionData])
+
+#### SetFolders
 - 列出相簿列表 pixnet.album.getAlbumSetfolders(callback, userName, [optionData])
 - 修改相簿首頁排序 pixnet.album.sortSetFolders(callback, ids, [optionData])
+
+#### Sets
 - 列出相簿個人 pixnet.album.getAlbumSets(callback, userName, [optionData])
 - 讀取個人相簿單一Set pixnet.album.getAlbumSet(callback, id, userName, [optionData])
 - 列出單一相簿的所有相片 pixnet.album.getAlbumSetElements(callback, setId, userName, [optionData])
@@ -115,12 +117,16 @@ Pixnet 功能分類
 - 刪除相簿個人Sets pixnet.album.deleteAlbumSet(callback, id, [optionData])
 - 修改相簿 Sets 排序 pixnet.album.sortAlbumSets(callback, parentId, ids, [optionData])
 - 列出附近的相簿 Sets pixnet.album.getAlbumSetsNear(callback, userName, lat_y, lon_x, [optionData])
+
+#### Folders
 - 列出個人相簿資料夾 pixnet.album.getAlbumFolders(callback, userName, [optionData])
 - 讀取個人相簿單一資料夾 pixnet.album.getAlbumFolder(callback, id, userName, [optionData])
 - 列出相簿資料夾內的相簿 pixnet.album.getAlbumFolderSets(callback, id, userName, [optionData])
 - 新增個人相簿資料夾 pixnet.album.createAlbumFolder(callback, title, description, [optionData])
 - 修改個人相簿資料夾 pixnet.album.updateAlbumFolder(callback, id, title, description, [optionData])
 - 刪除個人相簿資料夾 pixnet.album.deleteAlbumFolder(callback, id, [optionData])
+
+#### Element
 - 列出相簿圖片影片 pixnet.album.getAlbumElements(callback, setId, userName, [optionData])
 - 讀取相簿單篇圖片影片 pixnet.album.getElement(callback, elementId, userName, [optionData])
 - 讀取相簿單篇圖片影片留言 pixnet.album.getElementComments(callback, elementId, userName, [optionData])
@@ -129,25 +135,38 @@ Pixnet 功能分類
 - 刪除相簿單篇圖片影片 pixnet.album.deleteElement(callback, id, [optionData])
 - 修改相簿圖片影片排序 pixnet.album.sortElement(callback, setId, ids, [optionData])
 - 列出附近的相簿圖片影片 pixnet.album.getElementCommentsNear(callback, userName, lat_y, lon_x, [optionData])
+
+### 留言
+
+#### 相本留言
 - 列出相本留言 pixnet.album.getSetComments(callback, userName, [optionData])
 - 讀取單一留言 pixnet.album.getSetComment(callback, id, userName, [optionData])
 - 新增相本留言 pixnet.album.createSetComment(callback, setId, userName, body, [optionData])
 - 將留言設為廣告留言 pixnet.album.markSetCommentSpam(callback, id, [optionData])
 - 將留言設為非廣告留言 pixnet.markSetCommentHam(callback, id, [optionData])
 - 刪除相本留言 pixnet.album.deleteSetComment(callback, id, [optionData])
+
+#### 相片留言
 - 列出相片留言(set_id or element_id 必要選一帶入) pixnet.album.getComments(callback, userName, [optionData])
 - 讀取單一留言 pixnet.album.getComment(callback, id, userName, [optionData])
 - 新增相片留言 pixnet.album.album.createElementComment(callback, elementId, userName, body, [optionData])
 - 將留言設為廣告留言 pixnet.album.markElementCommentHam(callback, commentId, [optionData])
 - 將留言設為非廣告留言 pixnet.album.markElementCommentSpam(callback, commentId, [optionData])
 - 刪除相片留言 pixnet.album.deleteElementComment(callback, commentId, [optionData])
+
+#### 人臉標記
 - 新增人臉標記(element_id or recommend_id  必要選一帶入) pixnet.album.createFace(callback, userName, elementId, x, y, width, height, [optionData])
 - 更新人臉標記 pixnet.album.updateFace(callback, faceId, userName, elementId, x, y, width, height, [optionData])
 - 刪除人臉標記 pixnet.album.deleteFace(callback, faceId, [optionData])
+
+#### Config
 - 列出相簿個人設定 pixnet.album.getConfig(callback, [optionData])
+
+#### Site Categories
 - 列出相簿全站分類 pixnet.album.getSiteCategories(callback, [optionData])
 
-#### Users
+### Users
+
 - 讀取認證使用者資訊 pixnet.users.getAccount(callback, [optionData])
 - 修改認證使用者資訊 pixnet.users.updateAccount(callback, password, [optionData])
 - 讀取使用者公開資訊 pixnet.users.getUser(callback, userName, [optionData])
@@ -155,21 +174,29 @@ Pixnet 功能分類
 - 修改密碼 pixnet.users.updatePassword(callback, oldPassword, newPassword, [optionData])
 - 列出通知 pixnet.users.getNotifications(callback, [optionData])
 
-#### Index
+### Index
 - 讀取 API 使用次數資訊 pixnet.index.rate(callback, [optionData])
 - 讀取 API Server 時間資訊 pixnet.index.now(callback, [optionData])
 
-#### Friend
+### Friend
+
+#### Friend Groups
 - 列出好友群組 pixnet.friend.getGroups(callback, [optionData])
 - 新增好友群組 pixnet.friend.createGroup(callback, name, [optionData])
 - 修改好友群組 pixnet.friend.updateGroup(callback, id, name, [optionData])
 - 刪除好友群組 pixnet.friend.deleteGroup(callback, id, [optionData])
+
+#### Friendships
 - 列出好友名單 pixnet.friend.getFriendships(callback, [optionData])
 - 新增好友 pixnet.friend.createFriendship(callback, userName, [optionData])
 - 加入群組 pixnet.friend.appendFriendshipGroup(callback, userName, groupId, [optionData])
 - 移除群組 pixnet.friend.removeFriendshipGroup(callback, userName, groupId, [optionData])
 - 移除好友 pixnet.friend.deleteFriendship(callback, userName, [optionData])
+
+#### Friend News
 - 好友動態 pixnet.friend.getNews(callback, [optionData])
+
+#### Friend Subscription
 - 列出訂閱名單 pixnet.friend.getSubscriptions(callback, [optionData])
 - 新增訂閱 pixnet.friend.createSubscription(callback, userName, [optionData])
 - 刪除訂閱 pixnet.friend.deleteSubscription(callback, userName, [optionData])
@@ -181,12 +208,12 @@ Pixnet 功能分類
 - 加入訂閱群組 pixnet.friend.joinSubscriptionGroup(callback, userName, groupIds, [optionData])
 - 離開訂閱群組 pixnet.friend.leaveSubscriptionGroup(callback, userName, groupIds, [optionData])
 
-#### Block
+### Block
 - 列出黑名單 pixnet.block.getBlock(callback, [optionData])
 - 新增黑名單 pixnet.block.createBlock(callback, userName, [optionData])
 - 刪除黑名單 pixnet.block.deleteBlock(callback, userName, [optionData])
 
-#### GuestBook
+### GuestBook
 - 列出留言板留言 pixnet.guestbook.getAll(callback, userName, [optionData])
 - 新增留言板留言 pixnet.guestbook.create(callback, userName, body, [optionData])
 - 讀取單一留言 pixnet.guestbook.getOne(callback, id, userName, [optionData])
@@ -197,10 +224,14 @@ Pixnet 功能分類
 - 將留言設為非廣告留言 pixnet.guestbook.markHam(callback, id, [optionData])
 - 刪除留言板留言 pixnet.guestbook.delete(callback, id, [optionData])
 
-#### MainPage
+### MainPage
+
+#### Column Groups
 - 列出文章專欄 pixnet.mainpage.getBlogColumns(callback, [optionData])
 - 列出專欄的分類 pixnet.mainpage.getBlogColumnsCategories(callback, [optionData])
 - 列出相簿專欄 pixnet.mainpage.getAlbumColumns(callback, [optionData])
+
+#### Category Groups
 - 列出分類熱門、最新、近期文章 pixnet.mainpage.getArticlesByCategory(callback, type, categoryId, [optionData])
 - 列出分類熱門、最新、近期相簿 pixnet.mainpage.getAlbumsByCategory(callback, type, categoryId, [optionData])
 - 列出熱門、最新、近期影音 pixnet.mainpage.getVideos(callback, type, categoryId, [optionData])
