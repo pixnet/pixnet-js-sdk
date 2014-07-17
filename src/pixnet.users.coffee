@@ -73,11 +73,14 @@ class PixUsers
     pixnet.getAuthApiFunc(@, @getMIBAccount, arguments, options)
     return @
 
-  getMIBPositionData: (callback, id = '', optionData) ->
+  getMIBPositionData: (callback, id, optionData) ->
+    if id is undefined
+      return pixnet._error 'Do not give position id';
+
     options = {
       'callback': callback
       'optionData': optionData
-      'mainUri': "account/positions#{id}"
+      'mainUri': "account/mib/positions/#{id}"
     }
     pixnet.getAuthApiFunc(@, @getMIBPositionData, arguments, options)
     return @
@@ -86,7 +89,7 @@ class PixUsers
     options = {
       'callback': callback
       'optionData': optionData
-      'mainUri': "account/positions#{id}"
+      'mainUri': "account/mib/positions/#{id}"
     }
     pixnet.postAuthApiFunc(@, @updateMIBPositionData, arguments, options)
     return @
