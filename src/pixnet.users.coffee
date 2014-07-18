@@ -64,6 +64,41 @@ class PixUsers
 
   ## MIB Method
 
+  createMIBAccount: (callback, needData, optionData) ->
+    # make sure required fields are exist
+    if not needData or
+       not needData.id_number or
+       not needData.email or
+       not needData.cellphone or
+       not needData.mail_address or
+       not needData.domicile or
+       needData.enable_video_ad is undefined or
+       not needData.name or
+       not needData.id_image_front or
+       not needData.id_image_back
+        return pixnet._error 'Do not give needed data';
+
+    needData = pixnet._extends(needData, optionData)
+
+    # 拿掉 base64 defined string
+    if needData.upload_method is "base64"
+      frontLen = needData.id_image_front.length
+      backLen = needData.id_image_back.length
+      frontIndex = needData.id_image_front.indexOf(';base64,')
+      backIndex = needData.id_image_back.indexOf(';base64,')
+      if frontIndex > 0
+        needData.id_image_front = needData.id_image_front.substring(frontIndex + 8, frontLen)
+      if backIndex > 0
+        needData.id_image_back = needData.id_image_back.substring(backIndex + 8, backLen)
+
+    options = {
+      'callback': callback
+      'optionData': needData
+      'mainUri': 'account/mib'
+    }
+    pixnet.postAuthApiFunc(@, @createMIBAccount, arguments, options)
+    return @
+
   getMIBAccount: (callback, optionData) ->
     options = {
       'callback': callback

@@ -30,7 +30,7 @@
     };
 
     pixapp.user = {
-        userPassword: '你的使用者密碼',
+        userPassword: 'jssdkpassword',
         // 方可修改測試密碼, changePassword testing 會跑兩次把密碼換回原本的密碼
         newPassword: 'testing1234'
     };
@@ -44,7 +44,22 @@
         id:"",
         user: "phpsdk"
       }
+    };
+
+    pixapp.mib = {
+        // set 'testing' false for skipping testing createMIBAccount method
+        // 因為此 api 是申請 mib 帳號，只會成功一次（申請一次）
+        // 假如帳號未來還需要使用，請確保資料正確。
+        testing: false,
+        id_number: 'F123456789',
+        email: 'test@email.com',
+        cellphone: '0912345678',
+        mail_address: '台北市',
+        domicile: '台北市',
+        name: 'test',
+        enable_video_ad: false
     }
+
   </script>
   <script type="text/javascript" src="../lib/all.src.js"></script>
   <script type="text/javascript" src="../lib/json3.min.js"></script>
