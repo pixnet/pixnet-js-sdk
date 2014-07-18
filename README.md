@@ -166,13 +166,18 @@ Pixnet 功能分類
 - 列出相簿全站分類 pixnet.album.getSiteCategories(callback, [optionData])
 
 ### Users
-
 - 讀取認證使用者資訊 pixnet.users.getAccount(callback, [optionData])
 - 修改認證使用者資訊 pixnet.users.updateAccount(callback, password, [optionData])
 - 讀取使用者公開資訊 pixnet.users.getUser(callback, userName, [optionData])
 - 取得拜訪紀錄分析資料 pixnet.users.getAnalyticsData(callback, [optionData])
 - 修改密碼 pixnet.users.updatePassword(callback, oldPassword, newPassword, [optionData])
 - 列出通知 pixnet.users.getNotifications(callback, [optionData])
+
+#### MIB
+- 讀取認證使用者 MIB 資訊 pixnet.users.getMIBAccount(callback, [optionData])
+- 新增認證使用者 MIB 資訊 pixnet.users.createMIBAccount(callback, [needData], [optionData])
+- 取得認證使用者 MIB 版位資訊 pixnet.users.getMIBPositionData(callback, posId, [optionData])
+- 修改認證使用者 MIB 版位資訊 pixnet.users.updataMIBPositionData(callback, id, fixedadbox, enabled, [optionData]) 
 
 ### Index
 - 讀取 API 使用次數資訊 pixnet.index.rate(callback, [optionData])
