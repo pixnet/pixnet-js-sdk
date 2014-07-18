@@ -161,4 +161,11 @@ asyncTest("updateMIBPositionData", function (){
     });
 });
 
-
+asyncTest("getMIBPay", function () {
+    expect(1);
+    pixnet.users.getMIBPay(function (data) {
+        console.log('getMIBPay', data);
+        equal(0, data.error, data.message);
+        start();
+    });
+});
