@@ -80,7 +80,7 @@ asyncTest("createMIBAccount", function (){
         expect(1);
         pixnet.users.getMIBAccount(function (data) {
             // 當測試者已經測試過了，就不用再測試了
-            if (data.mib.applied === 1) {
+            if (data.mib.applied !== 1) {
                 var base64Image = 'data:image/gif;base64,R0lGODdhMgAyAOMAAMzMzJaWlsXFxbGxsb6+vre3t5ycnKOjo6qqqgAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAMgAyAAAEhRDISau9OOvNu/9gKI5kaZ5oqq5s675wLM90bd94ru9878uCwSf4IgQEHiOyFWhKCgZDQTIwBA6SZsBVOAIEgcJgCwgMoE9vSwkwapEIg1DCXnuNBMESAMW21SxsYAMEcwGFZHUsAlZTUGYSCAFSEoxhP5iZmpucnZ6foKGio6SlpqeoHxEAOw==',
                     needData = {
                         id_number: pixapp.mib.id_number,
