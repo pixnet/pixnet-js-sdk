@@ -213,3 +213,12 @@ asyncTest("getSiteCategories", function() {
         }, pixapp.blog.userName);
     });
 });
+
+asyncTest("getSuggestedTags", function() {
+    expect(1);
+    pixnet.blog.getSuggestedTags(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
+        start();
+    }, pixapp.blog.userName);
+});
