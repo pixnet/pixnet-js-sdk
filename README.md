@@ -95,6 +95,7 @@ Twitter: @pixnetapi
 - 刪除部落格留言 pixnet.blog.deleteComment(callback, id, [optionData])
 - 列出部落格最新留言 pixnet.blog.getLatestComment(callback, userName, [optionData])
 - 列出部落格全站分類 pixnet.blog.getSiteCategories(callback, [optionData])
+- 列出部落格熱門標籤及相關標籤 pixnet.blog.getSuggestedTags(callback, userName, [optionData])
 
 #### Album
 - 列出相簿主圖及相片牆 pixnet.album.getAlbumMain(callback, [optionData])
