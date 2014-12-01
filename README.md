@@ -49,6 +49,10 @@
 Email: pixnetapi@pixnet.tw
 Twitter: @pixnetapi
 
+## License
+
+PIXNET SDK is BSD-licensed. We also provide an additional patent grant.
+
 ### Pixnet 功能分類
 #### Init
 - 參數說明 pixnet.init
