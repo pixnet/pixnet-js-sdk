@@ -79,6 +79,20 @@ asyncTest("getNotifications", function() {
     });
 });
 
+asyncTest("makeNotificationRead", function() {
+    if (!pixapp.user.notificationId) {
+        expect(0);
+        start();
+        return;
+    }
+    expect(1);
+    pixnet.users.makeNotificationRead(function(data) {
+        console.log('makeNotificationRead', data);
+        equal(0, data.error, data.message);
+        start();
+    }, pixapp.user.notificationId);
+});
+
 asyncTest("createMIBAccount", function (){
     if (!pixapp.mib.testing) {
         expect(0);
