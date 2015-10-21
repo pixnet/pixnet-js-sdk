@@ -432,5 +432,13 @@ class PixBlog
     pixnet._get 'https://emma.pixnet.cc/blog/site_categories', pixnet._defaultXHROptions(data, callback)
     return @
 
+  getSuggestedTags: (callback, userName, optionData)->
+
+    data =
+      user: userName
+    data = pixnet._extends(data, optionData)
+
+    pixnet._get 'https://emma.pixnet.cc/blog/suggested_tags', pixnet._defaultXHROptions(data, callback)
+    return @
 
 pixnet.blog = new PixBlog()

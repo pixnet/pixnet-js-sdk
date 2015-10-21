@@ -3,14 +3,14 @@
 痞客邦 emma api 的 js 版 sdk
 
 ### 如何使用 gulp 開發
-- gulp 建立了四個工作(task)，分別為：scripts, scripts_dev, watch, watch_dev。
+- gulp 建立了四個工作(task)，分別為：scripts, scripts_dev, watch。
 - 先安裝 gulp 和相關套件:
 
         npm install
 
 - 然後在 gulpfile.js 目錄下，輸入：
 
-        gulp watch_dev
+        gulp watch
 
 - 如此就可以隨時監控 coffee 檔案並自動產生 lib/all.src.js
 
@@ -26,6 +26,8 @@
 
         gulp scripts
 
+- 另外，也可以到 Makefile 路徑下，輸入 make ，也可以完成上面兩個步驟。
+
 ### 如何使用測試程式
 - 先把整個 repo 複製到你的網頁空間（有apache ）的那種
 - 然後到 [這裡](http://developer.pixnet.pro/#!/apps) 申請一個測試用的 app
@@ -36,15 +38,24 @@
         consumerSecret: '你的 consumerSecret',
         callbackUrl: '你的 Callback URL'
         
-- 修改 test/index.html 33 行，pixapp.user 資訊
+- 修改 test/index.html 14 行，pixapp.user 資訊
         
         userPassword: '你的使用者密碼'
 
 - 最後用瀏覽器打開 test/index.html 就可以看到測試結果了
 
-Pixnet 功能分類
-----
-### Init
+=======
+## 聯絡我們
+
+Email: pixnetapi@pixnet.tw
+Twitter: @pixnetapi
+
+## License
+
+PIXNET SDK is BSD-licensed. We also provide an additional patent grant.
+
+## Pixnet 功能分類
+#### Init
 - 參數說明 pixnet.init
 <table>
 <tr><th>參數名稱</th><th>類型</th><th>說明</th></tr>
@@ -97,6 +108,7 @@ Pixnet 功能分類
 
 #### Site Categories
 - 列出部落格全站分類 pixnet.blog.getSiteCategories(callback, [optionData])
+- 列出部落格熱門標籤及相關標籤 pixnet.blog.getSuggestedTags(callback, userName, [optionData])
 
 ### Album
 
@@ -239,4 +251,5 @@ Pixnet 功能分類
 #### Category Groups
 - 列出分類熱門、最新、近期文章 pixnet.mainpage.getArticlesByCategory(callback, type, categoryId, [optionData])
 - 列出分類熱門、最新、近期相簿 pixnet.mainpage.getAlbumsByCategory(callback, type, categoryId, [optionData])
+- 列出全站熱門、最新、近期、精選相簿 pixnet.mainpage.getAlbumBestSelected(callback, [optionData])
 - 列出熱門、最新、近期影音 pixnet.mainpage.getVideos(callback, type, categoryId, [optionData])

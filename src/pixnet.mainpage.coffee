@@ -36,4 +36,10 @@ class PixMainpage
     pixnet._get "https://emma.pixnet.cc/mainpage/album/video/#{type}", pixnet._defaultXHROptions(data, callback)
     return @
 
+  getAlbumBestSelected: (callback, optionData)->
+    data = {}
+    data = pixnet._extends(data, optionData)
+    pixnet._get "https://emma.pixnet.cc/mainpage/album/best_selected", pixnet._defaultXHROptions(data, callback)
+    return @
+
 pixnet.mainpage = new PixMainpage()

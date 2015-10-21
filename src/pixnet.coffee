@@ -25,7 +25,10 @@ class NoJquery
   _extends: (child, parent)->
     parent = {} if not parent
     for own key of parent
-      child[key] = parent[key]
+      if typeof parent[key] is 'object'
+        child[key] = @_extends({}, parent[key])
+      else
+        child[key] = parent[key]
     child
 
   _defaultXHROptions: (data, callback)->
@@ -76,7 +79,7 @@ class NoJquery
     opts.type = 'GET'
     opts.url = url
     opts.data = opts.data || {}
-    opts.data['format'] = 'json'
+    opts.data['format'] = 'json' if not opts.data['format']
     return @_ajax(opts)
 
   _delete: (url, opts)=>
@@ -84,21 +87,21 @@ class NoJquery
     opts.url = url
     opts.data = opts.data || {}
     opts.data['_method'] = 'delete'
-    opts.data['format'] = 'json'
+    opts.data['format'] = 'json' if not opts.data['format']
     return @_ajax(opts)
 
   _post: (url, opts)=>
     opts.type = 'POST'
     opts.url = url
     opts.data = opts.data || {}
-    opts.data['format'] = 'json'
+    opts.data['format'] = 'json' if not opts.data['format']
     return @_ajax(opts)
 
   _upload: (url, opts)=>
     opts.type = 'UPLOAD'
     opts.url = url
     opts.data = opts.data || {}
-    opts.data['format'] = 'json'
+    opts.data['format'] = 'json' if not opts.data['format']
     return @_ajax(opts)
 
   _ajax: (opts)=>

@@ -19,7 +19,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('scripts_dev', function() {
-    // Minify and copy all JavaScript
+    // Copy all JavaScript
     return gulp.src(paths.scripts)
         .pipe(coffee())
         .pipe(concat('all.src.js'))
@@ -28,16 +28,11 @@ gulp.task('scripts_dev', function() {
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
+    gulp.run(['scripts_dev', 'scripts']);
     gulp.watch(paths.coffee[0], function() {
-        gulp.run('scripts');
-    });
-});
-
-gulp.task('watch_dev', function() {
-    gulp.watch(paths.coffee[0], function() {
-        gulp.run('scripts_dev');
+        gulp.run(['scripts_dev', 'scripts']);
     });
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['scripts']);
+gulp.task('default', ['scripts_dev', 'scripts']);

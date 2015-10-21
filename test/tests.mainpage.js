@@ -1,13 +1,6 @@
 module('pixnet.mainpage', {
     setup: function() {
         pixnet.init(pixapp.init);
-        stop();
-        pixnet.login(function() {
-            pixnet.users.getAccount(function(data) {
-                pixapp.blog.userName = data.account.name;
-                start();
-            });
-        });
     }
 });
 
@@ -34,6 +27,15 @@ asyncTest("getAlbumColumns", function() {
     pixnet.mainpage.getAlbumColumns(function(data) {
         console.log(data);
         equal(true, pixnet.isArray(data), data);
+        start();
+    });
+});
+
+asyncTest("getAlbumBestSelected", function() {
+    expect(1);
+    pixnet.mainpage.getAlbumBestSelected(function(data) {
+        console.log(data);
+        equal(0, data.error, data.message);
         start();
     });
 });

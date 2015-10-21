@@ -15,6 +15,37 @@
       return this;
     };
 
+    PixBlog.prototype.updateInfo = function(callback, optionData) {
+      var args, data;
+      if (!pixnet.isLogin) {
+        pixnet._error('Need login');
+        return this;
+      }
+      data = {
+        access_token: pixnet.getData('accessToken')
+      };
+      data = pixnet._extends(data, optionData);
+      args = arguments;
+      pixnet._post('https://emma.pixnet.cc/blog', {
+        data: data,
+        done: (function(_this) {
+          return function(data) {
+            if (callback) {
+              return callback(data);
+            }
+          };
+        })(this),
+        fail: (function(_this) {
+          return function(data) {
+            return pixnet.apiInvalidGrantFunc(function() {
+              return _this.updateInfo.apply(_this, args);
+            }, data, args);
+          };
+        })(this)
+      });
+      return this;
+    };
+
     PixBlog.prototype.getCategories = function(callback, userName, optionData) {
       var data;
       data = {
@@ -568,6 +599,16 @@
       data = {};
       data = pixnet._extends(data, optionData);
       pixnet._get('https://emma.pixnet.cc/blog/site_categories', pixnet._defaultXHROptions(data, callback));
+      return this;
+    };
+
+    PixBlog.prototype.getSuggestedTags = function(callback, userName, optionData) {
+      var data;
+      data = {
+        user: userName
+      };
+      data = pixnet._extends(data, optionData);
+      pixnet._get('https://emma.pixnet.cc/blog/suggested_tags', pixnet._defaultXHROptions(data, callback));
       return this;
     };
 
