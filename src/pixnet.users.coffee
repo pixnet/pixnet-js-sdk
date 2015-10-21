@@ -62,6 +62,15 @@ class PixUsers
     pixnet.getAuthApiFunc(@, @getNotifications, arguments, options)
     return @
 
+  makeNotificationRead: (callback, id, optionData) ->
+    options = {
+      'callback': callback
+      'optionData': optionData
+      'mainUri': "account/notifications/#{id}/read"
+    }
+    pixnet.postAuthApiFunc(@, @makeNotificationRead, arguments, options)
+    return @
+
   ## MIB Method
 
   createMIBAccount: (callback, needData, optionData) ->

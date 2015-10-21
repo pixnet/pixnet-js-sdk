@@ -184,6 +184,7 @@ PIXNET SDK is BSD-licensed. We also provide an additional patent grant.
 - 取得拜訪紀錄分析資料 pixnet.users.getAnalyticsData(callback, [optionData])
 - 修改密碼 pixnet.users.updatePassword(callback, oldPassword, newPassword, [optionData])
 - 列出通知 pixnet.users.getNotifications(callback, [optionData])
+- 將通知設為已讀 pixnet.users.makeNotificationRead(callback, id, [optionData])
 
 #### MIB
 - 讀取認證使用者 MIB 資訊 pixnet.users.getMIBAccount(callback, [optionData])
